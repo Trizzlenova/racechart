@@ -6,7 +6,20 @@ class Driver(models.Model):
   birth_place = models.CharField(max_length=500)
   birthday = models.DateField()
   country = models.CharField(max_length=100)
-  # cars
+  car_number = models.IntegerField()
+  gender = models.CharField(max_length=1)
+  height = models.IntegerField()
+  hobbies = models.CharField(max_length=500, blank=True, null=True)
+  driver_id = models.CharField(max_length=100)
+  last_name = models.CharField(max_length=100)
+  residence = models.CharField(max_length=200)
+  rookie_year = models.IntegerField()
+  status = models.CharField(max_length=100)
+  team = models.ForeignKey(Team, on_delete=CASCADE, related_name='drivers')
+  twitter = models.CharField(max_length=100)
+
+# for loops will be dope
+
   def __str__(self):
     return self.full_name
 
@@ -16,55 +29,34 @@ class Driver(models.Model):
       # do something with the driver
       return driver
 
+class Team(models.Model):
+  name = models.CharField(max_length=100)
+  crew_chief = models.CharField(max_length=100)
+  manufacturer = models.CharField(max_length=100)
+  sponsors = models.CharField(max_length=200)
 
-# tommy = Driver.create('Tommy Trucker', 'Mobile, Alabama', '1985-01-01', 'Murica')
-# tommy.save()
-# print(f'I am printing {tommy.full_name} from {tommy.country}')
-# "UNITED STATES"
-# first_name
-# :
-# "David"
-# full_name
-# :
-# "David Ragan"
-# gender
-# :
-# "M"
-# height
-# :
-# 72
-# hobbies
-# :
-# "Boxing, restoring old cars, hunting, fishing"
-# id
-# :
-# "25884070-3ded-4fdc-9370-d09428ac95e4"
-# last_name
-# :
-# "Ragan"
-# points_eligible
-# :
-# true
-# residence
-# :
-# "Huntersville, North Carolina, United States"
-# rookie_year
-# :
-# 2007
-# status
-# :
-# "ACT"
-# team
-# :
-# {id: "bd38dfec-bb97-4f29-b032-cc6f0c77dfe6", name: "Front Row Motorsports"}
-# twitter
-# :
-# "@DavidRagan"
+  def __str__(self):
+    return self.name
 
-#
+  # add classmethod
 
-# # for loops will be dope
+class Race(models.Model):
+  name = models.CharField(max_length=250)
+  actual_distance = models.IntegerField()
+  avg_speed = models.DecimalField(max_digits=5, decimal_places=3)
+  caution_laps = models.IntegerField()
+  cautions = models.CharField(max_length=250)
+  condition = models.CharField(max_length=250)
+  distance = models.IntegerField()
+  elapsed_time = models.CharField(max_length=250)
+  laps = models.IntegerField()
+  laps_completed = models.IntegerField()
+  lead_changes = models.IntegerField()
+  race_number = models.IntegerField()
+  scheduled_time = models.DateTimeField()
+  start_time = models.DateTimeField()
+  end_time = models.DateTimeField()
+  # convert from string to decimal
+  victory_margin = models.DecimalField(max_digits=5, decimal_places=3)
 
-# # sue = Driver.create('Sue Redneck')
-# # sue.save()
-# # print(f'I am printing {sue.name}')
+

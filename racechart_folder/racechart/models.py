@@ -157,6 +157,27 @@ class Race(models.Model):
   def __str__(self):
     return self.name
 
+  @classmethod
+  def create(cls, race):
+      new_race = cls(
+        actual_distance = race['actual_distance'],
+        avg_speed = race['avg_speed'],
+        caution_laps = race['caution_laps'],
+        cautions = race['cautions'],
+        condition = race['condition'],
+        distance = race['distance'],
+        elapsed_time = race['elapsed_time'],
+        flags = len(race['flags']),
+        laps = race['laps'],
+        laps_completed = race['laps_completed'],
+        lead_changes = race['lead_changes'],
+        race_number = race['race_number'],
+        scheduled_time = race['scheduled_time'],
+        start_time = race['start_time'],
+        end_time = race['end_time'],
+        victory_margin = race['victory_margin'],
+      )
+
 class Result(models.Model):
   race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='results')
   driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='results')
@@ -186,3 +207,30 @@ class Result(models.Model):
 
   def __str__(self):
     return self.race.name
+
+  @classmethod
+  def create(cls, result):
+      new_result = cls(
+        avg_position = result['avg_position'],
+        avg_speed = result['avg_speed'],
+        best_lap = result['best_lap'],
+        best_lap_speed = result['best_lap_speed'],
+        best_lap_time = result['best_lap_time'],
+        bonus_points = result['bonus_points'],
+        driver_rating = result['driver_rating'],
+        elapsed_time = result['elapsed_time'],
+        fastest_laps = result['fastest_laps'],
+        laps_completed = result['laps_completed'],
+        laps_led = result['laps_led'],
+        passes_made = result['passes_made'],
+        passing_differential = result['passing_differential'],
+        penalty_points = result['penalty_points'],
+        pit_stops = len(result['pit_stops']),
+        points = result['points'],
+        position = result['position'],
+        quality_passes = result['quality_passes'],
+        start_position = result['start_position'],
+        status = result['status'],
+        times_led = result['times_led'],
+        times_passed = result['times_passed'],
+      )

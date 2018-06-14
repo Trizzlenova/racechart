@@ -78,7 +78,7 @@ class Standing(models.Model):
   wins = models.IntegerField()
 
   def __str__(self):
-      return (f`{self.full_name} standing`)
+      return {self.rank}
 
   @classmethod
   def create(cls, standing):

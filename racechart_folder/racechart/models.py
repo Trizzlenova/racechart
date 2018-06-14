@@ -77,6 +77,9 @@ class Standing(models.Model):
   top_20 = models.IntegerField()
   wins = models.IntegerField()
 
+  def __str__(self):
+      return (f`{self.full_name} standing`)
+
   @classmethod
   def create(cls, standing):
 
@@ -118,7 +121,13 @@ class Team(models.Model):
     return self.name
 
   @classmethod
-  def create()
+  def create(cls, team):
+      new_team = cls(
+        name = team['name'],
+        crew_chief = team['crew_chief'],
+        manufacturer = team['manufacturer'],
+        sponsors = team['sponsors'],
+      )
 
   # add classmethod
 

@@ -1,16 +1,5 @@
 from django.db import models
 from json import *
-import json
-
-
-class JSON_File:
-  def __init__(self, data):
-    self.__dict__ = data
-
-with open('racechart/json/race.json') as driver_file:
-  driver_data = json.loads(driver_file.read())
-
-# print(driver_data)
 
 
 class Driver(models.Model):
@@ -39,21 +28,26 @@ class Driver(models.Model):
 
   @classmethod
   def create(cls, driver):
-    new_driver = cls(
-      birth_place = driver['birth_place'],
-      birthday = driver['birthday'],
-      country = driver['country'],
-      car_number = driver['car_number'],
-      gender = driver['gender'],
-      height = driver['height'],
-      hobbies = driver['hobbies'],
-      driver_id = driver['id'],
-      last_name = driver['last_name'],
-      residence = driver['residence'],
-      rookie_year = driver['rookie_year'],
-      status = driver['status'],
-      twitter = driver['twitter'],
-    )
+    # driver_json = open('racechart/json/drivers.json').read()
+    # from_string_to_json = json.loads(driver_json)
+    # drivers = from_string_to_json['drivers']
+    # for driver_instance in drivers:
+      driver = cls(
+        birth_place = driver_instance['birth_place'],
+        birthday = driver_instance['birthday'],
+        country = driver_instance['country'],
+        car_number = driver_instance['car_number'],
+        gender = driver_instance['gender'],
+        height = driver_instance['height'],
+        hobbies = driver_instance['hobbies'],
+        driver_id = driver_instance['id'],
+        last_name = driver_instance['last_name'],
+        residence = driver_instance['residence'],
+        rookie_year = driver_instance['rookie_year'],
+        status = driver_instance['status'],
+        twitter = driver_instance['twitter'],
+        )
+      # driver.save()
 
   class Meta:
     ordering = ['last_name']

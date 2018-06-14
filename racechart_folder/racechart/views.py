@@ -4,7 +4,6 @@ from .models import Driver
 import json
 from django.http import HttpResponse, HttpResponseRedirect
 from racechart_folder.config import API_KEY
-from collections import OrderedDict
 
 
 
@@ -30,9 +29,9 @@ def grab_json(request, url, data_file):
   print(f'you are grabbing a json from {url}')
 
 def get_all(request):
-  # grab_json(requests, driver_url, driver_file)
+  grab_json(request, driver_url, driver_file)
   # grab_json(requests, race_url, race_file)
-  grab_json(requests, standings_url, standings_file)
+  # grab_json(requests, standings_url, standings_file)
   return HttpResponseRedirect('/admin')
 
 def create_driver(request):
@@ -49,8 +48,3 @@ def create_driver(request):
   print(david_ragan)
 
   return HttpResponseRedirect('/admin')
-
-
-
-
-

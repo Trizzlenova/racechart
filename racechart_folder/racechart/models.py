@@ -2,11 +2,13 @@ from django.db import models
 from json import *
 
 class Driver(models.Model):
+  team = models.ForeignKey(Team, on_delete=CASCADE, related_name='drivers')
   # from driver
   full_name = models.CharField(max_length=100)
   birth_place = models.CharField(max_length=500)
   birthday = models.DateField()
   country = models.CharField(max_length=100)
+  # dig down for this one
   car_number = models.IntegerField()
   gender = models.CharField(max_length=1)
   height = models.IntegerField()
@@ -16,7 +18,6 @@ class Driver(models.Model):
   residence = models.CharField(max_length=200)
   rookie_year = models.IntegerField()
   status = models.CharField(max_length=100)
-  team = models.ForeignKey(Team, on_delete=CASCADE, related_name='drivers')
   twitter = models.CharField(max_length=100)
 
 # for loops will be dope
@@ -29,6 +30,9 @@ class Driver(models.Model):
       driver = cls(full_name=full_name, birth_place=birth_place, birthday=birthday, country=country)
       # do something with the driver
       return driver
+
+  class Meta:
+    ordering = ['last_name']
 
 class Standing(models.Model):
   driver = models.ForeignKey(Driver, on_delete=CASCADE, related_name='standings')
@@ -55,6 +59,9 @@ class Standing(models.Model):
   top_20 = models.IntegerField()
   wins = models.IntegerField()
 
+  class Meta:
+    ordering = ['rank']
+
 class Team(models.Model):
   # from race
   name = models.CharField(max_length=100)
@@ -78,6 +85,8 @@ class Race(models.Model):
   condition = models.CharField(max_length=250)
   distance = models.IntegerField()
   elapsed_time = models.CharField(max_length=250)
+  # count list length
+  flags = models.IntegerField()
   laps = models.IntegerField()
   laps_completed = models.IntegerField()
   lead_changes = models.IntegerField()

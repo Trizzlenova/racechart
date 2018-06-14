@@ -1,8 +1,16 @@
 from django.db import models
 from json import *
 
+class Driver_File:
+  def __init__(self, data):
+    self.__dict__ = data
+
+driver_json = open('racechart/json/drivers.json').read()
+driver_data = json.loads(driver_json, object_hook=Driver_File)
+
+
 class Driver(models.Model):
-  team = models.ForeignKey(Team, on_delete=CASCADE, related_name='drivers')
+  # team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='drivers')
   # from driver
   full_name = models.CharField(max_length=100)
   birth_place = models.CharField(max_length=500)
@@ -26,20 +34,37 @@ class Driver(models.Model):
     return self.full_name
 
   @classmethod
-  def create(cls, full_name, birth_place, birthday, country):
-      driver = cls(full_name=full_name, birth_place=birth_place, birthday=birthday, country=country)
-      # do something with the driver
-      return driver
+  def create(cls):
+    driver_json = open('racechart/json/drivers.json').read()
+    from_string_to_json = json.loads(driver_json)
+    drivers = from_string_to_json['drivers']
+    for driver_instance in drivers:
+      driver = cls(
+        birth_place = driver_instance['birth_place'],
+        birthday = driver_instance['birthday'],
+        country = driver_instance['country'],
+        car_number = driver_instance['car_number'],
+        gender = driver_instance['gender'],
+        height = driver_instance['height'],
+        hobbies = driver_instance['hobbies'],
+        driver_id = driver_instance['id'],
+        last_name = driver_instance['last_name'],
+        residence = driver_instance['residence'],
+        rookie_year = driver_instance['rookie_year'],
+        status = driver_instance['status'],
+        twitter = driver_instance['twitter'],
+        )
+      driver.save()
 
   class Meta:
     ordering = ['last_name']
 
 class Standing(models.Model):
-  driver = models.ForeignKey(Driver, on_delete=CASCADE, related_name='standings')
+  driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='standings')
   # from standings
-  avg_finish_position = models.DecimalField(max_digits=None, decimal_places=None)
-  avg_laps_completed = models.DecimalField(max_digits=None, decimal_places=None)
-  avg_start_postion = models.DecimalField(max_digits=None, decimal_places=None)
+  avg_finish_position = models.DecimalField(max_digits=6, decimal_places=3)
+  avg_laps_completed = models.DecimalField(max_digits=6, decimal_places=3)
+  avg_start_postion = models.DecimalField(max_digits=6, decimal_places=3)
   chase_bonus = models.IntegerField()
   dnf = models.IntegerField()
   full_name = models.CharField(max_length=200)
@@ -79,7 +104,7 @@ class Race(models.Model):
   name = models.CharField(max_length=250)
   drivers = models.ManyToManyField(Driver, related_name='races')
   actual_distance = models.IntegerField()
-  avg_speed = models.DecimalField(max_digits=None, decimal_places=None)
+  avg_speed = models.DecimalField(max_digits=6, decimal_places=3)
   caution_laps = models.IntegerField()
   cautions = models.CharField(max_length=250)
   condition = models.CharField(max_length=250)
@@ -95,22 +120,22 @@ class Race(models.Model):
   start_time = models.DateTimeField()
   end_time = models.DateTimeField()
   # convert from string to decimal
-  victory_margin = models.DecimalField(max_digits=None, decimal_places=None)
+  victory_margin = models.DecimalField(max_digits=6, decimal_places=3)
 
   def __str__(self):
     return self.name
 
 class Result(models.Model):
-  race = models.ForeignKey(Race, on_delete=CASCADE, related_name='results')
-  driver = models.ForeignKey(Driver, on_delete=CASCADE, related_name='results')
-  avg_position = models.DecimalField(max_digits=None, decimal_places=None)
-  avg_speed = models.DecimalField(max_digits=None, decimal_places=None)
+  race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='results')
+  driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='results')
+  avg_position = models.DecimalField(max_digits=6, decimal_places=3)
+  avg_speed = models.DecimalField(max_digits=6, decimal_places=3)
   best_lap = models.IntegerField()
-  best_lap_speed = models.DecimalField(max_digits=None, decimal_places=None)
-  best_lap_time = models.DecimalField(max_digits=None, decimal_places=None)
+  best_lap_speed = models.DecimalField(max_digits=6, decimal_places=3)
+  best_lap_time = models.DecimalField(max_digits=6, decimal_places=3)
   bonus_points = models.IntegerField()
-  driver_rating = models.DecimalField(max_digits=None, decimal_places=None)
-  elapsed_time = models.DecimalField(max_digits=None, decimal_places=None)
+  driver_rating = models.DecimalField(max_digits=6, decimal_places=3)
+  elapsed_time = models.DecimalField(max_digits=6, decimal_places=3)
   fastest_laps = models.IntegerField()
   laps_completed = models.IntegerField()
   laps_led = models.IntegerField()

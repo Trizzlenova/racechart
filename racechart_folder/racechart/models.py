@@ -32,20 +32,20 @@ class Driver(models.Model):
     # from_string_to_json = json.loads(driver_json)
     # drivers = from_string_to_json['drivers']
     # for driver_instance in drivers:
-      driver = cls(
-        birth_place = driver_instance['birth_place'],
-        birthday = driver_instance['birthday'],
-        country = driver_instance['country'],
-        car_number = driver_instance['car_number'],
-        gender = driver_instance['gender'],
-        height = driver_instance['height'],
-        hobbies = driver_instance['hobbies'],
-        driver_id = driver_instance['id'],
-        last_name = driver_instance['last_name'],
-        residence = driver_instance['residence'],
-        rookie_year = driver_instance['rookie_year'],
-        status = driver_instance['status'],
-        twitter = driver_instance['twitter'],
+      new_driver = cls(
+        birth_place = driver['birth_place'],
+        birthday = driver['birthday'],
+        country = driver['country'],
+        car_number = driver['car_number'],
+        gender = driver['gender'],
+        height = driver['height'],
+        hobbies = driver['hobbies'],
+        driver_id = driver['id'],
+        last_name = driver['last_name'],
+        residence = driver['residence'],
+        rookie_year = driver['rookie_year'],
+        status = driver['status'],
+        twitter = driver['twitter'],
         )
       # driver.save()
 
@@ -77,6 +77,33 @@ class Standing(models.Model):
   top_20 = models.IntegerField()
   wins = models.IntegerField()
 
+  @classmethod
+  def create(cls, standing):
+
+      new_standing = cls(
+        avg_finish_position = standing['avg_finish_position'],
+        avg_laps_completed = standing['avg_laps_completed'],
+        avg_start_postion = standing['avg_start_postion'],
+        chase_bonus = standing['chase_bonus'],
+        dnf = standing['dnf'],
+        full_name = standing['full_name'],
+        in_chase = standing['in_chase'],
+        laps_completed = standing['laps_completed'],
+        laps_led = standing['laps_led'],
+        laps_led_pct = standing['laps_led_pct'],
+        points = standing['points'],
+        poles = standing['poles'],
+        rank = standing['rank'],
+        stage_wins = standing['stage_wins'],
+        starts = standing['starts'],
+        status = standing['status'],
+        top_5 = standing['top_5'],
+        top_10 = standing['top_10'],
+        top_15 = standing['top_15'],
+        top_20 = standing['top_20'],
+        wins = standing['wins'],
+      )
+
   class Meta:
     ordering = ['rank']
 
@@ -89,6 +116,9 @@ class Team(models.Model):
 
   def __str__(self):
     return self.name
+
+  @classmethod
+  def create()
 
   # add classmethod
 

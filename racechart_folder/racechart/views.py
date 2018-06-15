@@ -43,8 +43,8 @@ def create_driver(request):
   country = loaded['drivers'][0]['country']
   birth_place = loaded['drivers'][0]['birth_place']
 
-  david_ragan = Driver.create(full_name, birth_place, birthday, country)
-  david_ragan.save()
-  print(david_ragan)
+  # david_ragan = Driver.create(full_name, birth_place, birthday, country)
+  # david_ragan.save()
+  # print(david_ragan)
 
   return HttpResponseRedirect('/admin')

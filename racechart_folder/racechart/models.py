@@ -1,5 +1,6 @@
 from django.db import models
 from json import *
+import json
 
 
 class Driver(models.Model):
@@ -10,44 +11,43 @@ class Driver(models.Model):
   birthday = models.DateField()
   country = models.CharField(max_length=100)
   # dig down for this one
-  car_number = models.IntegerField()
+  car_number = models.IntegerField(blank=True, null=True)
   gender = models.CharField(max_length=1)
-  height = models.IntegerField()
+  height = models.IntegerField(blank=True, null=True)
   hobbies = models.CharField(max_length=500, blank=True, null=True)
-  driver_id = models.CharField(max_length=100)
+  driver_id = models.CharField(max_length=100, blank=True, null=True)
   last_name = models.CharField(max_length=100)
-  residence = models.CharField(max_length=200)
-  rookie_year = models.IntegerField()
+  residence = models.CharField(max_length=200, blank=True, null=True)
+  rookie_year = models.IntegerField(blank=True, null=True)
   status = models.CharField(max_length=100)
-  twitter = models.CharField(max_length=100)
+  twitter = models.CharField(max_length=100, blank=True, null=True)
 
 # for loops will be dope
 
   def __str__(self):
     return self.full_name
 
+  # driver['height'] = driver['height'] or 0
+
   @classmethod
   def create(cls, driver):
-    # driver_json = open('racechart/json/drivers.json').read()
-    # from_string_to_json = json.loads(driver_json)
-    # drivers = from_string_to_json['drivers']
-    # for driver_instance in drivers:
-      new_driver = cls(
-        birth_place = driver['birth_place'],
-        birthday = driver['birthday'],
-        country = driver['country'],
-        car_number = driver['car_number'],
-        gender = driver['gender'],
-        height = driver['height'],
-        hobbies = driver['hobbies'],
-        driver_id = driver['id'],
-        last_name = driver['last_name'],
-        residence = driver['residence'],
-        rookie_year = driver['rookie_year'],
-        status = driver['status'],
-        twitter = driver['twitter'],
-        )
-      # driver.save()
+    new_driver = cls(
+      full_name = driver['full_name'],
+      birth_place = driver['birth_place'],
+      birthday = driver['birthday'],
+      country = driver['country'],
+      car_number = driver['car_number'],
+      gender = driver['gender'],
+      height = driver['height'],
+      hobbies = driver['hobbies'],
+      driver_id = driver['id'],
+      last_name = driver['last_name'],
+      residence = driver['residence'],
+      rookie_year = driver['rookie_year'],
+      status = driver['status'],
+      twitter = driver['twitter'],
+    )
+    return new_driver
 
   class Meta:
     ordering = ['last_name']
@@ -110,12 +110,44 @@ class Standing(models.Model):
   class Meta:
     ordering = ['rank']
 
+  def __str__(self):
+    return {self.rank}
+
+  @classmethod
+  def create(cls, standing):
+
+      new_standing = cls(
+        avg_finish_position = standing['avg_finish_position'],
+        avg_laps_completed = standing['avg_laps_completed'],
+        avg_start_postion = standing['avg_start_postion'],
+        chase_bonus = standing['chase_bonus'],
+        dnf = standing['dnf'],
+        full_name = standing['full_name'],
+        in_chase = standing['in_chase'],
+        laps_completed = standing['laps_completed'],
+        laps_led = standing['laps_led'],
+        laps_led_pct = standing['laps_led_pct'],
+        points = standing['points'],
+        poles = standing['poles'],
+        rank = standing['rank'],
+        stage_wins = standing['stage_wins'],
+        starts = standing['starts'],
+        status = standing['status'],
+        top_5 = standing['top_5'],
+        top_10 = standing['top_10'],
+        top_15 = standing['top_15'],
+        top_20 = standing['top_20'],
+        wins = standing['wins'],
+      )
+      return new_standing
+
 class Team(models.Model):
   # from race
-  name = models.CharField(max_length=100)
-  crew_chief = models.CharField(max_length=100)
-  manufacturer = models.CharField(max_length=100)
-  sponsors = models.CharField(max_length=200)
+  name = models.CharField(max_length=1000, blank=True, null=True)
+  crew_chief = models.CharField(max_length=1000, blank=True, null=True)
+  manufacturer = models.CharField(max_length=1000, blank=True, null=True)
+  sponsors = models.CharField(max_length=1000, blank=True, null=True)
+  owner = models.CharField(max_length=2000, blank=True, null=True)
 
   def __str__(self):
     return self.name
@@ -127,9 +159,9 @@ class Team(models.Model):
         crew_chief = team['crew_chief'],
         manufacturer = team['manufacturer'],
         sponsors = team['sponsors'],
+        owner = team['owner']
       )
-
-  # add classmethod
+      return new_team
 
 class Race(models.Model):
   # from race
@@ -160,6 +192,7 @@ class Race(models.Model):
   @classmethod
   def create(cls, race):
       new_race = cls(
+        name = race['name'],
         actual_distance = race['actual_distance'],
         avg_speed = race['avg_speed'],
         caution_laps = race['caution_laps'],
@@ -171,12 +204,13 @@ class Race(models.Model):
         laps = race['laps'],
         laps_completed = race['laps_completed'],
         lead_changes = race['lead_changes'],
-        race_number = race['race_number'],
-        scheduled_time = race['scheduled_time'],
+        race_number = race['number'],
+        scheduled_time = race['scheduled'],
         start_time = race['start_time'],
         end_time = race['end_time'],
         victory_margin = race['victory_margin'],
       )
+      return new_race
 
 class Result(models.Model):
   race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='results')
@@ -234,3 +268,4 @@ class Result(models.Model):
         times_led = result['times_led'],
         times_passed = result['times_passed'],
       )
+      return new_result

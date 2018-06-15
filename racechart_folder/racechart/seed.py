@@ -17,6 +17,15 @@ with open('racechart/json/standings.json') as standings_file:
 
 print(driver_data['drivers'][0]['full_name'])
 
+def cle
+
+
+# def seed_driver(driver_dict):
+#
+#
+# def seed_database(, , ):
+#     for
+
 
 
 #

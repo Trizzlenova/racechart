@@ -8,12 +8,12 @@ from collections import OrderedDict
 
 # define how to grab a json from an api:
 def grab_json(request, url, data_file):
-    response = get(url)
-    content = response.content
-    data = open(data_file, 'wb')
-    data.write(content)
-    data.close()
-    print(f'you are grabbing a json from {url}')
+	response = get(url)
+	content = response.content
+	data = open(data_file, 'wb')
+	data.write(content)
+	data.close()
+	print(f'you are grabbing a json from {url}')
 
 # define api urls and json file destinations
 api = API_KEY
@@ -31,37 +31,36 @@ standings_file = 'racechart/json/standings.json'
 
 # define a get function for each api source:
 def get_driver(request):
-    grab_json(requests, driver_url, driver_file)
+	grab_json(requests, driver_url, driver_file)
 
 def get_race(request):
-    grab_json(requests, race_url, race_file)
+	grab_json(requests, race_url, race_file)
 
 def get_standings(request):
-    grab_json(requests, standings_url, standings_file)
+	grab_json(requests, standings_url, standings_file)
 
-    # return HttpResponseRedirect('/admin')
+	# return HttpResponseRedirect('/admin')
 
 
-
-app = Celery()
+app = Celery('tasks', broker='amqp://myuser:mypassword@localhost:5672/myvhost')
 
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
-    # Calls test('hello') every 10 seconds.
-    sender.add_periodic_task(10.0, test.s('hello'), name='add every 10')
+	# Calls test('hello') every 10 seconds.
+	sender.add_periodic_task(10.0, test.s('hello'), name='add every 10')
 
-    # Calls test('world') every 30 seconds
-    sender.add_periodic_task(30.0, test.s('world'), expires=10)
+	# Calls test('world') every 30 seconds
+	sender.add_periodic_task(30.0, test.s('world'), expires=10)
 
-    # Executes every Monday morning at 7:30 a.m.
-    sender.add_periodic_task(
-        crontab(hour=7, minute=30, day_of_week=1),
-        test.s('Happy Mondays!'),
-    )
+	# Executes every Monday morning at 7:30 a.m.
+	sender.add_periodic_task(
+		crontab(hour=7, minute=30, day_of_week=1),
+		test.s('Happy Mondays!'),
+	)
 
 @app.task
 def test(arg):
-    print(arg)
+	print(arg)
 
 # app = Celery('tasks', broker='amqp://localhost')
 

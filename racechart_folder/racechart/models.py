@@ -109,13 +109,15 @@ class Standing(models.Model):
         top_20 = standing['top_20'],
         wins = standing['wins'],
       )
+      return new_standing
 
 class Team(models.Model):
   # from race
-  name = models.CharField(max_length=100)
-  crew_chief = models.CharField(max_length=100)
-  manufacturer = models.CharField(max_length=100)
-  sponsors = models.CharField(max_length=200)
+  name = models.CharField(max_length=1000, blank=True, null=True)
+  crew_chief = models.CharField(max_length=1000, blank=True, null=True)
+  manufacturer = models.CharField(max_length=1000, blank=True, null=True)
+  sponsors = models.CharField(max_length=1000, blank=True, null=True)
+  owner = models.CharField(max_length=2000, blank=True, null=True)
 
   def __str__(self):
     return self.name
@@ -127,7 +129,9 @@ class Team(models.Model):
         crew_chief = team['crew_chief'],
         manufacturer = team['manufacturer'],
         sponsors = team['sponsors'],
+        owner = team['owner']
       )
+      return new_team
 
 class Race(models.Model):
   # from race
@@ -158,6 +162,7 @@ class Race(models.Model):
   @classmethod
   def create(cls, race):
       new_race = cls(
+        name = race['name'],
         actual_distance = race['actual_distance'],
         avg_speed = race['avg_speed'],
         caution_laps = race['caution_laps'],
@@ -169,12 +174,13 @@ class Race(models.Model):
         laps = race['laps'],
         laps_completed = race['laps_completed'],
         lead_changes = race['lead_changes'],
-        race_number = race['race_number'],
-        scheduled_time = race['scheduled_time'],
+        race_number = race['number'],
+        scheduled_time = race['scheduled'],
         start_time = race['start_time'],
         end_time = race['end_time'],
         victory_margin = race['victory_margin'],
       )
+      return new_race
 
 class Result(models.Model):
   race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='results')
@@ -232,3 +238,4 @@ class Result(models.Model):
         times_led = result['times_led'],
         times_passed = result['times_passed'],
       )
+      return new_result

@@ -48,8 +48,3 @@ def create_driver(request):
   # print(david_ragan)
 
   return HttpResponseRedirect('/admin')
-
-
-
-
-

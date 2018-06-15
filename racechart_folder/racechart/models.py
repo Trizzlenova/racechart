@@ -77,6 +77,36 @@ class Standing(models.Model):
   top_20 = models.IntegerField()
   wins = models.IntegerField()
 
+  def __str__(self):
+      return {self.rank}
+
+  @classmethod
+  def create(cls, standing):
+
+      new_standing = cls(
+        avg_finish_position = standing['avg_finish_position'],
+        avg_laps_completed = standing['avg_laps_completed'],
+        avg_start_postion = standing['avg_start_postion'],
+        chase_bonus = standing['chase_bonus'],
+        dnf = standing['dnf'],
+        full_name = standing['full_name'],
+        in_chase = standing['in_chase'],
+        laps_completed = standing['laps_completed'],
+        laps_led = standing['laps_led'],
+        laps_led_pct = standing['laps_led_pct'],
+        points = standing['points'],
+        poles = standing['poles'],
+        rank = standing['rank'],
+        stage_wins = standing['stage_wins'],
+        starts = standing['starts'],
+        status = standing['status'],
+        top_5 = standing['top_5'],
+        top_10 = standing['top_10'],
+        top_15 = standing['top_15'],
+        top_20 = standing['top_20'],
+        wins = standing['wins'],
+      )
+
   class Meta:
     ordering = ['rank']
 

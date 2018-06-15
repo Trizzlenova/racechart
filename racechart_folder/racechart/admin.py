@@ -6,3 +6,4 @@ admin.site.register(Team)
 admin.site.register(Race)
 admin.site.register(Standing)
 admin.site.register(Result)
+

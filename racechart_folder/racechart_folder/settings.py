@@ -122,3 +122,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Celery config
+# BROKER_TRANSPORT = "redis"
+# BROKER_HOST = "localhost"  # Maps to redis host.
+# BROKER_PORT = 6379         # Maps to redis port.
+# BROKER_VHOST = "0"         # Maps to database number.
+BROKER_URL = 'redis://127.0.0.1:6379/'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_REDIS_HOST = "localhost"
+# CELERY_REDIS_PORT = 6379
+# CELERY_REDIS_DB = 0

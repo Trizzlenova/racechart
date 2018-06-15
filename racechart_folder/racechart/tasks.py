@@ -1,13 +1,11 @@
-from celery import Celery, chain
-from django.utils import timezone
+# to init, enter: celery -A tasks.celery worker -B -l info
+from celery import Celery, chain, group
+from config import API_KEY
 from datetime import timedelta
-from django.shortcuts import render
-from requests import *
-from racechart_folder.config import API_KEY
-from collections import OrderedDict
+
 
 # define how to grab a json from an api:
-def grab_json(request, url, data_file):
+def grab_json(url, data_file):
 	response = get(url)
 	content = response.content
 	data = open(data_file, 'wb')
@@ -30,40 +28,29 @@ standings_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/standings/driver
 standings_file = 'racechart/json/standings.json'
 
 # define a get function for each api source:
-def get_driver(request):
-	grab_json(requests, driver_url, driver_file)
+def get_driver():
+	grab_json(driver_url, driver_file)
 
-def get_race(request):
-	grab_json(requests, race_url, race_file)
+def get_race():
+	grab_json(race_url, race_file)
 
-def get_standings(request):
-	grab_json(requests, standings_url, standings_file)
-
-	# return HttpResponseRedirect('/admin')
+def get_standings():
+	grab_json(standings_url, standings_file)
 
 
-app = Celery('tasks', broker='amqp://myuser:mypassword@localhost:5672/myvhost')
+celery = Celery(__name__)
+celery.config_from_object(__name__)
+celery.conf.broker_url = 'redis://localhost:6379'
 
-@app.on_after_configure.connect
-def setup_periodic_tasks(sender, **kwargs):
-	# Calls test('hello') every 10 seconds.
-	sender.add_periodic_task(10.0, test.s('hello'), name='add every 10')
+@celery.task
+def access_nascar_api():
+	print('Accessed NASCAR API')
+	chain(get_driver() | get_race() | get_standings())
 
-	# Calls test('world') every 30 seconds
-	sender.add_periodic_task(30.0, test.s('world'), expires=10)
 
-	# Executes every Monday morning at 7:30 a.m.
-	sender.add_periodic_task(
-		crontab(hour=7, minute=30, day_of_week=1),
-		test.s('Happy Mondays!'),
-	)
-
-@app.task
-def test(arg):
-	print(arg)
-
-# app = Celery('tasks', broker='amqp://localhost')
-
-# @periodic_task(run_every=crontab(minute=0, hour='11'))
-# def access_nascar_api:
-#     chain(get_driver() | get_race() | get_standings())
+CELERYBEAT_SCHEDULE = {
+    'every-second': {
+        'task': 'tasks.access_nascar_api',
+        'schedule': timedelta(seconds=30),
+    },
+}

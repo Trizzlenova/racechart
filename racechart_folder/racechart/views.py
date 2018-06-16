@@ -9,12 +9,12 @@ from racechart_folder.config import API_KEY
 
 api = API_KEY
 year = '2018'
-race_ids = ['cf82b04d-cc9c-4621-aa9b-cbc6ee269de7']
+race_ids = ['cf82b04d-cc9c-4621-aa9b-cbc6ee269de7', 'bf77ec20-2737-4adf-9442-aea6bf8e55a2']
 
 driver_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/drivers/list.json?api_key={api}'
 driver_file = 'racechart/json/drivers.json'
 
-race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[0]}/results.json?api_key={api}'
+race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[1]}/results.json?api_key={api}'
 race_file = 'racechart/json/race.json'
 
 standings_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/standings/drivers.json?api_key={api}'
@@ -32,9 +32,9 @@ def grab_json(request, url, data_file):
   print(f'you are grabbing a json from {url}')
 
 def get_all(request):
-  grab_json(request, driver_url, driver_file)
-  # grab_json(requests, race_url, race_file)
-  # grab_json(requests, standings_url, standings_file)
+  # grab_json(request, driver_url, driver_file)
+  grab_json(request, race_url, race_file)
+  # grab_json(request, standings_url, standings_file)
   return HttpResponseRedirect('/admin')
 
 def create_driver(request):

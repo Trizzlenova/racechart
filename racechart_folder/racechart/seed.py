@@ -2,10 +2,11 @@ from json import *
 from racechart.models import Driver, Result, Race, Team, Standing
 import json
 
+
                         # ########################## #
                         #       LOAD JSON FILES      #
                         # ########################## #
-
+      
 race_json = open('racechart/json/race.json').read()
 loaded_race = json.loads(race_json)
 
@@ -79,9 +80,6 @@ for added_team in team_array:
     cleaned_teams.append(added_team)
 
 
-
-
-
 for team in cleaned_teams:
   new_team = Team.create(team)
   new_team.save()
@@ -152,6 +150,7 @@ for cleaned_driver in cleaned_drivers:
                 ######################
                 ######## RACES #######
                 ######################
+        
 results = loaded_race['results']
 race_drivers = []
 
@@ -177,4 +176,3 @@ new_race.save()
 print(loaded_race['name'])
 
 print('seeded teams, drivers and races')
-

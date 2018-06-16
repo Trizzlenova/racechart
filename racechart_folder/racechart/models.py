@@ -224,14 +224,14 @@ class Race(models.Model):
 class Result(models.Model):
   race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='results')
   driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='results')
-  avg_position = models.DecimalField(max_digits=6, decimal_places=3)
-  avg_speed = models.DecimalField(max_digits=6, decimal_places=3)
+  avg_position = models.IntegerField()
+  avg_speed = models.IntegerField()
   best_lap = models.IntegerField()
-  best_lap_speed = models.DecimalField(max_digits=6, decimal_places=3)
-  best_lap_time = models.DecimalField(max_digits=6, decimal_places=3)
+  best_lap_speed = models.IntegerField()
+  best_lap_time = models.IntegerField()
   bonus_points = models.IntegerField()
-  driver_rating = models.DecimalField(max_digits=6, decimal_places=3)
-  elapsed_time = models.DecimalField(max_digits=6, decimal_places=3)
+  driver_rating = models.IntegerField()
+  elapsed_time = models.IntegerField()
   fastest_laps = models.IntegerField()
   laps_completed = models.IntegerField()
   laps_led = models.IntegerField()
@@ -249,11 +249,13 @@ class Result(models.Model):
   times_passed = models.IntegerField()
 
   def __str__(self):
-    return self.race.name
+    return self.driver.full_name
 
   @classmethod
   def create(cls, result):
       new_result = cls(
+        driver = result['driver'],
+        race = result['race'],
         avg_position = result['avg_position'],
         avg_speed = result['avg_speed'],
         best_lap = result['best_lap'],
@@ -268,7 +270,7 @@ class Result(models.Model):
         passes_made = result['passes_made'],
         passing_differential = result['passing_differential'],
         penalty_points = result['penalty_points'],
-        pit_stops = len(result['pit_stops']),
+        pit_stops = result['pit_stops'],
         points = result['points'],
         position = result['position'],
         quality_passes = result['quality_passes'],
@@ -278,3 +280,4 @@ class Result(models.Model):
         times_passed = result['times_passed'],
       )
       return new_result
+      # new_result.save()

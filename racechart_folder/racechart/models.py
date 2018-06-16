@@ -171,6 +171,7 @@ class Race(models.Model):
   def create(cls, race):
       new_race = cls(
         name = race['name'],
+        # drivers = race['drivers'],
         actual_distance = race['actual_distance'],
         avg_speed = race['avg_speed'],
         caution_laps = race['caution_laps'],

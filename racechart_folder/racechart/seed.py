@@ -85,7 +85,7 @@ for added_team in team_array:
 for team in cleaned_teams:
   new_team = Team.create(team)
   new_team.save()
-  print(new_team)
+  # print(new_team)
 
 # ############## DRIVERS ###################
 
@@ -147,13 +147,34 @@ for cleaned_driver in cleaned_drivers:
 
   new_driver = Driver.create(cleaned_driver)
   new_driver.save()
-  print(new_driver)
+  # print(new_driver)
 
                 ######################
                 ######## RACES #######
                 ######################
+results = loaded_race['results']
+race_drivers = []
+
+new_race = Race.create(loaded_race)
+new_race.save()
+
+# get_that_race = Race.objects.get(name=loaded_race['name'])
+# print(loaded_race)
+# for result in results:
+#   race_drivers.append
+#   race_driver_name = result['driver']['full_name']
+#   print(race_driver_name)
+#   race_driver = Driver.objects.get(full_name=race_driver_name) or None
+
+#   if race_driver is not None:
+#     get_that_race.update(driver=race_driver)
+#     print(race_driver)
+
+# loaded_race['drivers'] = race_drivers
+# print(new_race)
 
 
+print(loaded_race['name'])
 
-print('seeded teams and drivers')
+print('seeded teams, drivers and races')
 

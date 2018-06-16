@@ -6,7 +6,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from racechart_folder.config import API_KEY
 
 
-
 api = API_KEY
 year = '2018'
 race_ids = ['cf82b04d-cc9c-4621-aa9b-cbc6ee269de7', 'bf77ec20-2737-4adf-9442-aea6bf8e55a2']

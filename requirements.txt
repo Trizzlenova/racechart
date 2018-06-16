@@ -18,4 +18,6 @@ simplegeneric==0.8.1
 six==1.11.0
 traitlets==4.3.2
 wcwidth==0.1.7
-requests==
+requests==2.19.1
+celery==4.2.0
+rabbitmq==3.7.6

@@ -1,5 +1,5 @@
 # Initial JSON Grab Code
-# 2018-06-12
+## 2018-06-12
 
 def grab_json(requests, url, data_file):
   response = get(url)
@@ -14,7 +14,7 @@ def get_all(requests):
   grab_json(requests, race_url, race_file)
   return HttpResponseRedirect('/admin')
 
-# 2018-06-13
+## 2018-06-13
 def create_driver(request):
   driver_json = open('racechart/json/drivers.json').read()
   loaded = json.loads(driver_json)
@@ -32,7 +32,7 @@ def create_driver(request):
 
 
 # Scheduling the JSON Grab
-# 2018-06-16
+## 2018-06-16
 
 @celery.task
 def access_nascar_api():

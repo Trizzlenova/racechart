@@ -3,7 +3,9 @@ from racechart.models import Driver, Result, Race, Team, Standing
 import json
 
 
-
+                                              # ########################## #
+                                              #         LOAD JSON          #
+                                              # ########################## #
 race_json = open('racechart/json/race.json').read()
 loaded_race = json.loads(race_json)
 
@@ -15,6 +17,14 @@ loaded_standings = json.loads(driver_json)
 
 drivers_array = loaded_drivers['drivers']
 team_array = []
+
+                                              # ########################## #
+                                              #         CLEAR DATABASE     #
+                                              # ########################## #
+
+# def clear_database():
+#     Driver.objects.all().clear()
+
 
 for driver in drivers_array:
   crew_chief = None
@@ -39,46 +49,46 @@ for driver in drivers_array:
       team_array.append(name)
 
 print(team_array)
-
-
-
-
-
-# print(drivers[0]['full_name'])
-
-# for driver in drivers:
-  # drive = Driver.create(driver)
-  # drive.save()
-  # print(drive)
-
-
+#
+#
+#
+#
+#
+# # print(drivers[0]['full_name'])
+#
+# # for driver in drivers:
+#   # drive = Driver.create(driver)
+#   # drive.save()
+#   # print(drive)
+#
+#
 # REMEMBER TO CHANGE DRIVER ID AND CARS
 necessary_driver_keys = ['full_name','birth_place', 'birthday', 'country', 'gender', 'height', 'hobbies', 'last_name', 'residence', 'rookie_year', 'status', 'twitter',]
 necessary_race_keys = []
 necessary_standing_keys = []
-
-
-                                              # ########################## #
-                                              # SEED DATABASE WITH TEAMS #
-                                              # ########################## #
-
-                                              # ########################## #
-                                              # SEED DATABASE WITH RESULTS #
-                                              # ########################## #
-
-                                              # ########################## #
-                                              # SEED DATABASE WITH STANDINGS #
-                                              # ########################## #
-
-
-                                              # ########################## #
-                                              # SEED DATABASE WITH RACES #
-                                              # ########################## #
-new_race = Race.create(loaded_race)
-new_race.save()
-# print(loaded_race['name'])
-
-
+#
+#
+#                                               # ########################## #
+#                                               # SEED DATABASE WITH TEAMS #
+#                                               # ########################## #
+#
+#                                               # ########################## #
+#                                               # SEED DATABASE WITH RESULTS #
+#                                               # ########################## #
+#
+#                                               # ########################## #
+#                                               # SEED DATABASE WITH STANDINGS #
+#                                               # ########################## #
+#
+#
+#                                               # ########################## #
+#                                               # SEED DATABASE WITH RACES #
+#                                               # ########################## #
+# new_race = Race.create(loaded_race)
+# new_race.save()
+# # print(loaded_race['name'])
+#
+#
                                               # ########################## #
                                               # SEED DATABASE WITH DRIVERS #
                                               # ########################## #
@@ -117,5 +127,5 @@ def seed_drivers():
 
 
 
-# for driver in drivers:
-#   print(driver['full_name'])
+for driver in drivers:
+  print(driver['full_name'])

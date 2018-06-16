@@ -1,0 +1,33 @@
+/* NASCAR COLORS */
+/* YELLOW: #EDC240 */
+/* RED: #BC2021*/
+/* PURPLE: #88166D */
+/* BLUE: #02549E */
+/* BROWN: #2E250C */
+
+/* Use Cntl + Shift + Del in Chrome to refresh page */
+
+body {
+  background-color: #2E250C;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#logo {
+  width: 20%;
+  float: center;
+  margin: 0 auto;
+}
+
+nav {
+  border: 1px solid;
+  background-image: 'racechart_folder/racechart/static/images/flags.png';
+  height: 2em;
+  width: 100%;
+}
+
+h1 {
+  color: #02549E;
+  font-size: 4em;
+  font-family: 'Bungee Inline', cursive;
+}

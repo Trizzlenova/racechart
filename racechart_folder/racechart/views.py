@@ -20,6 +20,9 @@ race_file = 'racechart/json/race.json'
 standings_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/standings/drivers.json?api_key={api}'
 standings_file = 'racechart/json/standings.json'
 
+def see_css(request):
+    return render(request, 'racechart/driver_list.html')
+
 def grab_json(request, url, data_file):
   response = get(url)
   content = response.content

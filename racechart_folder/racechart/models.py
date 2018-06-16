@@ -224,6 +224,8 @@ class Result(models.Model):
   @classmethod
   def create(cls, result):
       new_result = cls(
+        race = result['race'],
+        driver = result['driver'],
         avg_position = result['avg_position'],
         avg_speed = result['avg_speed'],
         best_lap = result['best_lap'],

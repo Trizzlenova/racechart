@@ -2,9 +2,31 @@ from django.db import models
 from json import *
 import json
 
+class Team(models.Model):
+  # from race
+  name = models.CharField(max_length=1000, blank=True, null=True)
+  crew_chief = models.CharField(max_length=1000, blank=True, null=True)
+  manufacturer = models.CharField(max_length=1000, blank=True, null=True)
+  sponsors = models.CharField(max_length=1000, blank=True, null=True)
+  owner = models.CharField(max_length=2000, blank=True, null=True)
+
+  def __str__(self):
+    return self.name
+
+  @classmethod
+  def create(cls, team):
+      new_team = cls(
+        name = team['name'],
+        # crew_chief = team['crew_chief'],
+        manufacturer = team['manufacturer'],
+        sponsors = team['sponsors'],
+        owner = team['owner']
+      )
+      return new_team
+
 
 class Driver(models.Model):
-  # team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='drivers')
+  team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='drivers', blank=True, null=True)
   # from driver
   full_name = models.CharField(max_length=100)
   birth_place = models.CharField(max_length=500)
@@ -32,6 +54,7 @@ class Driver(models.Model):
   @classmethod
   def create(cls, driver):
     new_driver = cls(
+      team = driver['team'],
       full_name = driver['full_name'],
       birth_place = driver['birth_place'],
       birthday = driver['birthday'],
@@ -47,7 +70,13 @@ class Driver(models.Model):
       status = driver['status'],
       twitter = driver['twitter'],
     )
+    # new_driver.save()
     return new_driver
+
+  @classmethod
+  def assign_team(cls, fk):
+    cls['team'] = fk
+    print(f'assigned a team to {cls.full_name}')
 
   class Meta:
     ordering = ['last_name']
@@ -141,27 +170,6 @@ class Standing(models.Model):
       )
       return new_standing
 
-class Team(models.Model):
-  # from race
-  name = models.CharField(max_length=1000, blank=True, null=True)
-  crew_chief = models.CharField(max_length=1000, blank=True, null=True)
-  manufacturer = models.CharField(max_length=1000, blank=True, null=True)
-  sponsors = models.CharField(max_length=1000, blank=True, null=True)
-  owner = models.CharField(max_length=2000, blank=True, null=True)
-
-  def __str__(self):
-    return self.name
-
-  @classmethod
-  def create(cls, team):
-      new_team = cls(
-        name = team['name'],
-        crew_chief = team['crew_chief'],
-        manufacturer = team['manufacturer'],
-        sponsors = team['sponsors'],
-        owner = team['owner']
-      )
-      return new_team
 
 class Race(models.Model):
   # from race
@@ -193,6 +201,7 @@ class Race(models.Model):
   def create(cls, race):
       new_race = cls(
         name = race['name'],
+        # drivers = race['drivers'],
         actual_distance = race['actual_distance'],
         avg_speed = race['avg_speed'],
         caution_laps = race['caution_laps'],

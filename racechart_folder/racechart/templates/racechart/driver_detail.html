@@ -1,0 +1,10 @@
+{% extends 'racechart/base.html' %}
+
+{% block content %}
+<h4>Album title: {{ driver.full_name }}</h4>
+
+<a href="{{ song.preview_url }}" alt="" class="song-preview">
+  {{driver.country}}
+</a>
+
+{% endblock %}

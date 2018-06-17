@@ -3,17 +3,17 @@
 <html>
     <head>
         <title>Racechart</title>
-        <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Permanent+Mark" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/racechart.css' %}">
 
 
     </head>
     <body>
-      <header>
-        <h1>RaceChart</h1>
+        <header>
+            <img id="header_image" src="{% static 'images/two_flag.png' %}">
+            <h1><i><span>R</span>ace<span>C</span>hart</i></h1>
+        </header>
         <img id="logo" src="{% static 'images/nascar_logo.png' %}">
-      </header>
-      <div id='flag'>
         <nav>
             <a href="/">Home</a>
             <a href="/drivers">Drivers</a>
@@ -21,7 +21,7 @@
             <a href="/results">Results</a>
             <a href="/standings">Standings</a>
         </nav>
-        <hr />
+        <!-- <hr /> -->
         {% block content %}
         {% endblock %}
     </body>

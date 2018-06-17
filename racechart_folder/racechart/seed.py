@@ -6,7 +6,7 @@ import json
                         # ########################## #
                         #       LOAD JSON FILES      #
                         # ########################## #
-      
+
 race_json = open('racechart/json/race.json').read()
 loaded_race = json.loads(race_json)
 
@@ -14,7 +14,7 @@ driver_json = open('racechart/json/drivers.json').read()
 loaded_drivers = json.loads(driver_json)
 
 standings_json = open('racechart/json/standings.json').read()
-loaded_standings = json.loads(driver_json)
+loaded_standings = json.loads(standings_json)
 
                         # ########################## #
                         #     CLEAR THE DATABASE     #
@@ -150,29 +150,65 @@ for cleaned_driver in cleaned_drivers:
                 ######################
                 ######## RACES #######
                 ######################
-        
+
 results = loaded_race['results']
 race_drivers = []
 
 new_race = Race.create(loaded_race)
 new_race.save()
 
-# get_that_race = Race.objects.get(name=loaded_race['name'])
-# print(loaded_race)
-# for result in results:
-#   race_drivers.append
-#   race_driver_name = result['driver']['full_name']
-#   print(race_driver_name)
-#   race_driver = Driver.objects.get(full_name=race_driver_name) or None
+                ######################
+                ####### RESULTS ######
+                ######################
 
-#   if race_driver is not None:
-#     get_that_race.update(driver=race_driver)
-#     print(race_driver)
+for result in results:
+    driver_binary = len(Driver.objects.filter(full_name=result['driver']['full_name']))
 
-# loaded_race['drivers'] = race_drivers
-# print(new_race)
+    if driver_binary == 1:
+        result['driver'] = Driver.objects.get(full_name=result['driver']['full_name'])
+        # print(result['driver'])
+        result['race'] = new_race
+        result['pit_stops'] = len(result['pit_stops'])
+
+        for key in result:
+            if type(result[key]) == float:
+                result[key] = round(result[key], 0)
+                result[key] = int(result[key])
 
 
-print(loaded_race['name'])
 
+        new_result = Result.create(result)
+        new_result.save()
+        # print(new_result)
+
+                ######################
+                ###### STANDINGS #####
+                ######################
+
+driver_standings = loaded_standings['drivers']
+# print(loaded_standings)
+
+for standing in driver_standings:
+
+    # driver_binary = len(Driver.objects.filter(full_name=result['driver']['full_name']))
+    #
+    # if driver_binary == 1:
+    standing['driver'] = Driver.objects.get(full_name=standing['full_name'])
+        # print(standing['driver'])
+
+    # print(type(standing['driver']))
+    # print('')
+    print(standing['full_name'])
+    print('')
+    for key in standing:
+        if type(standing[key]) == float:
+            standing[key] = round(standing[key], 0)
+            standing[key] = int(standing[key])
+
+        print(f'{key}: {standing[key]}')
+
+
+    print(standing['full_name'])
+    new_standing = Standing.create(standing)
+    new_standing.save()
 print('seeded teams, drivers and races')

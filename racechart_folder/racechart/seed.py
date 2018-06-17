@@ -172,8 +172,8 @@ for result in results:
 
         for key in result:
             if type(result[key]) == float:
-                result[key] = round(result[key], 0)
-                result[key] = int(result[key])
+                result[key] = round(result[key], 2)
+                # result[key] = int(result[key])
 
 
 
@@ -202,8 +202,8 @@ for standing in driver_standings:
     print('')
     for key in standing:
         if type(standing[key]) == float:
-            standing[key] = round(standing[key], 0)
-            standing[key] = int(standing[key])
+            standing[key] = round(standing[key], 2)
+            # standing[key] = int(standing[key])
 
         print(f'{key}: {standing[key]}')
 

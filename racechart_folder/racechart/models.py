@@ -84,9 +84,9 @@ class Driver(models.Model):
 class Standing(models.Model):
   driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='standings')
   # from standings
-  avg_finish_position = models.DecimalField(max_digits=6, decimal_places=3)
-  avg_laps_completed = models.DecimalField(max_digits=6, decimal_places=3)
-  avg_start_postion = models.DecimalField(max_digits=6, decimal_places=3)
+  avg_finish_position = models.IntegerField()
+  avg_laps_completed = models.IntegerField()
+  avg_start_postion = models.IntegerField()
   chase_bonus = models.IntegerField()
   dnf = models.IntegerField()
   full_name = models.CharField(max_length=200)
@@ -107,48 +107,19 @@ class Standing(models.Model):
   wins = models.IntegerField()
 
   def __str__(self):
-      return {self.rank}
-
-  @classmethod
-  def create(cls, standing):
-
-      new_standing = cls(
-        avg_finish_position = standing['avg_finish_position'],
-        avg_laps_completed = standing['avg_laps_completed'],
-        avg_start_postion = standing['avg_start_postion'],
-        chase_bonus = standing['chase_bonus'],
-        dnf = standing['dnf'],
-        full_name = standing['full_name'],
-        in_chase = standing['in_chase'],
-        laps_completed = standing['laps_completed'],
-        laps_led = standing['laps_led'],
-        laps_led_pct = standing['laps_led_pct'],
-        points = standing['points'],
-        poles = standing['poles'],
-        rank = standing['rank'],
-        stage_wins = standing['stage_wins'],
-        starts = standing['starts'],
-        status = standing['status'],
-        top_5 = standing['top_5'],
-        top_10 = standing['top_10'],
-        top_15 = standing['top_15'],
-        top_20 = standing['top_20'],
-        wins = standing['wins'],
-      )
+      return self.driver.full_name
 
   class Meta:
     ordering = ['rank']
 
-  def __str__(self):
-    return {self.rank}
-
   @classmethod
   def create(cls, standing):
 
       new_standing = cls(
+        driver = standing['driver'],
         avg_finish_position = standing['avg_finish_position'],
         avg_laps_completed = standing['avg_laps_completed'],
-        avg_start_postion = standing['avg_start_postion'],
+        avg_start_postion = standing['avg_start_position'],
         chase_bonus = standing['chase_bonus'],
         dnf = standing['dnf'],
         full_name = standing['full_name'],

@@ -148,6 +148,7 @@ for cleaned_race in cleaned_races:
     new_race = Race.create(cleaned_race)
     new_race.save()
     print(new_race)
+    print('wow')
 
     # i = i + 1
 

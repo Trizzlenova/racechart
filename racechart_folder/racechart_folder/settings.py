@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'racechart',
     'django_extensions',
+    'celery',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +71,14 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 WSGI_APPLICATION = 'racechart_folder.wsgi.application'
 
@@ -122,8 +132,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#Celery Config
-BROKER_URL ='amqp://guets:guest@localhost:5672'
+# Celery config
+CELERY_BROKER_URL = 'amqp://localhost'
+
+
+BROKER_URL = 'redis://127.0.0.1:6379/'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'

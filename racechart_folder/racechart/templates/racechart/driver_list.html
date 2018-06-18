@@ -1,0 +1,17 @@
+{% extends 'racechart/base.html' %}
+
+{% block content %}
+
+<h2>DRIVERS</h2>
+<div id="driver_list"></div>
+<ul>
+    {% for driver in drivers %}
+        <li id="driver">
+            <a class="purple" href="{% url 'driver_detail' pk=driver.pk%}">
+              {{ driver.full_name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

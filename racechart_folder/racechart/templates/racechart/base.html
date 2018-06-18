@@ -1,0 +1,32 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>Racechart</title>
+        <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Permanent+Mark" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/racechart.css' %}">
+
+
+    </head>
+    <body>
+
+        <header>
+            <img id="header_image" src="{% static 'images/two_flag.png' %}">
+            <h1><i><span>R</span>ace<span>C</span>hart</i></h1>
+        </header>
+        <img id="logo" src="{% static 'images/nascar_logo.png' %}">
+        <nav>
+            <a href="/drivers">Drivers</a>
+            <a href="/race">Race</a>
+            <a href="/results">Results</a>
+            <a href="/standings">Standings</a>
+        </nav>
+        <!-- <hr /> -->
+        {% block content %}
+        {% endblock %}
+    </body>
+    <hr />
+    <footer>
+      <h3>RaceChart is brought to you by Team FMTB</h3>
+    </footer>
+</html>

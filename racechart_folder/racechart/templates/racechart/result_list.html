@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<<<<<<< HEAD
 <h1> DJANGO IS AN ASSHOLE</h1>
 <div></div>
 
@@ -90,4 +91,17 @@ svg.append("g")
   .call(d3.axisLeft(y));
 </script>
 
+=======
+<h2>Results</h2>
+<div id="result_list"></div>
+<ul>
+    {% for result in results %}
+        <li id="result">
+            <a class="purple" href="{% url 'result_detail' pk=result.pk %}">
+              {{ result.full_name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+>>>>>>> 8e9ce4861399ff6c3b1c45b7bca25fadc3375315
 {% endblock %}

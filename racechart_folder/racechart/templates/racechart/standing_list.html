@@ -1,0 +1,21 @@
+{% extends 'racechart/base.html' %}
+
+{% block content %}
+
+<h2>Standings</h2>
+<section>
+
+</section>
+<aside>
+  <div id="standings">
+    <ol>
+      {% for standing in standings %}
+      <li>
+          {{standing.driver}}
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</aside>
+{% endblock %}
+

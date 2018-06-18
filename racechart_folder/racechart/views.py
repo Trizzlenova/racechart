@@ -5,6 +5,8 @@ import json
 from json import *
 from django.http import HttpResponse, HttpResponseRedirect
 from racechart_folder.config import API_KEY
+from rest_framework import generics
+from .serializers import *
 # from .tasks import access_nascar_api
 
 
@@ -90,10 +92,50 @@ def race_list(request):
     races = Race.objects.all()
     return render(request, 'racechart/race_list.html', {'races': races})
 
+def race_detail(request, pk):
+    races = Race.objects.get(id=pk)
+    return render(request, 'racechart/race_detail.html', {'race': race})
+
 def standing_list(request):
     standings = Standing.objects.all()
     return render(request, 'racechart/standing_list.html', {'standings': standings})
 
+def standing_detail(request, pk):
+    standings = Standing.objects.get(id=pk)
+    return render(request, 'racechart/standing_list.html', {'standing': standing})
+
+def result_list(request):
+    results = Result.objects.all()
+    return render(request, 'racechart/result_list.html', {'results': results})
+
+def result_detail(request, pk):
+    driver = Driver.objects.get(id=pk)
+    return render(request, 'racechart/result_detail.html', {'result': result})
+
+class RaceList(generics.ListCreateAPIView):
+    queryset = Race.objects.all()
+    serializer_class = RaceSerializer
+
+
+class RaceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Race.objects.all()
+    serializer_class = RaceSerializer
+
+class StandingList(generics.ListCreateAPIView):
+    queryset = Standing.objects.all()
+    serializer_class = StandingSerializer
+
+class StandingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Standing.objects.all()
+    serializer_class = StandingSerializer
+
+class ResultList(generics.ListCreateAPIView):
+    queryset = Result.objects.all()
+    serializer_class = ResultSerializer
+
+class ResultDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Result.objects.all()
+    serializer_class = ResultSerializer
 # def result_detail(request, pk):
 #     result = Result.objects.get(id=pk)
 #     return render(request, 'racechart/result_detail.html', {'result': result})

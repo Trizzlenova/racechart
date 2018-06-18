@@ -118,7 +118,7 @@ def seed_drivers():
 def seed_races():
     cleaned_races = []
     i = 0
-    while i < 5:
+    while i < 10:
         race_json = open(f'racechart/json/race_list/race{i}.json').read()
         loaded_race = json.loads(race_json)
         race_name = loaded_race['name']
@@ -169,7 +169,7 @@ def seed_races():
 def seed_results():
     cleaned_results = []
     i = 0
-    while i < 5:
+    while i < 10:
       race_json = open(f'racechart/json/race_list/race{i}.json').read()
       loaded_race = json.loads(race_json)
       results = loaded_race['results']

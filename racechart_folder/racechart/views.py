@@ -48,7 +48,7 @@ def get_all(request):
   # grab_json(request, driver_url, driver_file)
   # grab_json(request, race_url, race_file)
   # grab_json(request, standings_url, standings_file)
-  # grab_json(request, race_list_url, race_list_file)
+  grab_json(request, race_list_url, race_list_file)
   return HttpResponseRedirect('/admin')
 
 race_folder = 'racechart/json/race_list/race.json'
@@ -76,7 +76,7 @@ def get_all_races(request):
 #   full_name = loaded['drivers'][0]['full_name']
 #   country = loaded['drivers'][0]['country']
 #   birth_place = loaded['drivers'][0]['birth_place']
-  # return HttpResponseRedirect('/admin')
+#   return HttpResponseRedirect('/admin')
 
 def driver_list(request):
     drivers = Driver.objects.all()

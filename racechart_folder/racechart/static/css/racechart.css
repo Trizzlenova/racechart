@@ -119,6 +119,7 @@ h2 {
   text-decoration: none;
   font-size: .8em;
   color: #EDC240;
+  text-align: center;
 }
 
 #driver {
@@ -134,8 +135,17 @@ h2 {
   /*text-align: left;*/
 }
 
-#car_bullet {
+#bio {
   list-style: none;
+  font-size: 2em;
+}
+
+ol {
+  margin-left: 2em;
+}
+
+#standing_list {
+  font-size: 2em;
 }
 
 

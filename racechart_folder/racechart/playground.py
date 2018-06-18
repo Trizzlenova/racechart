@@ -116,7 +116,7 @@ def seed_drivers():
       print(new_driver)
 
 import json
-def seed_races():
+# def seed_races():
 cleaned_races = []
 # i = 0
 # while i < 5:

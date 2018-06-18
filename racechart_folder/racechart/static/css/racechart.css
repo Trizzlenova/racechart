@@ -130,6 +130,14 @@ h2 {
   color: #88166D
 }
 
+#driver_name {
+  /*text-align: left;*/
+}
+
+#car_bullet {
+  list-style: none;
+}
+
 
 footer {
   background-color: #EDC240;

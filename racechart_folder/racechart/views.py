@@ -2,18 +2,32 @@ from django.shortcuts import render
 from requests import *
 from .models import Driver, Result, Race, Team, Standing
 import json
+from json import *
 from django.http import HttpResponse, HttpResponseRedirect
 from racechart_folder.config import API_KEY
+# from .tasks import access_nascar_api
 
 
 api = API_KEY
 year = '2018'
-race_ids = ['cf82b04d-cc9c-4621-aa9b-cbc6ee269de7']
+
+race_list_url = f'http://api.sportradar.us/nascar-t3/mc/{year}/races/schedule.json?api_key={api}'
+race_list_file = 'racechart/json/race_list.json'
+
+race_ids = []
+
+race_json = open('racechart/json/race_list.json').read()
+loaded = json.loads(race_json)
+event_list = loaded['events']
+for events in event_list:
+  races = events['races']
+  for race in races:
+    race_ids.append(race['id'])
 
 driver_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/drivers/list.json?api_key={api}'
 driver_file = 'racechart/json/drivers.json'
 
-race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[0]}/results.json?api_key={api}'
+# race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids}/results.json?api_key={api}'
 race_file = 'racechart/json/race.json'
 
 standings_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/standings/drivers.json?api_key={api}'
@@ -31,10 +45,28 @@ def grab_json(request, url, data_file):
   print(f'you are grabbing a json from {url}')
 
 def get_all(request):
-  grab_json(request, driver_url, driver_file)
-  # grab_json(requests, race_url, race_file)
-  # grab_json(requests, standings_url, standings_file)
+  # grab_json(request, driver_url, driver_file)
+  # grab_json(request, race_url, race_file)
+  # grab_json(request, standings_url, standings_file)
+  # grab_json(request, race_list_url, race_list_file)
   return HttpResponseRedirect('/admin')
+
+race_folder = 'racechart/json/race_list/race.json'
+
+import time
+def get_all_races(request):
+  i = 0
+  length = len(race_ids)
+  while(i < 10):
+    race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[i]}/results.json?api_key={api}'
+    grab_json(request, race_url, f'racechart/json/race_list/race{i}.json')
+    print(f'you are grabbing a json from {race_url}')
+    time.sleep(3)
+    if i > 8:
+      print('Grabbed all races!')
+      # return HttpResponseRedirect('/admin')
+    i = i + 1
+
 
 # def create_driver(request):
 #   driver_json = open('racechart/json/drivers.json').read()
@@ -53,3 +85,11 @@ def driver_list(request):
 def driver_detail(request, pk):
     driver = Driver.objects.get(id=pk)
     return render(request, 'racechart/driver_detail.html', {'driver': driver})
+
+def race_list(request):
+    races = race.objects.all()
+    return render(request, 'racechart/race_list.html', {'races': races})
+
+def result_detail(request, pk):
+    result = Result.objects.get(id=pk)
+    return render(request, 'racechart/result_detail.html', {'result': result})

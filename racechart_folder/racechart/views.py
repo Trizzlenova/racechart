@@ -89,7 +89,8 @@ def race_detail(request, pk):
 
 def graphs(request):
     standings = Standing.objects.all()
-    return render(request, 'racechart/graph.html', {'standings': standings})
+    results = Result.objects.all()
+    return render(request, 'racechart/graph.html', {'standings': standings, 'results': results})
 
 def standing_list(request):
     standings = Standing.objects.all()

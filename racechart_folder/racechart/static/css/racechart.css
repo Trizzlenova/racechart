@@ -8,23 +8,43 @@
 /* Use Cntl + Shift + Del in Chrome to refresh page */
 
 body {
-  background-color: #2E250C;
+  background-color: #EDC240;
   width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+#home {
+
 }
 
 #logo {
   width: 20%;
-  float: center;
-  margin: 0 auto;
+  height: 6em;
 }
 
-nav {
+.header-nav {
+  border: 1px solid black;
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
+}
+
+.header-nav-link {
+}
+
+
+/* nav {
   border: 1px solid;
   background-image: 'racechart_folder/racechart/static/images/flags.png';
   height: 2em;
   width: 100%;
-}
+} */
 
 h1 {
   color: #02549E;

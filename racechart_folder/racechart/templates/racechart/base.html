@@ -10,21 +10,20 @@
     </head>
     <body>
       <header>
-        <h1>RaceChart</h1>
-        <img id="logo" src="{% static 'images/nascar_logo.png' %}">
-      </header>
-      <div id='flag'>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/drivers">Drivers</a>
-            <a href="/race">Race</a>
-            <a href="/results">Results</a>
-            <a href="/standings">Standings</a>
+        <a class="home"><img id="logo" src="/static/images/racechart-logo.png"></a>
+        <nav class="header-nav">
+          <a class="header-nav-link" href="#">Drivers</a>
+          <a class="header-nav-link" href="#">Teams</a>
+          <a class="header-nav-link" href="#">Races</a>
+          <a class="header-nav-link" href="#">Standings</a>
         </nav>
-        <hr />
+      </header>
+
         {% block content %}
         {% endblock %}
     </body>
     <hr />
-    <footer>RaceChart is brought to you by Team FMTB</footer>
+    <footer>
+      <h3>RaceChart is brought to you by Team FMTB</h3>
+    </footer>
 </html>

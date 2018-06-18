@@ -87,9 +87,13 @@ def driver_detail(request, pk):
     return render(request, 'racechart/driver_detail.html', {'driver': driver})
 
 def race_list(request):
-    races = race.objects.all()
+    races = Race.objects.all()
     return render(request, 'racechart/race_list.html', {'races': races})
 
-def result_detail(request, pk):
-    result = Result.objects.get(id=pk)
-    return render(request, 'racechart/result_detail.html', {'result': result})
+def standing_list(request):
+    standings = Standing.objects.all()
+    return render(request, 'racechart/standing_list.html', {'standings': standings})
+
+# def result_detail(request, pk):
+#     result = Result.objects.get(id=pk)
+#     return render(request, 'racechart/result_detail.html', {'result': result})

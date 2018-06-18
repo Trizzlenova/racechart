@@ -1,5 +1,23 @@
-{% load staticfiles %}
-{% extends 'racechart/base.html' %}
+<!-- {% extends 'racechart/base.html' %}
 
 {% block content %}
+<h1>hello</h1>
+<section id="home">
+
+</section>
+<aside>
+  <div id="standings">
+    <ul>
+      {% for standing in standings %}
+      <li>
+        <a href="{% url 'driver_detail' pk=driver.pk%}">
+          {{standing.driver}}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</aside>
 {% endblock %}
+
+ -->

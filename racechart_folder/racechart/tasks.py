@@ -90,11 +90,17 @@ def access_nascar_api():
 	# print('Database Updated')
 
 CELERYBEAT_SCHEDULE = {
-    'every-second': {
+    'every-twenty-five': {
+        'task': 'tasks.ping_me',
+        'schedule': timedelta(minutes=25),
+    },
+    'every-day': {
         'task': 'tasks.access_nascar_api',
-		'schedule': crontab(hour=15, minute=4),
+        'schedule': crontab(hour=19, minute=28),
         # 'schedule': timedelta(hours=24),
     },
+    'twice-monthly': {
+        'task': 'tasks.access_multiple_races',
+        'schedule': timedelta(hours=350),
+    },
 }
-
-celery.conf.timezone = 'UTC'

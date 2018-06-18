@@ -2,20 +2,6 @@ from json import *
 from racechart.models import Driver, Result, Race, Team, Standing
 import json
 
-
-                        # ########################## #
-                        #       LOAD JSON FILES      #
-                        # ########################## #
-
-race_json = open('racechart/json/race.json').read()
-loaded_race = json.loads(race_json)
-
-driver_json = open('racechart/json/drivers.json').read()
-loaded_drivers = json.loads(driver_json)
-
-standings_json = open('racechart/json/standings.json').read()
-loaded_standings = json.loads(standings_json)
-
                         # ########################## #
                         #     CLEAR THE DATABASE     #
                         # ########################## #
@@ -129,46 +115,38 @@ def seed_drivers():
                 ######################
                 ######## RACES #######
                 ######################
-
 def seed_races():
-  i = 0
-  while i < 5:
-    race_json = open(f'racechart/json/race_list/race{i}.json').read()
+    race_json = open('racechart/json/race.json').read()
     loaded_race = json.loads(race_json)
     new_race = Race.create(loaded_race)
     new_race.save()
     print(new_race)
-    i = i + 1
 
                 ######################
                 ####### RESULTS ######
                 ######################
-results = loaded_race['results']
-race_drivers = []
 
 def seed_results():
-    i = 0
-    while i < 5:
-      race_json = open(f'racechart/json/race{i}.json').read()
-      loaded_race = json.loads(race_json)
-      results = loaded_race['results']
+    race_json = open('racechart/json/race.json').read()
+    loaded_race = json.loads(race_json)
+    results = loaded_race['results']
 
-      for result in results:
-  # Switch triggers if driver exists in database. This is to avoid No Matching Query error
-          driver_binary = len(Driver.objects.filter(full_name=result['driver']['full_name']))
-          if driver_binary == 1:
-              result['driver'] = Driver.objects.get(full_name=result['driver']['full_name'])
-              result['race'] = Race.objects.all()[0]
-              result['pit_stops'] = len(result['pit_stops'])
+    for result in results:
+# Switch triggers if driver exists in database. This is to avoid No Matching Query error
+        driver_binary = len(Driver.objects.filter(full_name=result['driver']['full_name']))
+        if driver_binary == 1:
+            result['driver'] = Driver.objects.get(full_name=result['driver']['full_name'])
+            result['race'] = Race.objects.all()[0]
+            result['pit_stops'] = len(result['pit_stops'])
 
-  ## Round the floats to 2 decimal places
-              for key in result:
-                  if type(result[key]) == float:
-                      result[key] = round(result[key], 2)
+## Round the floats to 2 decimal places
+            for key in result:
+                if type(result[key]) == float:
+                    result[key] = round(result[key], 2)
 
-              new_result = Result.create(result)
-              new_result.save()
-              print(new_result)
+            new_result = Result.create(result)
+            new_result.save()
+            print(new_result)
 
                 ######################
                 ###### STANDINGS #####
@@ -202,59 +180,3 @@ def seed_database():
     seed_results()
     seed_standings()
     print('seeded database')
-
-                ######################
-                ####### RESULTS ######
-                ######################
-
-for result in results:
-    driver_binary = len(Driver.objects.filter(full_name=result['driver']['full_name']))
-
-    if driver_binary == 1:
-        result['driver'] = Driver.objects.get(full_name=result['driver']['full_name'])
-        # print(result['driver'])
-        result['race'] = new_race
-        result['pit_stops'] = len(result['pit_stops'])
-
-        for key in result:
-            if type(result[key]) == float:
-                result[key] = round(result[key], 2)
-                # result[key] = int(result[key])
-
-
-
-        new_result = Result.create(result)
-        new_result.save()
-        # print(new_result)
-
-                ######################
-                ###### STANDINGS #####
-                ######################
-
-driver_standings = loaded_standings['drivers']
-# print(loaded_standings)
-
-for standing in driver_standings:
-
-    # driver_binary = len(Driver.objects.filter(full_name=result['driver']['full_name']))
-    #
-    # if driver_binary == 1:
-    standing['driver'] = Driver.objects.get(full_name=standing['full_name'])
-        # print(standing['driver'])
-
-    # print(type(standing['driver']))
-    # print('')
-    print(standing['full_name'])
-    print('')
-    for key in standing:
-        if type(standing[key]) == float:
-            standing[key] = round(standing[key], 2)
-            # standing[key] = int(standing[key])
-
-        print(f'{key}: {standing[key]}')
-
-
-    print(standing['full_name'])
-    new_standing = Standing.create(standing)
-    new_standing.save()
-print('seeded teams, drivers and races')

@@ -1,0 +1,140 @@
+{% extends 'racechart/base.html' %}
+
+{% block content %}
+<script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<h2>Graph</h2>
+<form id="graph-list">
+  <select onchange="driverSelected()">
+    {% for standing in standings %}
+    <option id='{{ standing.driver.pk }}'>
+        {{ standing.driver }}
+    </option>
+    {% endfor %}
+  </select>
+</form>
+
+<form id="graph-list">
+  <select>
+    {% for result in results %}
+    <option>
+        {{ result.passes_made }}
+    </option>
+    {% endfor %}
+  </select>
+</form>
+
+<div></div>
+
+<script>
+
+const data = []
+
+const resultsData = axios.get('/api/results')
+.then((response) => {
+  console.log('I am a result')
+})
+
+console.log(resultsData)
+// on selection, generateData() and createGraph
+
+const driverSelected = () => {
+  createGraph(generateData());
+}
+
+const generateData = () => {
+  axios.get('/api/results')
+  .then((response) => {
+    let entry = response.data;
+    let driver_url = entry[0].driver;
+    let driver_pk = driver_url.substring(driver_url.indexOf("drivers/") + 8)
+    let race_url = entry[0].race;
+    let race_pk = parseInt(race_url.substring(race_url.indexOf("races/") + 6))
+    let position = entry[0].position;
+    let startDate;
+    getRaceDate(race_pk)
+  })
+
+const getRaceDate = (int, pos) => {
+  axios.get('/api/races')
+  .then((response) => {
+    entry.forEach((datum) => {
+      if(datum['id'] === int) {
+        startDate = datum.start_time;
+        return startDate;
+      }
+    });
+  });
+}
+
+  getRaceDate()
+  // format data
+  console.log(startDate);
+  console.log(position);
+  data.push({'date': startDate, 'value': position});
+
+  return data;
+}
+
+generateData();
+
+const createGraph = (data) => {
+
+  // set the dimensions and margins of the graph
+  var margin = {top: 20, right: 20, bottom: 30, left: 50},
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
+
+  // parse the date / time
+  var parseTime = d3.timeParse("%d-%b-%y");
+
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+
+  // define the line
+  var valueline = d3.line()
+      .x(function(d) { return x(d.date); })
+      .y(function(d) { return y(d.value); });
+
+  // append the svg obgect to the div of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg = d3.select("div").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+  // format the data
+  data.forEach(function(d) {
+      d.date = parseTime(d.date);
+      d.value = +d.value;
+  });
+
+  // Scale the range of the data
+  x.domain(d3.extent(data, function(d) { return d.date; }));
+  y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+  // Add the valueline path.
+  svg.append("path")
+      .data([data])
+      .attr("class", "line")
+      .attr("d", valueline);
+
+  // Add the X Axis
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+  svg.append("g")
+      .call(d3.axisLeft(y));
+}
+
+createGraph(data);
+
+</script>
+
+{% endblock %}

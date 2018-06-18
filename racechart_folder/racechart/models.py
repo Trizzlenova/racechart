@@ -84,15 +84,12 @@ class Driver(models.Model):
 class Standing(models.Model):
   driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='standings')
   # from standings
-<<<<<<< HEAD
   avg_finish_position = models.IntegerField()
   avg_laps_completed = models.IntegerField()
   avg_start_postion = models.IntegerField()
-=======
   avg_finish_position = models.FloatField()
   avg_laps_completed = models.FloatField()
   avg_start_postion = models.FloatField()
->>>>>>> 6b05b13956dc37b479ff9f7cc8c28aa668face27
   chase_bonus = models.IntegerField()
   dnf = models.IntegerField()
   full_name = models.CharField(max_length=200)
@@ -190,7 +187,7 @@ class Race(models.Model):
         laps = race['laps'],
         laps_completed = race['laps_completed'],
         lead_changes = race['lead_changes'],
-        # race_number = race['number'],
+        race_number = race['number'],
         scheduled_time = race['scheduled'],
         start_time = race['start_time'],
         end_time = race['end_time'],
@@ -201,7 +198,6 @@ class Race(models.Model):
 class Result(models.Model):
   race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='results')
   driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='results')
-<<<<<<< HEAD
   avg_position = models.IntegerField(blank=True, null=True)
   avg_speed = models.IntegerField(blank=True, null=True)
   best_lap = models.IntegerField(blank=True, null=True)
@@ -216,22 +212,6 @@ class Result(models.Model):
   passes_made = models.IntegerField(blank=True, null=True)
   passing_differential = models.IntegerField(blank=True, null=True)
   penalty_points = models.IntegerField(blank=True, null=True)
-=======
-  avg_position = models.FloatField()
-  avg_speed = models.FloatField()
-  best_lap = models.IntegerField()
-  best_lap_speed = models.FloatField()
-  best_lap_time = models.FloatField()
-  bonus_points = models.IntegerField()
-  driver_rating = models.FloatField()
-  elapsed_time = models.FloatField()
-  fastest_laps = models.IntegerField()
-  laps_completed = models.IntegerField()
-  laps_led = models.IntegerField()
-  passes_made = models.IntegerField()
-  passing_differential = models.IntegerField()
-  penalty_points = models.IntegerField()
->>>>>>> 6b05b13956dc37b479ff9f7cc8c28aa668face27
   #return length of the pit stop list
   pit_stops = models.IntegerField(blank=True, null=True)
   points = models.IntegerField(blank=True, null=True)

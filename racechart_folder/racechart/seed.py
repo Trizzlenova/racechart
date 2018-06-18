@@ -2,8 +2,6 @@ from json import *
 from racechart.models import Driver, Result, Race, Team, Standing
 import json
 
-<<<<<<< HEAD
-=======
 
                         # ########################## #
                         #       LOAD JSON FILES      #
@@ -18,7 +16,6 @@ loaded_drivers = json.loads(driver_json)
 standings_json = open('racechart/json/standings.json').read()
 loaded_standings = json.loads(standings_json)
 
->>>>>>> 6b05b13956dc37b479ff9f7cc8c28aa668face27
                         # ########################## #
                         #     CLEAR THE DATABASE     #
                         # ########################## #
@@ -146,12 +143,8 @@ def seed_races():
                 ######################
                 ####### RESULTS ######
                 ######################
-<<<<<<< HEAD
-=======
-
 results = loaded_race['results']
 race_drivers = []
->>>>>>> 6b05b13956dc37b479ff9f7cc8c28aa668face27
 
 def seed_results():
     i = 0
@@ -176,12 +169,11 @@ def seed_results():
               new_result = Result.create(result)
               new_result.save()
               print(new_result)
-      i = i + 1
+
                 ######################
                 ###### STANDINGS #####
                 ######################
 
-<<<<<<< HEAD
 def seed_standings():
     standings_json = open('racechart/json/standings.json').read()
     loaded_standings = json.loads(standings_json)
@@ -210,7 +202,7 @@ def seed_database():
     seed_results()
     seed_standings()
     print('seeded database')
-=======
+
                 ######################
                 ####### RESULTS ######
                 ######################
@@ -266,4 +258,3 @@ for standing in driver_standings:
     new_standing = Standing.create(standing)
     new_standing.save()
 print('seeded teams, drivers and races')
->>>>>>> 6b05b13956dc37b479ff9f7cc8c28aa668face27

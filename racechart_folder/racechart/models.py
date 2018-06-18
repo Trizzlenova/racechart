@@ -225,13 +225,8 @@ class Result(models.Model):
   @classmethod
   def create(cls, result):
       new_result = cls(
-<<<<<<< HEAD
-        race = result['race'],
-        driver = result['driver'],
-=======
         driver = result['driver'],
         race = result['race'],
->>>>>>> 5e87738bb9376661ceea60463200774d378b37fe
         avg_position = result['avg_position'],
         avg_speed = result['avg_speed'],
         best_lap = result['best_lap'],

@@ -2,6 +2,22 @@ from json import *
 from racechart.models import Driver, Result, Race, Team, Standing
 import json
 
+<<<<<<< HEAD
+=======
+
+                        # ########################## #
+                        #       LOAD JSON FILES      #
+                        # ########################## #
+
+race_json = open('racechart/json/race.json').read()
+loaded_race = json.loads(race_json)
+
+driver_json = open('racechart/json/drivers.json').read()
+loaded_drivers = json.loads(driver_json)
+
+standings_json = open('racechart/json/standings.json').read()
+loaded_standings = json.loads(driver_json)
+>>>>>>> 7a4450577b6102e62c7ab1350e0cad51eda54eea
 
                         # ########################## #
                         #     CLEAR THE DATABASE     #
@@ -142,6 +158,7 @@ for cleaned_driver in cleaned_drivers:
   new_driver = Driver.create(cleaned_driver)
   new_driver.save()
   print(new_driver)
+<<<<<<< HEAD
 =======
                 ######################
                 ####### DRIVERS ######
@@ -190,10 +207,13 @@ def seed_drivers():
       new_driver.save()
       print(new_driver)
 >>>>>>> 5e87738bb9376661ceea60463200774d378b37fe
+=======
+>>>>>>> 7a4450577b6102e62c7ab1350e0cad51eda54eea
 
                 ######################
                 ######## RACES #######
                 ######################
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 # results = loaded_race['results']
@@ -297,9 +317,18 @@ def seed_standings():
                 standing[key] = round(standing[key], 2)
 
 <<<<<<< HEAD
+=======
+
+# results = loaded_race['results']
+# race_drivers = []
+
+# new_race = Race.create(loaded_race)
+# new_race.save()
+>>>>>>> 7a4450577b6102e62c7ab1350e0cad51eda54eea
 
 # print(loaded_race['name'])
 
+<<<<<<< HEAD
 # print('seeded teams, drivers and races')
 =======
         new_standing = Standing.create(standing)
@@ -319,3 +348,9 @@ def seed_database():
     seed_standings()
     print('seeded database')
 >>>>>>> 5e87738bb9376661ceea60463200774d378b37fe
+=======
+
+# print(loaded_race['name'])
+
+# print('seeded teams, drivers and races')
+>>>>>>> 7a4450577b6102e62c7ab1350e0cad51eda54eea

@@ -29,8 +29,7 @@ for events in event_list:
 driver_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/drivers/list.json?api_key={api}'
 driver_file = 'racechart/json/drivers.json'
 
-# race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids}/results.json?api_key={api}'
-
+race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[0]}/results.json?api_key={api}'
 race_file = 'racechart/json/race.json'
 
 standings_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/standings/drivers.json?api_key={api}'

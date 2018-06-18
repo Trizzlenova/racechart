@@ -144,26 +144,26 @@ class Standing(models.Model):
 
 class Race(models.Model):
   # from race
-  name = models.CharField(max_length=250)
+  name = models.CharField(max_length=250, blank=True, null=True)
   drivers = models.ManyToManyField(Driver, related_name='races')
-  actual_distance = models.IntegerField()
-  avg_speed = models.DecimalField(max_digits=6, decimal_places=3)
-  caution_laps = models.IntegerField()
-  cautions = models.CharField(max_length=250)
-  condition = models.CharField(max_length=250)
-  distance = models.IntegerField()
-  elapsed_time = models.CharField(max_length=250)
+  actual_distance = models.FloatField(blank=True, null=True)
+  avg_speed = models.FloatField(blank=True, null=True)
+  caution_laps = models.IntegerField(blank=True, null=True)
+  cautions = models.CharField(max_length=250, blank=True, null=True)
+  condition = models.CharField(max_length=250, blank=True, null=True)
+  distance = models.IntegerField(blank=True, null=True)
+  elapsed_time = models.CharField(max_length=250, blank=True, null=True)
   # count list length
-  flags = models.IntegerField()
-  laps = models.IntegerField()
-  laps_completed = models.IntegerField()
-  lead_changes = models.IntegerField()
-  race_number = models.IntegerField()
-  scheduled_time = models.DateTimeField()
-  start_time = models.DateTimeField()
-  end_time = models.DateTimeField()
+  flags = models.IntegerField(blank=True, null=True)
+  laps = models.IntegerField(blank=True, null=True)
+  laps_completed = models.IntegerField(blank=True, null=True)
+  lead_changes = models.IntegerField(blank=True, null=True)
+  race_number = models.IntegerField(blank=True, null=True)
+  scheduled_time = models.DateTimeField(blank=True, null=True)
+  start_time = models.DateTimeField(blank=True, null=True)
+  end_time = models.DateTimeField(blank=True, null=True)
   # convert from string to decimal
-  victory_margin = models.DecimalField(max_digits=6, decimal_places=3)
+  victory_margin = models.FloatField(blank=True, null=True)
 
   def __str__(self):
     return self.name
@@ -180,11 +180,11 @@ class Race(models.Model):
         condition = race['condition'],
         distance = race['distance'],
         elapsed_time = race['elapsed_time'],
-        flags = len(race['flags']),
+        flags = race['flags'],
         laps = race['laps'],
         laps_completed = race['laps_completed'],
         lead_changes = race['lead_changes'],
-        race_number = race['number'],
+        race_number = race['race_number'],
         scheduled_time = race['scheduled'],
         start_time = race['start_time'],
         end_time = race['end_time'],

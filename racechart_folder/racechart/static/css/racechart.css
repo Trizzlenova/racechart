@@ -19,11 +19,7 @@
 }
 
 body {
-<<<<<<< HEAD
-  background-color: #EDC240;
-=======
   /*background-color: #2E250C;*/
->>>>>>> 9f5ef5c8f44f6874df0f0e413f0aaf2eaaabedef
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
@@ -38,30 +34,6 @@ header {
 
 }
 
-<<<<<<< HEAD
-#logo {
-  width: 20%;
-  height: 6em;
-}
-
-.header-nav {
-  border: 1px solid black;
-  display: flex;
-  width: 80%;
-  justify-content: space-around;
-}
-
-.header-nav-link {
-}
-
-
-/* nav {
-  border: 1px solid;
-  background-image: 'racechart_folder/racechart/static/images/flags.png';
-  height: 2em;
-  width: 100%;
-} */
-=======
 header {
   margin: 0 auto;
   width: 100%;
@@ -118,7 +90,6 @@ nav {
   background: url(static/images/flag.png);
   background-color: #EDC240;
 }
->>>>>>> 9f5ef5c8f44f6874df0f0e413f0aaf2eaaabedef
 
 a:link, a:visited {
   text-decoration: none;

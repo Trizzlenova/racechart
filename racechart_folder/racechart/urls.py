@@ -3,6 +3,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+  path('', views.standing_list, name="standing_list"),
   path('getall', views.get_all_races, name='get_all_races'),
   path('drivers/', views.driver_list, name='driver_list'),
   path('drivers/<int:pk>', views.driver_detail, name='driver_detail'),

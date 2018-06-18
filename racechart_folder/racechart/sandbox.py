@@ -1,0 +1,8 @@
+  avg_position = models.IntegerF(max_digits=6, decimal_places=3)
+  avg_speed = models.IntegerF(max_digits=6, decimal_places=3)
+  best_lap = models.IntegerField()
+  best_lap_speed = models.IntegerF(max_digits=6, decimal_places=3)
+  best_lap_time = models.IntegerF(max_digits=6, decimal_places=3)
+  bonus_points = models.IntegerField()
+  driver_rating = models.IntegerF(max_digits=6, decimal_places=3)
+  elapsed_time = models.IntegerF(max_digits=6, decimal_places=3)

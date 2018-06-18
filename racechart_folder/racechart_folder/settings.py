@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'racechart',
     'django_extensions',
-    'celery',
+    # 'celery',
 ]
 
 MIDDLEWARE = [
@@ -124,5 +124,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Celery config
+<<<<<<< HEAD
 CELERY_BROKER_URL = 'amqp://localhost'
 
+=======
+# BROKER_URL = 'redis://127.0.0.1:6379/'
+# CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+>>>>>>> 6b05b13956dc37b479ff9f7cc8c28aa668face27

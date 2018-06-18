@@ -2,6 +2,23 @@ from json import *
 from racechart.models import Driver, Result, Race, Team, Standing
 import json
 
+<<<<<<< HEAD
+=======
+
+                        # ########################## #
+                        #       LOAD JSON FILES      #
+                        # ########################## #
+
+race_json = open('racechart/json/race.json').read()
+loaded_race = json.loads(race_json)
+
+driver_json = open('racechart/json/drivers.json').read()
+loaded_drivers = json.loads(driver_json)
+
+standings_json = open('racechart/json/standings.json').read()
+loaded_standings = json.loads(standings_json)
+
+>>>>>>> 6b05b13956dc37b479ff9f7cc8c28aa668face27
                         # ########################## #
                         #     CLEAR THE DATABASE     #
                         # ########################## #
@@ -129,6 +146,12 @@ def seed_races():
                 ######################
                 ####### RESULTS ######
                 ######################
+<<<<<<< HEAD
+=======
+
+results = loaded_race['results']
+race_drivers = []
+>>>>>>> 6b05b13956dc37b479ff9f7cc8c28aa668face27
 
 def seed_results():
     i = 0
@@ -158,6 +181,7 @@ def seed_results():
                 ###### STANDINGS #####
                 ######################
 
+<<<<<<< HEAD
 def seed_standings():
     standings_json = open('racechart/json/standings.json').read()
     loaded_standings = json.loads(standings_json)
@@ -186,3 +210,60 @@ def seed_database():
     seed_results()
     seed_standings()
     print('seeded database')
+=======
+                ######################
+                ####### RESULTS ######
+                ######################
+
+for result in results:
+    driver_binary = len(Driver.objects.filter(full_name=result['driver']['full_name']))
+
+    if driver_binary == 1:
+        result['driver'] = Driver.objects.get(full_name=result['driver']['full_name'])
+        # print(result['driver'])
+        result['race'] = new_race
+        result['pit_stops'] = len(result['pit_stops'])
+
+        for key in result:
+            if type(result[key]) == float:
+                result[key] = round(result[key], 2)
+                # result[key] = int(result[key])
+
+
+
+        new_result = Result.create(result)
+        new_result.save()
+        # print(new_result)
+
+                ######################
+                ###### STANDINGS #####
+                ######################
+
+driver_standings = loaded_standings['drivers']
+# print(loaded_standings)
+
+for standing in driver_standings:
+
+    # driver_binary = len(Driver.objects.filter(full_name=result['driver']['full_name']))
+    #
+    # if driver_binary == 1:
+    standing['driver'] = Driver.objects.get(full_name=standing['full_name'])
+        # print(standing['driver'])
+
+    # print(type(standing['driver']))
+    # print('')
+    print(standing['full_name'])
+    print('')
+    for key in standing:
+        if type(standing[key]) == float:
+            standing[key] = round(standing[key], 2)
+            # standing[key] = int(standing[key])
+
+        print(f'{key}: {standing[key]}')
+
+
+    print(standing['full_name'])
+    new_standing = Standing.create(standing)
+    new_standing.save()
+print('seeded teams, drivers and races')
+>>>>>>> 6b05b13956dc37b479ff9f7cc8c28aa668face27

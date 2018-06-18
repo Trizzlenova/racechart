@@ -84,15 +84,9 @@ class Driver(models.Model):
 class Standing(models.Model):
   driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='standings')
   # from standings
-<<<<<<< HEAD
-  avg_finish_position = models.IntegerField()
-  avg_laps_completed = models.IntegerField()
-  avg_start_postion = models.IntegerField()
-=======
-  avg_finish_position = models.FloatField()
-  avg_laps_completed = models.FloatField()
-  avg_start_postion = models.FloatField()
->>>>>>> 6b05b13956dc37b479ff9f7cc8c28aa668face27
+  avg_finish_position = models.DecimalField(max_digits=6, decimal_places=3)
+  avg_laps_completed = models.DecimalField(max_digits=6, decimal_places=3)
+  avg_start_postion = models.DecimalField(max_digits=6, decimal_places=3)
   chase_bonus = models.IntegerField()
   dnf = models.IntegerField()
   full_name = models.CharField(max_length=200)
@@ -113,19 +107,48 @@ class Standing(models.Model):
   wins = models.IntegerField()
 
   def __str__(self):
-      return self.driver.full_name
-
-  class Meta:
-    ordering = ['rank']
+      return {self.rank}
 
   @classmethod
   def create(cls, standing):
 
       new_standing = cls(
-        driver = standing['driver'],
         avg_finish_position = standing['avg_finish_position'],
         avg_laps_completed = standing['avg_laps_completed'],
-        avg_start_postion = standing['avg_start_position'],
+        avg_start_postion = standing['avg_start_postion'],
+        chase_bonus = standing['chase_bonus'],
+        dnf = standing['dnf'],
+        full_name = standing['full_name'],
+        in_chase = standing['in_chase'],
+        laps_completed = standing['laps_completed'],
+        laps_led = standing['laps_led'],
+        laps_led_pct = standing['laps_led_pct'],
+        points = standing['points'],
+        poles = standing['poles'],
+        rank = standing['rank'],
+        stage_wins = standing['stage_wins'],
+        starts = standing['starts'],
+        status = standing['status'],
+        top_5 = standing['top_5'],
+        top_10 = standing['top_10'],
+        top_15 = standing['top_15'],
+        top_20 = standing['top_20'],
+        wins = standing['wins'],
+      )
+
+  class Meta:
+    ordering = ['rank']
+
+  def __str__(self):
+    return {self.rank}
+
+  @classmethod
+  def create(cls, standing):
+
+      new_standing = cls(
+        avg_finish_position = standing['avg_finish_position'],
+        avg_laps_completed = standing['avg_laps_completed'],
+        avg_start_postion = standing['avg_start_postion'],
         chase_bonus = standing['chase_bonus'],
         dnf = standing['dnf'],
         full_name = standing['full_name'],
@@ -152,22 +175,22 @@ class Race(models.Model):
   # from race
   name = models.CharField(max_length=250)
   drivers = models.ManyToManyField(Driver, related_name='races')
-  actual_distance = models.IntegerField(blank=True, null=True)
+  actual_distance = models.IntegerField()
   avg_speed = models.DecimalField(max_digits=6, decimal_places=3)
-  caution_laps = models.IntegerField(blank=True, null=True)
-  cautions = models.CharField(max_length=250, blank=True, null=True)
-  condition = models.CharField(max_length=250, blank=True, null=True)
-  distance = models.IntegerField(blank=True, null=True)
-  elapsed_time = models.CharField(max_length=250, blank=True, null=True)
+  caution_laps = models.IntegerField()
+  cautions = models.CharField(max_length=250)
+  condition = models.CharField(max_length=250)
+  distance = models.IntegerField()
+  elapsed_time = models.CharField(max_length=250)
   # count list length
-  flags = models.IntegerField(blank=True, null=True)
-  laps = models.IntegerField(blank=True, null=True)
-  laps_completed = models.IntegerField(blank=True, null=True)
-  lead_changes = models.IntegerField(blank=True, null=True)
-  race_number = models.IntegerField(blank=True, null=True)
-  scheduled_time = models.DateTimeField(blank=True, null=True)
-  start_time = models.DateTimeField(blank=True, null=True)
-  end_time = models.DateTimeField(blank=True, null=True)
+  flags = models.IntegerField()
+  laps = models.IntegerField()
+  laps_completed = models.IntegerField()
+  lead_changes = models.IntegerField()
+  race_number = models.IntegerField()
+  scheduled_time = models.DateTimeField()
+  start_time = models.DateTimeField()
+  end_time = models.DateTimeField()
   # convert from string to decimal
   victory_margin = models.DecimalField(max_digits=6, decimal_places=3)
 
@@ -178,7 +201,7 @@ class Race(models.Model):
   def create(cls, race):
       new_race = cls(
         name = race['name'],
-        drivers = race['drivers'],
+        # drivers = race['drivers'],
         actual_distance = race['actual_distance'],
         avg_speed = race['avg_speed'],
         caution_laps = race['caution_laps'],
@@ -190,7 +213,7 @@ class Race(models.Model):
         laps = race['laps'],
         laps_completed = race['laps_completed'],
         lead_changes = race['lead_changes'],
-        # race_number = race['number'],
+        race_number = race['number'],
         scheduled_time = race['scheduled'],
         start_time = race['start_time'],
         end_time = race['end_time'],
@@ -201,55 +224,36 @@ class Race(models.Model):
 class Result(models.Model):
   race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='results')
   driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='results')
-<<<<<<< HEAD
-  avg_position = models.IntegerField(blank=True, null=True)
-  avg_speed = models.IntegerField(blank=True, null=True)
-  best_lap = models.IntegerField(blank=True, null=True)
-  best_lap_speed = models.IntegerField(blank=True, null=True)
-  best_lap_time = models.IntegerField(blank=True, null=True)
-  bonus_points = models.IntegerField(blank=True, null=True)
-  driver_rating = models.IntegerField(blank=True, null=True)
-  elapsed_time = models.IntegerField(blank=True, null=True)
-  fastest_laps = models.IntegerField(blank=True, null=True)
-  laps_completed = models.IntegerField(blank=True, null=True)
-  laps_led = models.IntegerField(blank=True, null=True)
-  passes_made = models.IntegerField(blank=True, null=True)
-  passing_differential = models.IntegerField(blank=True, null=True)
-  penalty_points = models.IntegerField(blank=True, null=True)
-=======
-  avg_position = models.FloatField()
-  avg_speed = models.FloatField()
+  avg_position = models.DecimalField(max_digits=6, decimal_places=3)
+  avg_speed = models.DecimalField(max_digits=6, decimal_places=3)
   best_lap = models.IntegerField()
-  best_lap_speed = models.FloatField()
-  best_lap_time = models.FloatField()
+  best_lap_speed = models.DecimalField(max_digits=6, decimal_places=3)
+  best_lap_time = models.DecimalField(max_digits=6, decimal_places=3)
   bonus_points = models.IntegerField()
-  driver_rating = models.FloatField()
-  elapsed_time = models.FloatField()
+  driver_rating = models.DecimalField(max_digits=6, decimal_places=3)
+  elapsed_time = models.DecimalField(max_digits=6, decimal_places=3)
   fastest_laps = models.IntegerField()
   laps_completed = models.IntegerField()
   laps_led = models.IntegerField()
   passes_made = models.IntegerField()
   passing_differential = models.IntegerField()
   penalty_points = models.IntegerField()
->>>>>>> 6b05b13956dc37b479ff9f7cc8c28aa668face27
   #return length of the pit stop list
-  pit_stops = models.IntegerField(blank=True, null=True)
-  points = models.IntegerField(blank=True, null=True)
-  position = models.IntegerField(blank=True, null=True)
-  quality_passes = models.IntegerField(blank=True, null=True)
-  start_position = models.IntegerField(blank=True, null=True)
-  status = models.CharField(max_length=250, blank=True, null=True)
-  times_led = models.IntegerField(blank=True, null=True)
-  times_passed = models.IntegerField(blank=True, null=True)
+  pit_stops = models.IntegerField()
+  points = models.IntegerField()
+  position = models.IntegerField()
+  quality_passes = models.IntegerField()
+  start_position = models.IntegerField()
+  status = models.CharField(max_length=250)
+  times_led = models.IntegerField()
+  times_passed = models.IntegerField()
 
   def __str__(self):
-    return self.driver.full_name
+    return self.race.name
 
   @classmethod
   def create(cls, result):
       new_result = cls(
-        driver = result['driver'],
-        race = result['race'],
         avg_position = result['avg_position'],
         avg_speed = result['avg_speed'],
         best_lap = result['best_lap'],
@@ -264,7 +268,7 @@ class Result(models.Model):
         passes_made = result['passes_made'],
         passing_differential = result['passing_differential'],
         penalty_points = result['penalty_points'],
-        pit_stops = result['pit_stops'],
+        pit_stops = len(result['pit_stops']),
         points = result['points'],
         position = result['position'],
         quality_passes = result['quality_passes'],
@@ -274,4 +278,3 @@ class Result(models.Model):
         times_passed = result['times_passed'],
       )
       return new_result
-      # new_result.save()

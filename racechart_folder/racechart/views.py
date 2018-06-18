@@ -70,15 +70,6 @@ def get_all_races(request):
     i = i + 1
 
 
-# def create_driver(request):
-#   driver_json = open('racechart/json/drivers.json').read()
-#   loaded = json.loads(driver_json)
-#   print(loaded['drivers'][0]['full_name'])
-#   birthday = loaded['drivers'][0]['birthday']
-#   full_name = loaded['drivers'][0]['full_name']
-#   country = loaded['drivers'][0]['country']
-#   birth_place = loaded['drivers'][0]['birth_place']
-  # return HttpResponseRedirect('/admin')
 
 def driver_list(request):
     drivers = Driver.objects.all()
@@ -96,6 +87,10 @@ def race_detail(request, pk):
     races = Race.objects.get(id=pk)
     return render(request, 'racechart/race_detail.html', {'race': race})
 
+def graphs(request):
+    standings = Standing.objects.all()
+    return render(request, 'racechart/graph.html', {'standings': standings})
+
 def standing_list(request):
     standings = Standing.objects.all()
     return render(request, 'racechart/standing_list.html', {'standings': standings})
@@ -111,6 +106,7 @@ def result_list(request):
 def result_detail(request, pk):
     driver = Driver.objects.get(id=pk)
     return render(request, 'racechart/result_detail.html', {'result': result})
+
 
 class RaceList(generics.ListCreateAPIView):
     queryset = Race.objects.all()

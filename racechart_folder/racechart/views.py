@@ -70,17 +70,6 @@ def get_all_races(request):
       # return HttpResponseRedirect('/admin')
     i = i + 1
 
-
-# def create_driver(request):
-#   driver_json = open('racechart/json/drivers.json').read()
-#   loaded = json.loads(driver_json)
-#   print(loaded['drivers'][0]['full_name'])
-#   birthday = loaded['drivers'][0]['birthday']
-#   full_name = loaded['drivers'][0]['full_name']
-#   country = loaded['drivers'][0]['country']
-#   birth_place = loaded['drivers'][0]['birth_place']
-  # return HttpResponseRedirect('/admin')
-
 def driver_list(request):
     drivers = Driver.objects.all()
     return render(request, 'racechart/driver_list.html', {'drivers': drivers})
@@ -88,6 +77,14 @@ def driver_list(request):
 def driver_detail(request, pk):
     driver = Driver.objects.get(id=pk)
     return render(request, 'racechart/driver_detail.html', {'driver': driver})
+
+def team_list(request):
+    teams = Team.objects.all()
+    return render(request, 'racechart/team_list.html', {'teams': teams})
+
+def team_detail(request, pk):
+    team = Team.objects.get(id=pk)
+    return render(request, 'racechart/team_detail.html', {'team': team})
 
 def race_list(request):
     races = Race.objects.all()
@@ -121,6 +118,14 @@ class RaceDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Race.objects.all()
     serializer_class = RaceSerializer
 
+class TeamList(generics.ListCreateAPIView):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
+
+class TeamDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
+
 class StandingList(generics.ListCreateAPIView):
     queryset = Standing.objects.all()
     serializer_class = StandingSerializer
@@ -136,6 +141,14 @@ class ResultList(generics.ListCreateAPIView):
 class ResultDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Result.objects.all()
     serializer_class = ResultSerializer
+
+class DriverList(generics.ListCreateAPIView):
+    queryset = Driver.objects.all()
+    serializer_class = DriverSerializer
+
+class DriverDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Driver.objects.all()
+    serializer_class = DriverSerializer
 # def result_detail(request, pk):
 #     result = Result.objects.get(id=pk)
 #     return render(request, 'racechart/result_detail.html', {'result': result})

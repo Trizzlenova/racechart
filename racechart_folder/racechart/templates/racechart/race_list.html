@@ -1,0 +1,16 @@
+{% extends 'racechart/base.html' %}
+
+{% block content %}
+
+<h2>Races</h2>
+<div id="race-list"></div>
+<ul>
+    {% for race in races %}
+        <li id="result">
+            <a class="purple" href="{% url 'race_detail' pk=race.pk %}">
+              {{ race.name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

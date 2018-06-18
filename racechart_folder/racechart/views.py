@@ -93,7 +93,7 @@ def race_list(request):
     return render(request, 'racechart/race_list.html', {'races': races})
 
 def race_detail(request, pk):
-    races = Race.objects.get(id=pk)
+    race = Race.objects.get(id=pk)
     return render(request, 'racechart/race_detail.html', {'race': race})
 
 def standing_list(request):
@@ -115,7 +115,6 @@ def result_detail(request, pk):
 class RaceList(generics.ListCreateAPIView):
     queryset = Race.objects.all()
     serializer_class = RaceSerializer
-
 
 class RaceDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Race.objects.all()

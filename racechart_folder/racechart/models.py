@@ -220,7 +220,7 @@ class Result(models.Model):
   times_passed = models.IntegerField()
 
   def __str__(self):
-    return self.position
+    return self.driver.full_name
 
   @classmethod
   def create(cls, result):

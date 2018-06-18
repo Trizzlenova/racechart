@@ -106,7 +106,7 @@ def result_list(request):
     return render(request, 'racechart/result_list.html', {'results': results})
 
 def result_detail(request, pk):
-    driver = Driver.objects.get(id=pk)
+    result = Result.objects.get(id=pk)
     return render(request, 'racechart/result_detail.html', {'result': result})
 
 class RaceList(generics.ListCreateAPIView):

@@ -7,7 +7,7 @@
 <ul>
     {% for driver in drivers %}
         <li id="driver">
-            <a class="purple" href="{% url 'driver_detail' pk=driver.pk%}">
+            <a class="purple" href="{% url 'driver_detail' pk=driver.pk %}">
               {{ driver.full_name }}
             </a>
         </li>

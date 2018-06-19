@@ -18,7 +18,7 @@ def grab_json(request, url, data_file):
 	print(f'you are grabbing a json from {url}')
 
 # define api urls and json file destinations
-api = API_KEY
+api = os.environ['API_KEY']
 year = '2018'
 # race_ids = ['cf82b04d-cc9c-4621-aa9b-cbc6ee269de7']
 
@@ -34,28 +34,28 @@ race_file = 'json/race.json'
 race_list_url = f'http://api.sportradar.us/nascar-t3/mc/{year}/races/schedule.json?api_key={api}'
 race_list_file = 'json/race_list.json'
 
-race_ids = []
+# race_ids = []
+#
+# race_json = open('racechart/json/race_list.json').read()
+# loaded = json.loads(race_json)
+# event_list = loaded['events']
+# for events in event_list:
+#   races = events['races']
+#   for race in races:
+#     race_ids.append(race['id'])
 
-race_json = open('racechart/json/race_list.json').read()
-loaded = json.loads(race_json)
-event_list = loaded['events']
-for events in event_list:
-  races = events['races']
-  for race in races:
-    race_ids.append(race['id'])
-
-def get_all_races(request):
-  i = 0
-  length = len(race_ids)
-  while(i < 10):
-    race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[i]}/results.json?api_key={api}'
-    grab_json(request, race_url, f'racechart/json/race_list/race{i}.json')
-    print(f'you are grabbing a json from {race_url}')
-    time.sleep(3)
-    if i > 8:
-      print('Grabbed all races!')
-      # return HttpResponseRedirect('/admin')
-    i = i + 1
+# def get_all_races(request):
+#   i = 0
+#   length = len(race_ids)
+#   while(i < 10):
+#     race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[i]}/results.json?api_key={api}'
+#     grab_json(request, race_url, f'racechart/json/race_list/race{i}.json')
+#     print(f'you are grabbing a json from {race_url}')
+#     time.sleep(3)
+#     if i > 8:
+#       print('Grabbed all races!')
+#       # return HttpResponseRedirect('/admin')
+#     i = i + 1
 
 
 # define a get function for each api source:
@@ -111,13 +111,8 @@ def access_nascar_api():
 	get_standings()
 	print('got standings')
 	time.sleep(5)
-<<<<<<< HEAD
-	get_race()
-	print('got race')
-=======
 	get_all_races()
 	print('got race list')
->>>>>>> 8e9ce4861399ff6c3b1c45b7bca25fadc3375315
 	# time.sleep(5)
 	# need to add function call to reseed
 	# print('Database Updated')
@@ -127,7 +122,7 @@ def access_multiple_races():
 	get_all_races()
 
 CELERYBEAT_SCHEDULE = {
-<<<<<<< HEAD
+
 	'every-twenty-five': {
 		'task': 'tasks.ping_me',
 		'schedule': timedelta(minutes=25),
@@ -141,19 +136,4 @@ CELERYBEAT_SCHEDULE = {
 		'task': 'tasks.access_nascar_api',
 		'schedule': timedelta(hours=350),
 	},
-=======
-    'every-twenty-five': {
-        'task': 'tasks.ping_me',
-        'schedule': timedelta(minutes=25),
-    },
-    'every-day': {
-        'task': 'tasks.access_nascar_api',
-        'schedule': crontab(hour=19, minute=28),
-        # 'schedule': timedelta(hours=24),
-    },
-    'twice-monthly': {
-        'task': 'tasks.access_multiple_races',
-        'schedule': timedelta(hours=350),
-    },
->>>>>>> 8e9ce4861399ff6c3b1c45b7bca25fadc3375315
 }

@@ -11,7 +11,7 @@ import os
 # from .tasks import access_nascar_api
 
 
-api = os.profile['API_KEY']
+api = os.environ['API_KEY']
 year = '2018'
 
 race_list_url = f'http://api.sportradar.us/nascar-t3/mc/{year}/races/schedule.json?api_key={api}'
@@ -48,10 +48,9 @@ def grab_json(request, url, data_file):
   print(f'you are grabbing a json from {url}')
 
 def get_all(request):
-  # grab_json(request, driver_url, driver_file)
-  # grab_json(request, race_url, race_file)
-  # grab_json(request, standings_url, standings_file)
-  # grab_json(request, race_list_url, race_list_file)
+  grab_json(request, driver_url, driver_file)
+  grab_json(request, standings_url, standings_file)
+  grab_json(request, race_list_url, race_list_file)
   return HttpResponseRedirect('/admin')
 
 race_folder = 'racechart/json/race_list/race.json'
@@ -67,7 +66,7 @@ def get_all_races(request):
     time.sleep(3)
     if i > 8:
       print('Grabbed all races!')
-      # return HttpResponseRedirect('/admin')
+      return HttpResponseRedirect('/admin')
     i = i + 1
 
 def driver_list(request):

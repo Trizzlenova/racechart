@@ -4,13 +4,14 @@ from .models import Driver, Result, Race, Team, Standing
 import json
 from json import *
 from django.http import HttpResponse, HttpResponseRedirect
-from racechart_folder.config import API_KEY
+# from racechart_folder.config import API_KEY
 from rest_framework import generics
 from .serializers import *
+import os
 # from .tasks import access_nascar_api
 
 
-api = API_KEY
+api = os.profile['API_KEY']
 year = '2018'
 
 race_list_url = f'http://api.sportradar.us/nascar-t3/mc/{year}/races/schedule.json?api_key={api}'

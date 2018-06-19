@@ -179,7 +179,7 @@ def seed_results():
           driver_binary = len(Driver.objects.filter(full_name=result['driver']['full_name']))
           if driver_binary == 1:
               result['driver'] = Driver.objects.get(full_name=result['driver']['full_name'])
-              result['race'] = Race.objects.all()[0]
+              result['race'] = Race.objects.all()[i]
               result['pit_stops'] = len(result['pit_stops'])
 
   ## Round the floats to 2 decimal places

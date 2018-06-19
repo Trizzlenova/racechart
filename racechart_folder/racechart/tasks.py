@@ -111,13 +111,10 @@ def access_nascar_api():
 	get_standings()
 	print('got standings')
 	time.sleep(5)
-<<<<<<< HEAD
 	get_race()
 	print('got race')
-=======
 	get_all_races()
 	print('got race list')
->>>>>>> 8e9ce4861399ff6c3b1c45b7bca25fadc3375315
 	# time.sleep(5)
 	# need to add function call to reseed
 	# print('Database Updated')
@@ -127,7 +124,6 @@ def access_multiple_races():
 	get_all_races()
 
 CELERYBEAT_SCHEDULE = {
-<<<<<<< HEAD
 	'every-twenty-five': {
 		'task': 'tasks.ping_me',
 		'schedule': timedelta(minutes=25),
@@ -141,19 +137,4 @@ CELERYBEAT_SCHEDULE = {
 		'task': 'tasks.access_nascar_api',
 		'schedule': timedelta(hours=350),
 	},
-=======
-    'every-twenty-five': {
-        'task': 'tasks.ping_me',
-        'schedule': timedelta(minutes=25),
-    },
-    'every-day': {
-        'task': 'tasks.access_nascar_api',
-        'schedule': crontab(hour=19, minute=28),
-        # 'schedule': timedelta(hours=24),
-    },
-    'twice-monthly': {
-        'task': 'tasks.access_multiple_races',
-        'schedule': timedelta(hours=350),
-    },
->>>>>>> 8e9ce4861399ff6c3b1c45b7bca25fadc3375315
 }

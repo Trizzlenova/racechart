@@ -2,8 +2,6 @@ from json import *
 from racechart.models import Driver, Result, Race, Team, Standing
 import json
 
-<<<<<<< HEAD
-=======
 
                         # ########################## #
                         #       LOAD JSON FILES      #
@@ -17,7 +15,6 @@ loaded_drivers = json.loads(driver_json)
 
 standings_json = open('racechart/json/standings.json').read()
 loaded_standings = json.loads(driver_json)
->>>>>>> 7a4450577b6102e62c7ab1350e0cad51eda54eea
 
                         # ########################## #
                         #     CLEAR THE DATABASE     #
@@ -66,7 +63,6 @@ def seed_teams():
 
 # Check to make sure we don't make identical teams
 
-<<<<<<< HEAD
 for added_team in team_array:
   match_found = False
 
@@ -84,10 +80,8 @@ for team in cleaned_teams:
   new_team = Team.create(team)
   new_team.save()
   # print(new_team)
-=======
     for added_team in team_array:
       match_found = False
->>>>>>> 5e87738bb9376661ceea60463200774d378b37fe
 
       for cleaned_team in cleaned_teams:
 
@@ -102,7 +96,6 @@ for team in cleaned_teams:
       new_team.save()
       print(new_team)
 
-<<<<<<< HEAD
 # iterate through each driver
 for single_driver in drivers_array:
 
@@ -158,8 +151,7 @@ for cleaned_driver in cleaned_drivers:
   new_driver = Driver.create(cleaned_driver)
   new_driver.save()
   print(new_driver)
-<<<<<<< HEAD
-=======
+
                 ######################
                 ####### DRIVERS ######
                 ######################
@@ -206,22 +198,17 @@ def seed_drivers():
       new_driver = Driver.create(cleaned_driver)
       new_driver.save()
       print(new_driver)
->>>>>>> 5e87738bb9376661ceea60463200774d378b37fe
-=======
->>>>>>> 7a4450577b6102e62c7ab1350e0cad51eda54eea
+
 
                 ######################
                 ######## RACES #######
                 ######################
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 # results = loaded_race['results']
 # race_drivers = []
 
 # new_race = Race.create(loaded_race)
 # new_race.save()
-=======
 def seed_races():
     cleaned_races = []
     i = 0
@@ -310,27 +297,17 @@ def seed_standings():
 
     for standing in driver_standings:
         standing['driver'] = Driver.objects.get(full_name=standing['full_name'])
->>>>>>> 5e87738bb9376661ceea60463200774d378b37fe
 
         for key in standing:
             if type(standing[key]) == float:
                 standing[key] = round(standing[key], 2)
 
-<<<<<<< HEAD
-=======
 
 # results = loaded_race['results']
 # race_drivers = []
 
 # new_race = Race.create(loaded_race)
 # new_race.save()
->>>>>>> 7a4450577b6102e62c7ab1350e0cad51eda54eea
-
-# print(loaded_race['name'])
-
-<<<<<<< HEAD
-# print('seeded teams, drivers and races')
-=======
         new_standing = Standing.create(standing)
         new_standing.save()
         print(new_standing)
@@ -347,10 +324,4 @@ def seed_database():
     seed_results()
     seed_standings()
     print('seeded database')
->>>>>>> 5e87738bb9376661ceea60463200774d378b37fe
-=======
 
-# print(loaded_race['name'])
-
-# print('seeded teams, drivers and races')
->>>>>>> 7a4450577b6102e62c7ab1350e0cad51eda54eea

@@ -9,7 +9,7 @@ urlpatterns = [
   url(r'api/races/$', views.RaceList.as_view()),
   path('api/races/<int:pk>', views.race_detail, name="race_detail"),
   url(r'api/drivers/$', views.DriverList.as_view()),
-  url(r'api/drivers/(?P<pk>[0-9]+)/$', views.DriverList.as_view()),
+  url(r'api/drivers/(?P<pk>[0-9]+)/$', views.DriverDetail.as_view()),
   url(r'api/teams/$', views.TeamList.as_view()),
   path('api/teams/<int:pk>', views.team_detail, name="team_detail"),
   url(r'api/standings/$', views.StandingList.as_view()),

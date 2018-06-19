@@ -35,13 +35,13 @@ function getId(driverId){
   axios.get('/api/results')
   .then(function(response) {
     for(let i = 0; i < response.data.length; i++){
-      let driver = response.data[i].driver
-    }
-    if(driver = selectedDriver) {
-      console.log('Run Max Run!!!')
+      if(selectedDriver = response.data[i].driver){
+        console.log('match!')
+      }
     }
   });
 }
+
 
 //get ranks
 //get date

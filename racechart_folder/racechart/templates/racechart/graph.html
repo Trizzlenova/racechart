@@ -1,0 +1,29 @@
+{% extends 'racechart/base.html' %}
+
+{% block content %}
+<script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+
+<h2>Graph</h2>
+<form id="graph-list">
+  <select id='driveFunction' onchange="getId(this)">
+    {% for standing in standings %}
+    <option id='{{ standing.driver.pk }}'>
+        {{ standing.driver }}
+    </option>
+    {% endfor %}
+  </select>
+</form>
+<section id="graph">
+  <aside id="y-label">
+    <h5>Finishing Position</h5>
+  </aside>
+  <div></div>
+</section id="x-label">
+  <h5>Date</h5>
+<section>
+
+{% endblock %}

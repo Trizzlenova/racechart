@@ -4,9 +4,9 @@
     <head>
         <title>Racechart</title>
         <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Permanent+Mark" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/racechart.css' %}">
-
-
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/racechart.css' %}">
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="{% static 'app.js' %}" defer></script>
     </head>
     <body>
 
@@ -22,7 +22,6 @@
             <a href="/results">Results</a>
             <a href="/standings">Standings</a>
         </nav>
-        <!-- <hr /> -->
         {% block content %}
         {% endblock %}
     </body>

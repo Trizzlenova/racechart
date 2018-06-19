@@ -24,5 +24,6 @@ urlpatterns = [
   path('results/<int:pk>', views.result_detail, name='result_detail'),
   path('teams/', views.team_list, name='team_list'),
   path('teams/<int:pk>', views.team_detail, name='team_detail'),
+  path('graphs/', views.graphs, name='graphs'),
 
-  ]
+    ]

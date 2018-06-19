@@ -94,6 +94,11 @@ def race_detail(request, pk):
     race = Race.objects.get(id=pk)
     return render(request, 'racechart/race_detail.html', {'race': race})
 
+def graphs(request):
+    standings = Standing.objects.all()
+    results = Result.objects.all()
+    return render(request, 'racechart/graph.html', {'standings': standings, 'results': results})
+
 def standing_list(request):
     standings = Standing.objects.all()
     return render(request, 'racechart/standing_list.html', {'standings': standings})
@@ -109,6 +114,7 @@ def result_list(request):
 def result_detail(request, pk):
     result = Result.objects.get(id=pk)
     return render(request, 'racechart/result_detail.html', {'result': result})
+
 
 class RaceList(generics.ListCreateAPIView):
     queryset = Race.objects.all()

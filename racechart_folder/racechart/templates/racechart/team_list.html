@@ -1,0 +1,20 @@
+{% extends 'racechart/base.html' %}
+
+{% block content %}
+
+<h2>Teams</h2>
+<section>
+
+</section>
+<aside>
+  <div id="teams">
+    <ol>
+      {% for team in teams %}
+      <li>
+          {{team.name}}
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</aside>
+{% endblock %}

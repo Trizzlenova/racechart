@@ -20,6 +20,10 @@ urlpatterns = [
   path('drivers/', views.driver_list, name='driver_list'),
   path('drivers/<int:pk>', views.driver_detail, name='driver_detail'),
   path('standings/', views.standing_list, name='standing_list'),
+  path('results/', views.result_list, name='result_list'),
+  path('results/<int:pk>', views.result_detail, name='result_detail'),
+  path('teams/', views.team_list, name='team_list'),
+  path('teams/<int:pk>', views.team_detail, name='team_detail'),
   path('graphs/', views.graphs, name='graphs'),
-  # path('results/', views.result_detail, name='result_detail'),
-]
+
+    ]

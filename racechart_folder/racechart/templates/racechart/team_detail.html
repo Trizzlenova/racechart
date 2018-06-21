@@ -1,0 +1,20 @@
+{% extends 'racechart/base.html' %}
+
+{% block content %}
+
+
+  <h2 id="team-name">{{ team.name }}</h2>
+  <ul>
+    <li id="team-bullet">
+      name: {{team.name}}<hr>
+      Drivers: {{team.drivers}}<hr>
+      Crew Chief: {{team.crew_chief}}<hr>
+      Owner: {{team.owner}}<hr>
+      Auto Manufacturer: {{ team.manufacturer }}<hr>
+      Sponsors: {{team.sponsors }}<hr>
+
+    </li>
+  </ul>
+
+
+{% endblock %}

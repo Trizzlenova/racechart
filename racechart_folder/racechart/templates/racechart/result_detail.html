@@ -3,12 +3,35 @@
 {% block content %}
 
 
-  <h2 id="result_name">{{ result.race }}</h2>
+  <h2 id="result_name">{{ result.driver.full_name }}</h2>
   <ul>
-    <li id="car_bullet">
-      Info Coming Soon!
+    <li class="car_bullet">
+          Position: {{ result.position }}
+    </li>
+    <li class="car_bullet">
+          Average Position: {{ result.avg_position }}
+    </li>
+    <li class="car_bullet">
+          Average Speed: {{ result.avg_speed }}
+    </li>
+    <li class="car_bullet">
+          Best Lap: {{ result.best_lap }}
+    </li>
+    <li class="car_bullet">
+          Best Lap Speed: {{ result.best_lap_speed }}
+    </li>
+    <li class="car_bullet">
+          Best Lap Time: {{ result.best_lap_time }}
+    </li>
+    <li class="car_bullet">
+          Driver Rating: {{ result.driver_rating }}
+    </li>
+    <li class="car_bullet">
+          Elapsed Time: {{ result.elapsed_time }}
+    </li>
+    <li class="car_bullet">
+          Fastest Laps: {{ result.fastest_laps }}
     </li>
   </ul>
-
 
 {% endblock %}

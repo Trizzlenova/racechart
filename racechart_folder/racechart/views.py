@@ -4,11 +4,14 @@ from .models import Driver, Result, Race, Team, Standing
 import json
 from json import *
 from django.http import HttpResponse, HttpResponseRedirect
-from racechart_folder.config import API_KEY
+# from racechart_folder.config import API_KEY
+from rest_framework import generics
+from .serializers import *
+import os
 # from .tasks import access_nascar_api
 
 
-api = API_KEY
+api = 'API_KEY'
 year = '2018'
 
 race_list_url = f'http://api.sportradar.us/nascar-t3/mc/{year}/races/schedule.json?api_key={api}'
@@ -27,7 +30,7 @@ for events in event_list:
 driver_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/drivers/list.json?api_key={api}'
 driver_file = 'racechart/json/drivers.json'
 
-# race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids}/results.json?api_key={api}'
+race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[0]}/results.json?api_key={api}'
 race_file = 'racechart/json/race.json'
 
 standings_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/standings/drivers.json?api_key={api}'
@@ -67,17 +70,6 @@ def get_all_races(request):
       # return HttpResponseRedirect('/admin')
     i = i + 1
 
-
-# def create_driver(request):
-#   driver_json = open('racechart/json/drivers.json').read()
-#   loaded = json.loads(driver_json)
-#   print(loaded['drivers'][0]['full_name'])
-#   birthday = loaded['drivers'][0]['birthday']
-#   full_name = loaded['drivers'][0]['full_name']
-#   country = loaded['drivers'][0]['country']
-#   birth_place = loaded['drivers'][0]['birth_place']
-#   return HttpResponseRedirect('/admin')
-
 def driver_list(request):
     drivers = Driver.objects.all()
     return render(request, 'racechart/driver_list.html', {'drivers': drivers})
@@ -86,14 +78,80 @@ def driver_detail(request, pk):
     driver = Driver.objects.get(id=pk)
     return render(request, 'racechart/driver_detail.html', {'driver': driver})
 
+def team_list(request):
+    teams = Team.objects.all()
+    return render(request, 'racechart/team_list.html', {'teams': teams})
+
+def team_detail(request, pk):
+    team = Team.objects.get(id=pk)
+    return render(request, 'racechart/team_detail.html', {'team': team})
+
 def race_list(request):
     races = Race.objects.all()
     return render(request, 'racechart/race_list.html', {'races': races})
+
+def race_detail(request, pk):
+    race = Race.objects.get(id=pk)
+    return render(request, 'racechart/race_detail.html', {'race': race})
+
+def graphs(request):
+    standings = Standing.objects.all()
+    results = Result.objects.all()
+    return render(request, 'racechart/graph.html', {'standings': standings, 'results': results})
 
 def standing_list(request):
     standings = Standing.objects.all()
     return render(request, 'racechart/standing_list.html', {'standings': standings})
 
-# def result_detail(request, pk):
-#     result = Result.objects.get(id=pk)
-#     return render(request, 'racechart/result_detail.html', {'result': result})
+def standing_detail(request, pk):
+    standings = Standing.objects.get(id=pk)
+    return render(request, 'racechart/standing_list.html', {'standing': standing})
+
+def result_list(request):
+    results = Result.objects.all()
+    return render(request, 'racechart/result_list.html', {'results': results})
+
+def result_detail(request, pk):
+    result = Result.objects.get(id=pk)
+    return render(request, 'racechart/result_detail.html', {'result': result})
+
+
+class RaceList(generics.ListCreateAPIView):
+    queryset = Race.objects.all()
+    serializer_class = RaceSerializer
+
+class RaceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Race.objects.all()
+    serializer_class = RaceSerializer
+
+class TeamList(generics.ListCreateAPIView):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
+
+class TeamDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
+
+class StandingList(generics.ListCreateAPIView):
+    queryset = Standing.objects.all()
+    serializer_class = StandingSerializer
+
+class StandingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Standing.objects.all()
+    serializer_class = StandingSerializer
+
+class ResultList(generics.ListCreateAPIView):
+    queryset = Result.objects.all()
+    serializer_class = ResultSerializer
+
+class ResultDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Result.objects.all()
+    serializer_class = ResultSerializer
+
+class DriverList(generics.ListCreateAPIView):
+    queryset = Driver.objects.all()
+    serializer_class = DriverSerializer
+
+class DriverDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Driver.objects.all()
+    serializer_class = DriverSerializer

@@ -1,0 +1,16 @@
+{% extends 'racechart/base.html' %}
+
+{% block content %}
+
+<h2>Results</h2>
+<div id="result_list"></div>
+<ul>
+    {% for result in results %}
+        <li id="result">
+            <a class="purple" href="{% url 'result_detail' pk=result.pk %}">
+              {{ result.driver.full_name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

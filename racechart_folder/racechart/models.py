@@ -144,10 +144,17 @@ class Standing(models.Model):
 
 class Race(models.Model):
   # from race
+<<<<<<< HEAD
   name = models.CharField(max_length=250blank=True, null=True)
   drivers = models.ManyToManyField(Driver, related_name='races'blank=True, null=True)
   actual_distance = models.IntegerField(blank=True, null=True)
   avg_speed = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
+=======
+  name = models.CharField(max_length=250, blank=True, null=True)
+  drivers = models.ManyToManyField(Driver, related_name='races')
+  actual_distance = models.FloatField(blank=True, null=True)
+  avg_speed = models.FloatField(blank=True, null=True)
+>>>>>>> c2b4af3e58d8c9cad4189ed17944f02a0e52baeb
   caution_laps = models.IntegerField(blank=True, null=True)
   cautions = models.CharField(max_length=250, blank=True, null=True)
   condition = models.CharField(max_length=250, blank=True, null=True)
@@ -163,7 +170,11 @@ class Race(models.Model):
   start_time = models.DateTimeField(blank=True, null=True)
   end_time = models.DateTimeField(blank=True, null=True)
   # convert from string to decimal
+<<<<<<< HEAD
   victory_margin = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
+=======
+  victory_margin = models.FloatField(blank=True, null=True)
+>>>>>>> c2b4af3e58d8c9cad4189ed17944f02a0e52baeb
 
   def __str__(self):
     return self.name
@@ -180,11 +191,11 @@ class Race(models.Model):
         condition = race['condition'],
         distance = race['distance'],
         elapsed_time = race['elapsed_time'],
-        flags = len(race['flags']),
+        flags = race['flags'],
         laps = race['laps'],
         laps_completed = race['laps_completed'],
         lead_changes = race['lead_changes'],
-        race_number = race['number'],
+        race_number = race['race_number'],
         scheduled_time = race['scheduled'],
         start_time = race['start_time'],
         end_time = race['end_time'],

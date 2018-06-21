@@ -3,39 +3,35 @@
 {% block content %}
 
 
-  <h2 id="result_name">{{ result.race }}</h2>
+  <h2 id="result_name">{{ result.driver.full_name }}</h2>
   <ul>
-    <li id="car_bullet">
-      Info Coming Soon!
+    <li class="car_bullet">
+          Position: {{ result.position }}
+    </li>
+    <li class="car_bullet">
+          Average Position: {{ result.avg_position }}
+    </li>
+    <li class="car_bullet">
+          Average Speed: {{ result.avg_speed }}
+    </li>
+    <li class="car_bullet">
+          Best Lap: {{ result.best_lap }}
+    </li>
+    <li class="car_bullet">
+          Best Lap Speed: {{ result.best_lap_speed }}
+    </li>
+    <li class="car_bullet">
+          Best Lap Time: {{ result.best_lap_time }}
+    </li>
+    <li class="car_bullet">
+          Driver Rating: {{ result.driver_rating }}
+    </li>
+    <li class="car_bullet">
+          Elapsed Time: {{ result.elapsed_time }}
+    </li>
+    <li class="car_bullet">
+          Fastest Laps: {{ result.fastest_laps }}
     </li>
   </ul>
 
-
 {% endblock %}
-
-<!-- class Result(models.Model):
-  race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='results')
-  driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='results')
-  avg_position = models.IntegerField()
-  avg_speed = models.IntegerField()
-  best_lap = models.IntegerField()
-  best_lap_speed = models.IntegerField()
-  best_lap_time = models.IntegerField()
-  bonus_points = models.IntegerField()
-  driver_rating = models.IntegerField()
-  elapsed_time = models.IntegerField()
-  fastest_laps = models.IntegerField()
-  laps_completed = models.IntegerField()
-  laps_led = models.IntegerField()
-  passes_made = models.IntegerField()
-  passing_differential = models.IntegerField()
-  penalty_points = models.IntegerField()
-  #return length of the pit stop list
-  pit_stops = models.IntegerField()
-  points = models.IntegerField()
-  position = models.IntegerField()
-  quality_passes = models.IntegerField()
-  start_position = models.IntegerField()
-  status = models.CharField(max_length=250)
-  times_led = models.IntegerField()
-  times_passed = models.IntegerField() -->

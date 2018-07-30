@@ -2,37 +2,18 @@
 
 {% block content %}
 
-
-  <h2 id="driver_name">{{ driver.full_name }}</h2>
-  <ul>
-    <li id="car_bullet">
-      Team: {{driver.team}}<hr>
-      Number: {{driver.car_number}}<hr>
-      Rookie Year: {{driver.rookie_year}}<hr>
-      Birthdate: {{driver.birthday}}<hr>
-      Hometown: {{driver.birth_place}}<hr>
-      Hobbies: {{driver.hobbies}}<hr>
-      Twitter: {{driver.twitter}}<hr>
-    </li>
-  </ul>
+<h2 id="driver_name">{{ driver.full_name }}</h2>
+<ul>
+  <li id="car_bullet">
+    Team: {{driver.team}}<hr>
+    Number: {{driver.car_number}}<hr>
+    Rookie Year: {{driver.rookie_year}}<hr>
+    Birthdate: {{driver.birthday}}<hr>
+    Hometown: {{driver.birth_place}}<hr>
+    Hobbies: {{driver.hobbies}}<hr>
+    Twitter: {{driver.twitter}}<hr>
+  </li>
+</ul>
 
 
 {% endblock %}
-
-<!--   team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='drivers', blank=True, null=True)
-  # from driver
-  full_name = models.CharField(max_length=100)
-  birth_place = models.CharField(max_length=500)
-  birthday = models.DateField()
-  country = models.CharField(max_length=100)
-  # dig down for this one
-  car_number = models.IntegerField(blank=True, null=True)
-  gender = models.CharField(max_length=1)
-  height = models.IntegerField(blank=True, null=True)
-  hobbies = models.CharField(max_length=500, blank=True, null=True)
-  driver_id = models.CharField(max_length=100, blank=True, null=True)
-  last_name = models.CharField(max_length=100)
-  residence = models.CharField(max_length=200, blank=True, null=True)
-  rookie_year = models.IntegerField(blank=True, null=True)
-  status = models.CharField(max_length=100)
-  twitter = models.CharField(max_length=100, blank=True, null=True) -->

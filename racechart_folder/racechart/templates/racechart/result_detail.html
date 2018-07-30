@@ -12,7 +12,7 @@
           Average Position: {{ result.avg_position }}
     </li>
     <li class="car_bullet">
-          Avergage Speed: {{ result.avg_speed }}
+          Average Speed: {{ result.avg_speed }}
     </li>
     <li class="car_bullet">
           Best Lap: {{ result.best_lap }}
@@ -35,30 +35,3 @@
   </ul>
 
 {% endblock %}
-
-<!-- class Result(models.Model):
-  race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='results')
-  driver = models.ForeignKey(Driver, on_delete=models.CASCADE, related_name='results')
-  avg_position = models.IntegerField()
-  avg_speed = models.IntegerField()
-  best_lap = models.IntegerField()
-  best_lap_speed = models.IntegerField()
-  best_lap_time = models.IntegerField()
-  bonus_points = models.IntegerField()
-  driver_rating = models.IntegerField()
-  elapsed_time = models.IntegerField()
-  fastest_laps = models.IntegerField()
-  laps_completed = models.IntegerField()
-  laps_led = models.IntegerField()
-  passes_made = models.IntegerField()
-  passing_differential = models.IntegerField()
-  penalty_points = models.IntegerField()
-  #return length of the pit stop list
-  pit_stops = models.IntegerField()
-  points = models.IntegerField()
-  position = models.IntegerField()
-  quality_passes = models.IntegerField()
-  start_position = models.IntegerField()
-  status = models.CharField(max_length=250)
-  times_led = models.IntegerField()
-  times_passed = models.IntegerField() -->

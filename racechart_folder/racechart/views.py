@@ -11,7 +11,11 @@ import os
 from .tasks import access_nascar_api
 
 
+<<<<<<< HEAD
 api = API_KEY
+=======
+api = 'API_KEY'
+>>>>>>> b7549f32433f2ae329dee17cfa9c528bc599b6fa
 year = '2018'
 
 race_list_url = f'http://api.sportradar.us/nascar-t3/mc/{year}/races/schedule.json?api_key={api}'
@@ -30,7 +34,7 @@ for events in event_list:
 driver_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/drivers/list.json?api_key={api}'
 driver_file = 'racechart/json/drivers.json'
 
-# race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids}/results.json?api_key={api}'
+race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[0]}/results.json?api_key={api}'
 race_file = 'racechart/json/race.json'
 
 standings_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/standings/drivers.json?api_key={api}'
@@ -48,8 +52,9 @@ def grab_json(request, url, data_file):
   print(f'you are grabbing a json from {url}')
 
 def get_all(request):
-  grab_json(request, driver_url, driver_file)
-  grab_json(request, standings_url, standings_file)
+  # grab_json(request, driver_url, driver_file)
+  # grab_json(request, race_url, race_file)
+  # grab_json(request, standings_url, standings_file)
   grab_json(request, race_list_url, race_list_file)
   return HttpResponseRedirect('/admin')
 

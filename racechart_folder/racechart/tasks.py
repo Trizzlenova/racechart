@@ -18,7 +18,7 @@ def grab_json(request, url, data_file):
 	print(f'you are grabbing a json from {url}')
 
 # define api urls and json file destinations
-api = API_KEY
+api = 'API_KEY'
 year = '2018'
 race_ids = ['cf82b04d-cc9c-4621-aa9b-cbc6ee269de7']
 
@@ -111,6 +111,8 @@ def access_nascar_api():
 	get_standings()
 	print('got standings')
 	time.sleep(5)
+	get_race()
+	print('got race')
 	get_all_races()
 	print('got race list')
 	# time.sleep(5)

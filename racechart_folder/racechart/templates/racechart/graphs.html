@@ -1,0 +1,12 @@
+
+<h2>Graph</h2>
+<form id="graph_list">
+  <select>
+    {% for standing in standings %}
+    <option id='standing_list'>
+        {{standing.driver}}
+    </option>
+    {% endfor %}
+  </select>
+</form>
+{% endblock %}

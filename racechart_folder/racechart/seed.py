@@ -224,3 +224,4 @@ def seed_database():
     seed_results()
     seed_standings()
     print('seeded database')
+

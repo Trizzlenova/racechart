@@ -4,14 +4,18 @@ from .models import Driver, Result, Race, Team, Standing
 import json
 from json import *
 from django.http import HttpResponse, HttpResponseRedirect
-# from racechart_folder.config import API_KEY
+from racechart_folder.config import API_KEY
 from rest_framework import generics
 from .serializers import *
 import os
-# from .tasks import access_nascar_api
+from .tasks import access_nascar_api
 
 
+<<<<<<< HEAD
+api = API_KEY
+=======
 api = 'API_KEY'
+>>>>>>> b7549f32433f2ae329dee17cfa9c528bc599b6fa
 year = '2018'
 
 race_list_url = f'http://api.sportradar.us/nascar-t3/mc/{year}/races/schedule.json?api_key={api}'
@@ -67,7 +71,7 @@ def get_all_races(request):
     time.sleep(3)
     if i > 8:
       print('Grabbed all races!')
-      # return HttpResponseRedirect('/admin')
+      return HttpResponseRedirect('/admin')
     i = i + 1
 
 def driver_list(request):

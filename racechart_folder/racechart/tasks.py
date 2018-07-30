@@ -1,6 +1,6 @@
 # to init scheduler, enter: celery -A tasks.celery worker -B -l info
 
-# from config import API_KEY
+from racechart_folder.config import API_KEY
 import json
 from requests import *
 from celery import Celery, chain, task
@@ -20,7 +20,7 @@ def grab_json(request, url, data_file):
 # define api urls and json file destinations
 api = 'API_KEY'
 year = '2018'
-# race_ids = ['cf82b04d-cc9c-4621-aa9b-cbc6ee269de7']
+race_ids = ['cf82b04d-cc9c-4621-aa9b-cbc6ee269de7']
 
 driver_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/drivers/list.json?api_key={api}'
 driver_file = 'json/drivers.json'
@@ -34,28 +34,28 @@ race_file = 'json/race.json'
 race_list_url = f'http://api.sportradar.us/nascar-t3/mc/{year}/races/schedule.json?api_key={api}'
 race_list_file = 'json/race_list.json'
 
-race_ids = []
+# race_ids = []
+#
+# race_json = open('racechart/json/race_list.json').read()
+# loaded = json.loads(race_json)
+# event_list = loaded['events']
+# for events in event_list:
+#   races = events['races']
+#   for race in races:
+#     race_ids.append(race['id'])
 
-race_json = open('racechart/json/race_list.json').read()
-loaded = json.loads(race_json)
-event_list = loaded['events']
-for events in event_list:
-  races = events['races']
-  for race in races:
-    race_ids.append(race['id'])
-
-def get_all_races(request):
-  i = 0
-  length = len(race_ids)
-  while(i < 10):
-    race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[i]}/results.json?api_key={api}'
-    grab_json(request, race_url, f'racechart/json/race_list/race{i}.json')
-    print(f'you are grabbing a json from {race_url}')
-    time.sleep(3)
-    if i > 8:
-      print('Grabbed all races!')
-      # return HttpResponseRedirect('/admin')
-    i = i + 1
+# def get_all_races(request):
+#   i = 0
+#   length = len(race_ids)
+#   while(i < 10):
+#     race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[i]}/results.json?api_key={api}'
+#     grab_json(request, race_url, f'racechart/json/race_list/race{i}.json')
+#     print(f'you are grabbing a json from {race_url}')
+#     time.sleep(3)
+#     if i > 8:
+#       print('Grabbed all races!')
+#       # return HttpResponseRedirect('/admin')
+#     i = i + 1
 
 
 # define a get function for each api source:
@@ -124,6 +124,7 @@ def access_multiple_races():
 	get_all_races()
 
 CELERYBEAT_SCHEDULE = {
+
 	'every-twenty-five': {
 		'task': 'tasks.ping_me',
 		'schedule': timedelta(minutes=25),

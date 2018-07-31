@@ -16,7 +16,7 @@ urlpatterns = [
   url(r'api/standings/(?P<pk>[0-9]+)/$', views.StandingList.as_view()),
   url(r'api/results/$', views.ResultList.as_view()),
   url(r'api/results/(?P<pk>[0-9]+)/$', views.ResultDetail.as_view()),
-  path('getall', views.get_all_races, name='get_all_races'),
+  path('getall', views.csv_boi, name='csv_boi'),
   path('drivers/', views.driver_list, name='driver_list'),
   path('drivers/<int:pk>', views.driver_detail, name='driver_detail'),
   path('standings/', views.standing_list, name='standing_list'),
@@ -25,5 +25,4 @@ urlpatterns = [
   path('teams/', views.team_list, name='team_list'),
   path('teams/<int:pk>', views.team_detail, name='team_detail'),
   path('graphs/', views.graphs, name='graphs'),
-
-    ]
+]

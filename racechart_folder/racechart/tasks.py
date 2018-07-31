@@ -1,6 +1,6 @@
 # to init scheduler, enter: celery -A tasks.celery worker -B -l info
 
-# from config import API_KEY
+from racechart_folder.config import API_KEY
 import json
 from requests import *
 from celery import Celery, chain, task
@@ -18,9 +18,9 @@ def grab_json(request, url, data_file):
 	print(f'you are grabbing a json from {url}')
 
 # define api urls and json file destinations
-api = 'API_KEY'
+api = API_KEY
 year = '2018'
-# race_ids = ['cf82b04d-cc9c-4621-aa9b-cbc6ee269de7']
+race_ids = ['cf82b04d-cc9c-4621-aa9b-cbc6ee269de7']
 
 driver_url = f'http://api.sportradar.us/nascar-ot3/mc/{year}/drivers/list.json?api_key={api}'
 driver_file = 'json/drivers.json'

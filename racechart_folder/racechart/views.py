@@ -2,16 +2,17 @@ from django.shortcuts import render
 from requests import *
 from .models import Driver, Result, Race, Team, Standing
 import json
+import csv
 from json import *
 from django.http import HttpResponse, HttpResponseRedirect
-# from racechart_folder.config import API_KEY
+from racechart_folder.config import API_KEY
 from rest_framework import generics
 from .serializers import *
 import os
-# from .tasks import access_nascar_api
+from .tasks import access_nascar_api
 
 
-api = 'API_KEY'
+api = API_KEY
 year = '2018'
 
 race_list_url = f'http://api.sportradar.us/nascar-t3/mc/{year}/races/schedule.json?api_key={api}'
@@ -70,6 +71,23 @@ def get_all_races(request):
       # return HttpResponseRedirect('/admin')
     i = i + 1
 
+def csv_boi():
+  driver_json = open('racechart/json/drivers.json').read()
+  parsed_drivers = json.loads(driver_json)
+  driver_data = parsed_drivers['drivers']
+  driver_w_data = open('racechart/csv/drivers.csv', 'w')
+  csvwriter = csv.writer(driver_w_data)
+  count = 0
+
+  for driver in driver_data:
+     if count == 0:
+         header = driver.keys()
+         csvwriter.writerow(header)
+         count += 1
+     csvwriter.writerow(driver.values())
+  driver_w_data.close()
+
+
 def driver_list(request):
     drivers = Driver.objects.all()
     return render(request, 'racechart/driver_list.html', {'drivers': drivers})
@@ -101,7 +119,7 @@ def graphs(request):
 
 def standing_list(request):
     standings = Standing.objects.all()
-    return render(request, 'racechart/standing_list.html', {'standings': standings})
+    return render(request, 'racechart/static_page.html', {'standings': standings})
 
 def standing_detail(request, pk):
     standings = Standing.objects.get(id=pk)

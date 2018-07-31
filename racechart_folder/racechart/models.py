@@ -21,7 +21,7 @@ class Team(models.Model):
         manufacturer = team['manufacturer'],
         sponsors = team['sponsors'],
         owner = team['owner']
-      )
+      ),'bn'
       return new_team
 
 
@@ -90,7 +90,7 @@ class Standing(models.Model):
   chase_bonus = models.IntegerField()
   dnf = models.IntegerField(blank=True, null=True)
   full_name = models.CharField(max_length=200, blank=True, null=True)
-  in_chase = models.BooleanField(blank=True, null=True)
+  in_chase = models.BooleanField()
   laps_completed = models.IntegerField(blank=True, null=True)
   laps_led = models.IntegerField(blank=True, null=True)
   laps_led_pct = models.IntegerField(blank=True, null=True)

@@ -36,30 +36,19 @@ header {
 
 header {
   margin: 0 auto;
-  width: 100%;
   display: flex;
   top: 0;
-}
-
-header h1 {
-  width: 100%;
-  top: 1em;
-  text-align: center;
-  color: #02549E;
-  font-size: 6em;
-  font-family: 'Bungee Inline', cursive;
-  letter-spacing: .5em;
-  margin: 2em auto 0;
-  position: absolute;
 }
 
 header img {
   top: 0;
   opacity: .8;
-  width: 100%;
+  width: 38%;
+  height: 40%;
   position: relative;
   float: center;
   z-index: -1;
+  margin: 0 auto;
 }
 
 span {
@@ -104,6 +93,27 @@ a {
   /*padding: .7em;*/
 }
 
+
+
+#chart {
+  width: 100%;
+}
+
+#main {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+
+section {
+  width: 70%;
+  height: 100px;
+}
+
+aside {
+  width: 25%;
+
+}
 
 #driver {
   list-style: none;
@@ -150,18 +160,25 @@ h2 {
   font-size: 2em;
 }
 
-ol {
-  margin-left: 2em;
+h4 {
+  text-align: center;
 }
 
+ol {
+  margin-left: 4em;
+  font-size: 1em;
+}
+
+
 #standing_list {
-  font-size: 2em;
+  font-size: 1em;
 }
 
 
 footer {
   background-color: #EDC240;
   padding: 1em;
+  display: block;
 }
 
 /* format graph */

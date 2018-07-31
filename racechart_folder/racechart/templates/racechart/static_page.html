@@ -1,0 +1,26 @@
+{% extends 'racechart/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div id="main">
+  <section>
+    <h2>Graph</h2>
+    <img id="chart" src="{% static 'images/chart.png' %}"/>
+    <p>hello</p>
+  </section>
+  <aside>
+    <div id="standings">
+      <h4>Standings</h4>
+      <ol>
+        {% for standing in standings %}
+        <li id='standing_list'>
+            {{standing.driver}}
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </aside>
+</div>
+
+{% endblock %}

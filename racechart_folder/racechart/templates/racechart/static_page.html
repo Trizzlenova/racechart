@@ -7,11 +7,21 @@
   <section>
     <h2>Graph</h2>
     <img id="chart" src="{% static 'images/chart.png' %}"/>
-    <p>hello</p>
+    <h3>Driver of the Day</h3>
+    <div id="driver_of_the_day">
+      <img id="driver" src="{% static 'images/kyle_busch.png' %}"/>
+      <p>Kyle Busch Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+    </div>
   </section>
   <aside>
     <div id="standings">
-      <h4>Standings</h4>
+      <h3>Standings</h3>
       <ol>
         {% for standing in standings %}
         <li id='standing_list'>

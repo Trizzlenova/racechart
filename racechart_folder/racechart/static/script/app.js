@@ -1,12 +1,12 @@
-function getRaceDates(){
-  axios.get('/api/standings')
-  .then(function(response) {
-    for(let i = 0; i < response.data; i++) {
-      let node = document.createElement("option");
-      let textnode = document.createTextNode()
-      node.appendChild(textnode);
-      raceMenu.appendChild(node);
-    }
+// function getRaceDates(){
+//   axios.get('/api/standings')
+//   .then(function(response) {
+//     for(let i = 0; i < response.data; i++) {
+//       let node = document.createElement("option");
+//       let textnode = document.createTextNode()
+//       node.appendChild(textnode);
+//       raceMenu.appendChild(node);
+//     }
 
 // on selection, generateData() and createGraph
 
@@ -16,19 +16,27 @@ const driverSelected = () => {
 
 const raceData = [];
 
+// const getRaces = () => {
+//   $.ajax({
+//     type: 'GET',
+//     url: '/api/races',
+//     dataType: 'JSON',
+//     success: (response) => {
+//       raceData.push(response.data);
+//     },
+//   });
+// }
+
 const getRaces = () => {
-  $.ajax({
-    type: 'GET',
-    url: '/api/races',
-    dataType: 'JSON',
-    success: (response) => {
-      raceData.push(response);
-    },
-  });
+  axios.get('/api/races')
+  .then(function(response) {
+    raceData.push(response.data[0])
+  })
 }
 
 getRaces();
 
+console.log(raceData)
 
 const createGraph = (data) => {
   // set the dimensions and margins of the graph
@@ -88,16 +96,18 @@ const createGraph = (data) => {
 const getId = (driverId) => {
   let data = [];
   selectedDriver = driverId[driverId.selectedIndex].id;
+  console.log(selectedDriver)
   $('div').empty();
   axios.get('/api/results')
-  .then((response) => {
+  .then(function(response) {
     let results = response.data;
     for(let i = 0; i < results.length; i++) {
       let entry = results[i];
       let driver_url = entry.driver;
       let driver_pk = driver_url.substring(driver_url.indexOf("drivers/") + 8);
-      if(driver_pk === selectedDriver) {
+      if(driver_url === selectedDriver) {
         let race_url = entry.race;
+        console.log(race_url)
         let race_pk = parseInt(race_url.substring(race_url.indexOf("races/") + 6));
         let position = entry.position;
 
@@ -109,7 +119,7 @@ const getId = (driverId) => {
             let month = parseInt(dateInProgress.substring(5, 7));
             let day = parseInt(dateInProgress.substring(8, 10));
             let startDate = month + '/' + day + '/' + year;
-            var parseTime = d3.timeParse("%m/%d/%Y");
+            let parseTime = d3.timeParse("%m/%d/%Y");
             startDate = parseTime(startDate);
             data.push({'date': startDate, 'rank': position});
 
@@ -121,9 +131,8 @@ const getId = (driverId) => {
       };
     }
     createGraph(data);
-  });
+  })
   // data = JSON.stringify(eval('('+data+')'));
   console.log(data);
-
-  // createGraph(data);
 }
+

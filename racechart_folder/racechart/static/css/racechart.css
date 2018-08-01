@@ -29,15 +29,12 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-}
-#home {
-
-}
-
-header {
   margin: 0 auto;
   display: flex;
   top: 0;
+}
+
+header {
 }
 
 header img {
@@ -93,8 +90,6 @@ a {
   /*padding: .7em;*/
 }
 
-
-
 #chart {
   width: 100%;
 }
@@ -103,6 +98,7 @@ a {
   width: 100%;
   margin: 0 auto;
   display: flex;
+
 }
 
 section {
@@ -113,6 +109,11 @@ section {
 aside {
   width: 25%;
 
+}
+
+#driver_section {
+  padding: 0;
+  margin: 0 auto;
 }
 
 #driver {
@@ -142,17 +143,9 @@ h2 {
   text-align: center;
 }
 
-#driver {
-  width: 30%;
-  margin: 0 auto;
-}
 
 .purple {
   color: #88166D
-}
-
-#driver_name {
-  /*text-align: left;*/
 }
 
 #bio {
@@ -172,6 +165,23 @@ ol {
 
 #standing_list {
   font-size: 1em;
+}
+
+#driver_of_the_day {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  border: black .2em solid;
+}
+
+#driver {
+  height: 200px;
+  margin: 0 auto;
+  height: ;
+}
+
+p {
+  width: 75%;
 }
 
 

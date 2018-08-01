@@ -13,6 +13,7 @@ from .tasks import access_nascar_api
 
 
 api = API_KEY
+
 year = '2018'
 
 race_list_url = f'http://api.sportradar.us/nascar-t3/mc/{year}/races/schedule.json?api_key={api}'
@@ -68,7 +69,7 @@ def get_all_races(request):
     time.sleep(3)
     if i > 8:
       print('Grabbed all races!')
-      # return HttpResponseRedirect('/admin')
+      return HttpResponseRedirect('/admin')
     i = i + 1
 
 def csv_boi():

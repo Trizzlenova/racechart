@@ -83,53 +83,45 @@ const createGraph = (data) => {
 
 let driverInfo = [];
 
-axios.get(`/api/results/`)
-.then(function(response) {
-  for (let i= 0; i < response.data.length; i++) {
-    driverInfo.push(response.data[i])
-  }
-})
+const getResults = () => {
+  axios.get(`/api/results/`)
+  .then(function(response) {
+    for (let i= 0; i < response.data.length; i++) {
+      driverInfo.push(response.data[i])
+    }
+  })
+}
+
+getResults();
 
 console.log(driverInfo)
 
 const getId = (driverId) => {
   let data = [];
   selectedDriver = driverId[driverId.selectedIndex].id;
-  console.log(selectedDriver)
   $('div').empty();
 
   for(let i = 0; i < driverInfo.length; i++) {
     if (selectedDriver == driverInfo[i].driver) {
-      console.log(driverInfo[i].position)
-      raceData[0].forEach((datum) => {
-          console.log(datum)
+      raceData[0].forEach((raceInfo) => {
+        let position = driverInfo[i].position
+        if(raceInfo.id === driverInfo[i].race) {
+          console.log(raceInfo.start_time);
+          let year = parseInt(raceInfo.start_time.substring(0, 4));
+          // console.log(year)
+          let month = parseInt(raceInfo.start_time.substring(5, 7));
+          let day = parseInt(raceInfo.start_time.substring(8, 10));
+          let startDate = month + '/' + day + '/' + year;
+          let parseTime = d3.timeParse("%m/%d/%Y");
+          startDate = parseTime(startDate);
+          data.push({'date': startDate, 'rank': position});
+        }
       })
-    }
+      data.forEach(function(d) {
+        d.rank = +d.rank;
+      });
+    };
   }
+  createGraph(data);
 }
-
-
-    //       if(datum['id'] === race_pk) {
-    //         // format data
-    //         dateInProgress = datum.start_time;
-    //         let year = parseInt(dateInProgress.substring(0, 4));
-    //         let month = parseInt(dateInProgress.substring(5, 7));
-    //         let day = parseInt(dateInProgress.substring(8, 10));
-    //         let startDate = month + '/' + day + '/' + year;
-    //         let parseTime = d3.timeParse("%m/%d/%Y");
-    //         startDate = parseTime(startDate);
-    //         data.push({'date': startDate, 'rank': position});
-
-    //       }
-    //     });
-    //     data.forEach(function(d) {
-    //       d.rank = +d.rank;
-    //     });
-    //   };
-    // }
-    // createGraph(data);
-//   })
-//   // data = JSON.stringify(eval('('+data+')'));
-//   console.log(data);
-// }
 

@@ -10,6 +10,7 @@
 * {
   box-sizing: border-box;
   /*border: 1px solid purple;*/
+  font-family: 'Helvetica';
 }
 
 .clearfix:after {
@@ -111,6 +112,7 @@ aside {
   width: 20%;
   border: .2em black solid;
   margin-right: 1em;
+  padding-right: .5em;
 }
 
 #standings {
@@ -137,7 +139,6 @@ h2 {
   text-decoration: underline;
   margin: 1em auto;
   width: 100%;
-  letter-spacing: .3em
 }
 
 #driver_list {
@@ -207,7 +208,7 @@ h1 {
 .line {
   fill: none;
   stroke: steelblue;
-  stroke-width: 2px;
+  stroke-width: 5px;
 }
 
 select {
@@ -224,6 +225,10 @@ select {
   justify-content: space-between;
   height: 450px;
   border: black .2em solid;
+}
+
+g {
+  font-size: 1em;
 }
 
 #graphed {

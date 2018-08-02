@@ -1,36 +1,14 @@
-// function getRaceDates(){
-//   axios.get('/api/standings')
-//   .then(function(response) {
-//     for(let i = 0; i < response.data; i++) {
-//       let node = document.createElement("option");
-//       let textnode = document.createTextNode()
-//       node.appendChild(textnode);
-//       raceMenu.appendChild(node);
-//     }
-
-// on selection, generateData() and createGraph
-
 const driverSelected = () => {
   createGraph(generateData());
 }
 
-const raceData = [];
-
-const getRaces = () => {
-  axios.get('/api/races')
-  .then(function(response) {
-    raceData.push(response.data)
-  })
-}
-
 getRaces();
-
-// console.log(raceData)
+getResults();
 
 const createGraph = (data) => {
   // set the dimensions and margins of the graph
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
-      width = 550 - margin.left - margin.right,
+      width = 700 - margin.left - margin.right,
       height = 400 - margin.top - margin.bottom;
 
   // parse the date / time
@@ -55,11 +33,6 @@ const createGraph = (data) => {
       .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-  // format the data
-  // data.forEach(function(d) {
-  //   d.date = parseTime(d.date);
-  //   d.rank = +d.rank;
-  // });
 
   // Scale the range of the data
   x.domain(d3.extent(data, function(d) { return d.date; }));
@@ -86,21 +59,6 @@ const createGraph = (data) => {
       .style("text-anchor", "end")
       .text("Finishing Position");
 }
-
-let driverInfo = [];
-
-const getResults = () => {
-  axios.get(`/api/results/`)
-  .then(function(response) {
-    for (let i= 0; i < response.data.length; i++) {
-      driverInfo.push(response.data[i])
-    }
-  })
-}
-
-getResults();
-
-// console.log(driverInfo)
 
 const getId = (driverId) => {
   let data = [];

@@ -64,7 +64,7 @@ import time
 def get_all_races(request):
   i = 0
   length = len(race_ids)
-  while(i < 10):
+  while(i < 15):
     race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[i]}/results.json?api_key={api}'
     grab_json(request, race_url, f'racechart/json/race_list/race{i}.json')
     print(f'you are grabbing a json from {race_url}')
@@ -74,7 +74,7 @@ def get_all_races(request):
       return HttpResponseRedirect('/admin')
     i = i + 1
 
-def csv_boi():
+def json_to_csv():
   driver_json = open('racechart/json/drivers.json').read()
   parsed_drivers = json.loads(driver_json)
   driver_data = parsed_drivers['drivers']

@@ -26,6 +26,8 @@ body {
   box-sizing: border-box;
 }
 
+/*=========HEADER==========*/
+
 header {
   display: flex;
   flex-direction: row;
@@ -49,7 +51,7 @@ header img {
   margin: 0 auto;
 }
 
-span {
+/*span {
   font-size: 2.6em;
   font-family: 'Permanent Marker', cursive;
   margin: 0 auto;
@@ -58,13 +60,14 @@ span {
   position: relative;
 
 }
-
+*/
 #logo {
   right: 0;
   width: 20%;
   height: 2.5em;
   float: right;
   margin: 1em auto;
+  padding-right: 1.5em;
 }
 
 
@@ -207,8 +210,24 @@ h1 {
 }
 .line {
   fill: none;
-  stroke: steelblue;
+  stroke: #88166D;
   stroke-width: 5px;
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  -webkit-animation: line 6s linear forwards;
+          animation: line 6s linear forwards;
+}
+
+@-webkit-keyframes line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes line {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 select {

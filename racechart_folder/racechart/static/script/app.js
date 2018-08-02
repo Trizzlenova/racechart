@@ -1,7 +1,4 @@
-const driverSelected = () => {
-  createGraph(generateData());
-}
-
+// Grab data from api.js
 getRaces();
 getResults();
 
@@ -70,7 +67,6 @@ const getId = (driverId) => {
       raceData[0].forEach((raceInfo) => {
         let position = driverInfo[i].position
         if(raceInfo.id === driverInfo[i].race) {
-          // console.log(raceInfo.start_time);
           let year = parseInt(raceInfo.start_time.substring(0, 4));
           let month = parseInt(raceInfo.start_time.substring(5, 7));
           let day = parseInt(raceInfo.start_time.substring(8, 10));

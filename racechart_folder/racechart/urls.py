@@ -26,3 +26,4 @@ urlpatterns = [
   path('teams/<int:pk>', views.team_detail, name='team_detail'),
   path('graphs/', views.graphs, name='graphs'),
 ]
+

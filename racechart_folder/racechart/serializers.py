@@ -35,7 +35,6 @@ class ResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = Result
         fields =('id', 'driver', 'race', 'avg_position', 'avg_speed', 'best_lap', 'best_lap_speed', 'best_lap_time', 'bonus_points', 'driver_rating', 'elapsed_time', 'fastest_laps', 'laps_completed', 'laps_led', 'passes_made', 'passing_differential', 'penalty_points', 'pit_stops', 'points', 'position', 'quality_passes', 'start_position', 'status', 'times_led', 'times_passed')
-
 class DriverSerializer(serializers.ModelSerializer):
     # team = serializers.HyperlinkedRelatedField(
     # view_name='team_detail',

@@ -4,12 +4,14 @@ from .models import Driver, Result, Race, Team, Standing
 import json
 import csv
 from json import *
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from racechart_folder.config import API_KEY
 from rest_framework import generics
+from rest_framework.views import APIView
 from .serializers import *
 import os
 from .tasks import access_nascar_api
+
 
 
 api = API_KEY
@@ -131,8 +133,9 @@ def result_list(request):
     return render(request, 'racechart/result_list.html', {'results': results})
 
 def result_detail(request, pk):
+    print('hit function')
     result = Result.objects.get(id=pk)
-    return render(request, 'racechart/result_detail.html', {'result': result})
+    return render(request, {'result': result})
 
 
 class RaceList(generics.ListCreateAPIView):
@@ -166,6 +169,7 @@ class ResultList(generics.ListCreateAPIView):
 class ResultDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Result.objects.all()
     serializer_class = ResultSerializer
+
 
 class DriverList(generics.ListCreateAPIView):
     queryset = Driver.objects.all()

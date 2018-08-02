@@ -16,17 +16,6 @@ const driverSelected = () => {
 
 const raceData = [];
 
-// const getRaces = () => {
-//   $.ajax({
-//     type: 'GET',
-//     url: '/api/races',
-//     dataType: 'JSON',
-//     success: (response) => {
-//       raceData.push(response.data);
-//     },
-//   });
-// }
-
 const getRaces = () => {
   axios.get('/api/races')
   .then(function(response) {
@@ -92,47 +81,53 @@ const createGraph = (data) => {
     .call(d3.axisLeft(y));
 }
 
+let driverInfo = [];
+
+axios.get(`/api/results/`)
+.then(function(response) {
+  for (let i= 0; i < response.data.length; i++) {
+    driverInfo.push(response.data[i])
+  }
+})
+
+console.log(driverInfo)
 
 const getId = (driverId) => {
   let data = [];
   selectedDriver = driverId[driverId.selectedIndex].id;
   console.log(selectedDriver)
   $('div').empty();
-  axios.get('/api/results')
-  .then(function(response) {
-    let results = response.data;
-    for(let i = 0; i < results.length; i++) {
-      let entry = results[i];
-      let driver_url = entry.driver;
-      let driver_pk = driver_url.substring(driver_url.indexOf("drivers/") + 8);
-      if(driver_url === selectedDriver) {
-        let race_url = entry.race;
-        console.log(race_url)
-        let race_pk = parseInt(race_url.substring(race_url.indexOf("races/") + 6));
-        let position = entry.position;
 
-        raceData[0].forEach((datum) => {
-          if(datum['id'] === race_pk) {
-            // format data
-            dateInProgress = datum.start_time;
-            let year = parseInt(dateInProgress.substring(0, 4));
-            let month = parseInt(dateInProgress.substring(5, 7));
-            let day = parseInt(dateInProgress.substring(8, 10));
-            let startDate = month + '/' + day + '/' + year;
-            let parseTime = d3.timeParse("%m/%d/%Y");
-            startDate = parseTime(startDate);
-            data.push({'date': startDate, 'rank': position});
-
-          }
-        });
-        data.forEach(function(d) {
-          d.rank = +d.rank;
-        });
-      };
+  for(let i = 0; i < driverInfo.length; i++) {
+    if (selectedDriver == driverInfo[i].driver) {
+      console.log(driverInfo[i].position)
     }
-    createGraph(data);
-  })
-  // data = JSON.stringify(eval('('+data+')'));
-  console.log(data);
+  }
 }
+
+
+    //     raceData[0].forEach((datum) => {
+    //       if(datum['id'] === race_pk) {
+    //         // format data
+    //         dateInProgress = datum.start_time;
+    //         let year = parseInt(dateInProgress.substring(0, 4));
+    //         let month = parseInt(dateInProgress.substring(5, 7));
+    //         let day = parseInt(dateInProgress.substring(8, 10));
+    //         let startDate = month + '/' + day + '/' + year;
+    //         let parseTime = d3.timeParse("%m/%d/%Y");
+    //         startDate = parseTime(startDate);
+    //         data.push({'date': startDate, 'rank': position});
+
+    //       }
+    //     });
+    //     data.forEach(function(d) {
+    //       d.rank = +d.rank;
+    //     });
+    //   };
+    // }
+    // createGraph(data);
+//   })
+//   // data = JSON.stringify(eval('('+data+')'));
+//   console.log(data);
+// }
 

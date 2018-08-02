@@ -113,7 +113,7 @@ section {
 
 aside {
   width: 20%;
-  border: .2em black solid;
+  border: .2em #02549E solid;
   margin-right: 1em;
   padding-right: .5em;
 }
@@ -181,13 +181,17 @@ ol {
   display: flex;
   width: 100%;
   margin: 0 auto;
-  border: black .2em solid;
+  border: #02549E .2em solid;
+}
+
+#driverImg {
+  height: 200px;
+  margin: 0 auto;
 }
 
 #driver {
-  height: 200px;
+  width: 30%;
   margin: 0 auto;
-  height: ;
 }
 
 p {
@@ -210,7 +214,7 @@ h1 {
 }
 .line {
   fill: none;
-  stroke: #88166D;
+  stroke: #BC2021;
   stroke-width: 5px;
   stroke-dasharray: 3000;
   stroke-dashoffset: 3000;
@@ -243,11 +247,11 @@ select {
   margin: 0 auto;
   justify-content: space-between;
   height: 450px;
-  border: black .2em solid;
+  border: #02549E .2em solid;
 }
 
 g {
-  font-size: 1em;
+  font-size: .9em;
 }
 
 #graphed {

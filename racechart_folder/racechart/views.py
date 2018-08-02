@@ -53,23 +53,23 @@ def grab_json(request, url, data_file):
 
 def get_all(request):
   # grab_json(request, driver_url, driver_file)
-  # grab_json(request, race_url, race_file)
+  grab_json(request, race_url, race_file)
   # grab_json(request, standings_url, standings_file)
-  grab_json(request, race_list_url, race_list_file)
+  # grab_json(request, race_list_url, race_list_file)
   return HttpResponseRedirect('/admin')
 
 race_folder = 'racechart/json/race_list/race.json'
 
-import time
 def get_all_races(request):
+  import time
   i = 0
   length = len(race_ids)
-  while(i < 15):
+  while(i < 16):
     race_url = f'http://api.sportradar.us/nascar-ot3/mc/races/{race_ids[i]}/results.json?api_key={api}'
     grab_json(request, race_url, f'racechart/json/race_list/race{i}.json')
     print(f'you are grabbing a json from {race_url}')
     time.sleep(3)
-    if i > 8:
+    if i > 14:
       print('Grabbed all races!')
       return HttpResponseRedirect('/admin')
     i = i + 1

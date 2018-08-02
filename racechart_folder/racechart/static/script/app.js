@@ -19,7 +19,7 @@ const raceData = [];
 const getRaces = () => {
   axios.get('/api/races')
   .then(function(response) {
-    raceData.push(response.data[0])
+    raceData.push(response.data)
   })
 }
 
@@ -101,12 +101,14 @@ const getId = (driverId) => {
   for(let i = 0; i < driverInfo.length; i++) {
     if (selectedDriver == driverInfo[i].driver) {
       console.log(driverInfo[i].position)
+      raceData[0].forEach((datum) => {
+          console.log(datum)
+      })
     }
   }
 }
 
 
-    //     raceData[0].forEach((datum) => {
     //       if(datum['id'] === race_pk) {
     //         // format data
     //         dateInProgress = datum.start_time;

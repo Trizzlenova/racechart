@@ -195,13 +195,20 @@ footer {
 
 h1 {
   text-align: center;
-  font-size: 7em;
-  margin: 0 auto;
+  font-size: 5em;
+  margin: 1.5em;
 }
 .line {
   fill: none;
   stroke: steelblue;
   stroke-width: 2px;
+}
+
+select {
+  height: 2em;
+  width: 12em;
+  font-size: 1.2em;
+  text-align: center;
 }
 
 #graph {
@@ -218,5 +225,10 @@ h1 {
 
 h5 {
   font-size: 1em;
+}
+
+h3 {
+  text-align: center;
+  text-decoration: underline;
 }
 

@@ -25,13 +25,13 @@ const getRaces = () => {
 
 getRaces();
 
-console.log(raceData)
+// console.log(raceData)
 
 const createGraph = (data) => {
   // set the dimensions and margins of the graph
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
-      width = 666 - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom;
+      width = 550 - margin.left - margin.right,
+      height = 400 - margin.top - margin.bottom;
 
   // parse the date / time
   var parseTime = d3.timeParse("%m/%d/%Y");
@@ -48,7 +48,7 @@ const createGraph = (data) => {
   // append the svg obgect to the body of the page
   // appends a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
-  var svg = d3.select("div").append("svg")
+  var svg = d3.select("#graphed").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -78,7 +78,13 @@ const createGraph = (data) => {
 
   // Add the Y Axis
   svg.append("g")
-    .call(d3.axisLeft(y));
+      .call(d3.axisLeft(y));
+  svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Finishing Position");
 }
 
 let driverInfo = [];
@@ -94,21 +100,20 @@ const getResults = () => {
 
 getResults();
 
-console.log(driverInfo)
+// console.log(driverInfo)
 
 const getId = (driverId) => {
   let data = [];
   selectedDriver = driverId[driverId.selectedIndex].id;
-  $('div').empty();
+  $('#graphed').empty();
 
   for(let i = 0; i < driverInfo.length; i++) {
     if (selectedDriver == driverInfo[i].driver) {
       raceData[0].forEach((raceInfo) => {
         let position = driverInfo[i].position
         if(raceInfo.id === driverInfo[i].race) {
-          console.log(raceInfo.start_time);
+          // console.log(raceInfo.start_time);
           let year = parseInt(raceInfo.start_time.substring(0, 4));
-          // console.log(year)
           let month = parseInt(raceInfo.start_time.substring(5, 7));
           let day = parseInt(raceInfo.start_time.substring(8, 10));
           let startDate = month + '/' + day + '/' + year;

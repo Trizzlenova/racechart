@@ -1,9 +1,9 @@
 // =========MAP DISPLAY===========
 
-let map = new google.maps.Map(document.getElementById('map'), {
-  center: {lat: 39, lng: -95},
-  zoom: 4.5
-});
+// let map = new google.maps.Map(document.getElementById('map'), {
+//   center: {lat: 39, lng: -95},
+//   zoom: 4.5
+// });
 
 // =========RACETRACK LOCATION===========
 

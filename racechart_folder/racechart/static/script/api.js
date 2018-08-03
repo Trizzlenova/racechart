@@ -15,6 +15,7 @@ const getResults = () => {
     for (let i= 0; i < response.data.length; i++) {
       driverInfo.push(response.data[i])
     }
+  displayTracks()
   })
 }
 

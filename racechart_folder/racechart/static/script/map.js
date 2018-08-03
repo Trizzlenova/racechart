@@ -1,9 +1,9 @@
 // =========MAP DISPLAY===========
 
-// let map = new google.maps.Map(document.getElementById('map'), {
-//   center: {lat: 39, lng: -95},
-//   zoom: 4.5
-// });
+let map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: 39, lng: -95},
+  zoom: 4.5
+});
 
 // =========RACETRACK LOCATION===========
 
@@ -26,8 +26,8 @@ const displayTracks = () => {
                 lng: results[0].geometry.location.lng(),
               },
           icon: {
-            url: "../static/images/car_point.png",
-            scaledSize: {height: 30, width: 50},
+            url: "../static/images/trophy.png",
+            scaledSize: {height: 60, width: 60},
           }
         })
       }

@@ -8,7 +8,6 @@ const getRaces = () => {
   })
 }
 
-
 let driverInfo = [];
 const getResults = () => {
   axios.get(`/api/results/`)
@@ -19,11 +18,3 @@ const getResults = () => {
   })
 }
 
-// raceData.forEach((raceInfo, i) => {
-//   let position = raceInfo[i]
-//   console.log(position)
-// }
-
-displayShit = () => {
-  console.log(raceData[0])
-}

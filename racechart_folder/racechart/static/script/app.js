@@ -83,5 +83,3 @@ const getId = (driverId) => {
   }
   createGraph(data);
 }
-
-displayShit()

@@ -5,31 +5,48 @@ let map = new google.maps.Map(document.getElementById('map'), {
   zoom: 4.5
 });
 
-// =========RACE LOCATION===========
+// =========RACETRACK LOCATION===========
 
-// let locations = [];
+let geocoder = new google.maps.Geocoder();
+let address;
+let track
+const displayTracks = () => {
+  for(let i = 0; i < raceData.length; i++) {
+    track = raceData[i]['track']
+    address = track
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': address }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        let marker = new google.maps.Marker({
+          map: map,
+          title: raceData[i]['track'],
+          position:
+              {
+                lat: results[0].geometry.location.lat(),
+                lng: results[0].geometry.location.lng(),
+              },
+          icon: {
+            url: "../static/images/car_point.png",
+            scaledSize: {height: 30, width: 50},
+          }
+        })
+      }
+    });
+  }
+}
+
 // const displayTracks = () => {
 //   for(let i = 0; i < raceData.length; i++) {
-//     locations.push(raceData[i]['track'])
-//     console.log(track)
-//     let marker = new google.maps.Marker({
-//       map: map,
-//       title: track,
-//       position: {lat: 37.7749, lng: -122.4194},
-//       icon: {
-//         url: "images/car_point.png",
-//         scaledSize: {height: 55, width: 55},
+//     track = raceData[i]['track']
+//     geocoder.geocode({
+//     'latLng': event.latLng
+//   }, function(results, status) {
+//     if (status == google.maps.GeocoderStatus.OK) {
+//       if (results[0]) {
+//         alert(results[0].formatted_address);
 //       }
-//     })
-//   }
-//   console.log(locations)
+//     }
+//   });
 // }
 
-// displayTracks()
 
-// console.log(locations)
-
-
-// console.log()
-
-displayShit()

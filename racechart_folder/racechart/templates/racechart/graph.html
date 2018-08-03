@@ -7,8 +7,13 @@ src="https://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 crossorigin="anonymous"></script>
 
-<h2>Graph</h2>
-<form id="graph-list">
+<!-- <h2>Graph</h2> -->
+<div id='map'>
+</div>
+
+
+
+<!-- <form id="graph-list">
   <select id='driveFunction' onchange="getId(this)">
     {% for standing in standings %}
     <option id='{{ standing.driver.pk }}'>
@@ -21,6 +26,7 @@ crossorigin="anonymous"></script>
   <aside id="y-label">
   </aside>
   <div></div>
-</section id="x-label">
+</section id="x-label"> -->
+
 
 {% endblock %}

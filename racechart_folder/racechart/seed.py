@@ -128,13 +128,15 @@ def seed_races():
         loaded_race['actual_distance'] = float(loaded_race['avg_speed'])
         loaded_race['victory_margin'] = float(loaded_race['victory_margin'])
 
-        wanted_keys = ['name','drivers','actual_distance','avg_speed','caution_laps','cautions','condition','distance','elapsed_time','laps','laps_completed','lead_changes','scheduled_time','start_time','end_time','victory_margin', 'number', 'flags']
+        wanted_keys = ['name','drivers','actual_distance','avg_speed','caution_laps','cautions','condition','distance','elapsed_time','laps','laps_completed','lead_changes','scheduled_time','start_time','end_time', 'track', 'victory_margin', 'number', 'flags']
 
         for key in loaded_race:
             if key == 'flags':
                 loaded_race['flags'] = len(loaded_race['flags'])
             if key == 'number':
                 loaded_race['race_number'] = int(loaded_race['number'])
+            if key == 'track':
+                loaded_race['track'] = loaded_race['track']['name']
 
         provided_keys = list(loaded_race.keys())
         keys_to_add = []
@@ -158,10 +160,11 @@ def seed_races():
         i = i + 1
 
     for cleaned_race in cleaned_races:
+        print(cleaned_race)
         new_race = Race.create(cleaned_race)
         new_race.save()
-        print(new_race)
-        print('wow')
+        # print(new_race)
+        # print('wow')
 
                 ######################
                 ####### RESULTS ######

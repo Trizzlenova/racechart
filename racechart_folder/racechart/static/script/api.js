@@ -2,9 +2,12 @@ let raceData = [];
 const getRaces = () => {
   axios.get('/api/races')
   .then(function(response) {
-    raceData.push(response.data)
+    for (let i= 0; i < response.data.length; i++) {
+      raceData.push(response.data[i])
+    }
   })
 }
+
 
 let driverInfo = [];
 const getResults = () => {
@@ -14,4 +17,13 @@ const getResults = () => {
       driverInfo.push(response.data[i])
     }
   })
+}
+
+// raceData.forEach((raceInfo, i) => {
+//   let position = raceInfo[i]
+//   console.log(position)
+// }
+
+displayShit = () => {
+  console.log(raceData[0])
 }

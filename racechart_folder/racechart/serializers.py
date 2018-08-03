@@ -9,7 +9,7 @@ class RaceSerializer(serializers.HyperlinkedModelSerializer):
     )
     class Meta:
         model = Race
-        fields = ('id','name', 'drivers', 'actual_distance', 'avg_speed', 'caution_laps', 'cautions', 'condition', 'distance', 'elapsed_time', 'flags', 'laps', 'laps_completed', 'lead_changes', 'race_number', 'scheduled_time', 'start_time', 'end_time', 'victory_margin',)
+        fields = ('id','name', 'drivers', 'actual_distance', 'avg_speed', 'caution_laps', 'cautions', 'condition', 'distance', 'elapsed_time', 'flags', 'laps', 'laps_completed', 'lead_changes', 'race_number', 'scheduled_time', 'start_time', 'end_time', 'track', 'victory_margin',)
 
 class StandingSerializer(serializers.HyperlinkedModelSerializer):
     driver = serializers.HyperlinkedRelatedField(

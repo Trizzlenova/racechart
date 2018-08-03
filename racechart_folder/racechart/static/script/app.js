@@ -64,7 +64,7 @@ const getId = (driverId) => {
 
   for(let i = 0; i < driverInfo.length; i++) {
     if (selectedDriver == driverInfo[i].driver) {
-      raceData[0].forEach((raceInfo) => {
+      raceData.forEach((raceInfo) => {
         let position = driverInfo[i].position
         if(raceInfo.id === driverInfo[i].race) {
           let year = parseInt(raceInfo.start_time.substring(0, 4));
@@ -84,3 +84,4 @@ const getId = (driverId) => {
   createGraph(data);
 }
 
+displayShit()

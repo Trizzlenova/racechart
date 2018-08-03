@@ -70,6 +70,13 @@ header img {
   padding-right: 1.5em;
 }
 
+#map {
+  height: 600px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+/*=========NAV==========*/
 
 nav {
   border: 1px solid purple;

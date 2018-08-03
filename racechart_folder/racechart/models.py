@@ -162,6 +162,7 @@ class Race(models.Model):
   scheduled_time = models.DateTimeField(blank=True, null=True)
   start_time = models.DateTimeField(blank=True, null=True)
   end_time = models.DateTimeField(blank=True, null=True)
+  track = models.CharField(max_length=250, blank=True, null=True)
   # convert from string to decimal
   victory_margin = models.FloatField(blank=True, null=True)
 
@@ -188,6 +189,7 @@ class Race(models.Model):
         scheduled_time = race['scheduled'],
         start_time = race['start_time'],
         end_time = race['end_time'],
+        track = race['track'],
         victory_margin = race['victory_margin'],
       )
       return new_race

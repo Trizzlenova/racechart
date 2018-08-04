@@ -1,6 +1,6 @@
 /* NASCAR COLORS */
 /* YELLOW: #EDC240 */
-/* RED: #BC2021*/
+/* RED: #BC2021 */
 /* PURPLE: #88166D */
 /* BLUE: #02549E */
 /* BROWN: #2E250C */
@@ -312,5 +312,13 @@ h3 {
   margin: 3em 0 0 0 auto;
   border: #88166D .2em solid;
   box-shadow: 5px 5px purple;
+  position: relative;
+}
+
+button {
+  padding: 2em 3em;
+  margin: 0 auto;
+  position: absolute;
+  z-index: 1;
 }
 

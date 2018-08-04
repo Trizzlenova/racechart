@@ -15,7 +15,17 @@ const getResults = () => {
     for (let i= 0; i < response.data.length; i++) {
       driverInfo.push(response.data[i])
     }
-  displayTracks()
+    initMap()
   })
 }
 
+function queueFunction(milliseconds, runFunction) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+  runFunction
+  console.log(runFunction + ' is running!')
+}

@@ -88,7 +88,7 @@ const getId = (driverId) => {
 }
 
 
-//====Slide in Driver of the Day=====
+//====Slide in display=====
 
 
 // debounce function by https://davidwalsh.name/javascript-debounce-function

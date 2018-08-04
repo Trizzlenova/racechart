@@ -27,7 +27,7 @@ const displayTracks = () => {
               },
           icon: {
             url: "../static/images/trophy.png",
-            scaledSize: {height: 60, width: 60},
+            scaledSize: {height: 70, width: 60},
           }
         })
       }

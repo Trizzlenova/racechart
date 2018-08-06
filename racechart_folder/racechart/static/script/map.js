@@ -118,7 +118,9 @@ let geocoder = new google.maps.Geocoder();
 let address;
 let track;
 
-let icon1 = "../static/images/car_point.png"
+let car = "../static/images/car.png"
+let trophy = "../static/images/trophyflag.png"
+let marker;
 
 const displayTracks = () => {
   for(let i = 0; i < raceData.length; i++) {
@@ -137,15 +139,19 @@ const displayTracks = () => {
                 lng: results[0].geometry.location.lng(),
               },
           icon: {
-            url: "../static/images/trophy.png",
-            scaledSize: {height: 70, width: 60},
+            url: trophy,
+            // scaledSize: {height: 70, width: 60},
           }
         });
+        marker.addListener('mouseover', function() {
+            marker.setIcon(car);
+        })
+        marker.addListener('mouseout', function() {
+            marker.setIcon(trophy);
+        })
       }
     });
   }
 }
 
-// google.maps.event.addEventListener(marker, 'mouseover', function() {
-//     marker.setIcon(icon1);
-        // })
+

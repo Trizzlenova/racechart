@@ -5,6 +5,7 @@ const getRaces = () => {
     for (let i= 0; i < response.data.length; i++) {
       raceData.push(response.data[i])
     }
+    initMap()
   })
 }
 
@@ -15,7 +16,6 @@ const getResults = () => {
     for (let i= 0; i < response.data.length; i++) {
       driverInfo.push(response.data[i])
     }
-    initMap()
   })
 }
 

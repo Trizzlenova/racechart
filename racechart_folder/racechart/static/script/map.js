@@ -118,13 +118,16 @@ let geocoder = new google.maps.Geocoder();
 let address;
 let track;
 
+let icon1 = "../static/images/car_point.png"
+
 const displayTracks = () => {
-  for(i in raceData) {
+  for(let i = 0; i < raceData.length; i++) {
     track = raceData[i]['track']
     address = track
     geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': address }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
+        console.log(raceData[i]['track'])
         let marker = new google.maps.Marker({
           map: map,
           title: raceData[i]['track'],
@@ -137,8 +140,12 @@ const displayTracks = () => {
             url: "../static/images/trophy.png",
             scaledSize: {height: 70, width: 60},
           }
-        })
+        });
       }
     });
   }
 }
+
+// google.maps.event.addEventListener(marker, 'mouseover', function() {
+//     marker.setIcon(icon1);
+        // })

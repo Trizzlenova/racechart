@@ -120,6 +120,7 @@ let track;
 
 let car = "../static/images/car.png"
 let trophy = "../static/images/trophyflag.png"
+let redBox = document.getElementsByClassName('redBoxExperiment')
 let marker;
 
 const displayTracks = () => {
@@ -140,14 +141,24 @@ const displayTracks = () => {
               },
           icon: {
             url: trophy,
-            // scaledSize: {height: 70, width: 60},
           }
         });
+        var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h2 id="firstHeading" class="firstHeading">Charlotte Speedway</h2>'+
+            '<div id="bodyContent">'+
+            '<img src="static/images/charlotte_track.JPG"/>'+
+            '</div>'+
+            '</div>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
         marker.addListener('mouseover', function() {
-            marker.setIcon(car);
+            infowindow.open(map, marker)
         })
         marker.addListener('mouseout', function() {
-            marker.setIcon(trophy);
+            infowindow.close(map, marker)
         })
       }
     });

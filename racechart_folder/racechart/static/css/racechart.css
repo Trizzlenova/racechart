@@ -19,6 +19,8 @@
   content: "";
 }
 
+
+
 body {
   background-color: #EDC240;
   width: 100%;
@@ -322,3 +324,31 @@ button {
   z-index: 1;
 }
 
+#content {
+  width: 100%;
+  margin: 1em auto;
+}
+
+#bodyContent {
+  width: 100%;
+  display: flex;
+}
+
+#content h2 {
+  font-size: 4em;
+  text-shadow: 3px 4px #BC2021;
+  margin: 0 auto;
+  background-color: #EDC240;
+}
+
+#bodyContent img {
+  width: 100%;
+  margin: 0 auto;
+  height: 200px;
+}
+
+#content p {
+  margin: 0 auto;
+  width: 75%;
+  font-size: 1.4em;
+}

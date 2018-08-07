@@ -5,7 +5,6 @@ const getRaces = () => {
     for (let i= 0; i < response.data.length; i++) {
       raceData.push(response.data[i])
     }
-    initMap()
   })
 }
 

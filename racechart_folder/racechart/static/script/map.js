@@ -1,5 +1,17 @@
-// =========MAP DISPLAY===========
+// =========CREATE PROMISE===========
+let displayMapsFirst = new Promise((resolve, reject) => {
+  setTimeout(function(){
+    resolve('maps loaded');
+    initMap()
+  }, 250);
+});
 
+displayMapsFirst.then((successMessage) => {
+  console.log('racetracks loaded' + successMessage);
+  displayTracks()
+});
+
+// =========MAP DISPLAY===========
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -114,102 +126,64 @@ let styles = {
 
 // =========RACETRACK LOCATION===========
 
-let raceTracks = [
-{
-name: 'Auto Club Speedway',
-image: 'static/images/auto_club_speedway.png',
-lat: 34.0888,
-lng: -117.5005,
-},
-// {
-// name: 'Auto Club Speedway',
-// image: 'static/images/auto_club_speedway.png',
-// lat: 34.0888,
-// lng: -117.5005,
-// }
+let racetracks = [
+  {
+    name: 'Auto Club Speedway',
+    image: 'static/images/auto_club_speedway.png',
+    lat: 34.0888,
+    lng: -117.5005,
+  },
+  {
+    name: 'Daytona International Speedway',
+    image: 'static/images/daytona.jpg',
+    lat: 29.2108,
+    lng: -81.0228,
+  },
+  {
+    name: 'Charlotte Motor Speedway',
+    image: 'static/images/charlotte_track.JPG',
+    lat: 35.3515,
+    lng: -80.6866,
+  },
+  {
+    name: 'Kansas Speedway',
+    image: 'static/images/kansas_speedway.jpg',
+    lat: 39.0997,
+    lng: -94.5786,
+  },
 ]
 
 let car = "../static/images/car.png"
 let trophy = "../static/images/trophyflag.png"
 
 const displayTracks = () => {
-  console.log(raceTracks[0].lng)
-  let marker = new google.maps.Marker({
-    map: map,
-    title: raceTracks[0].name,
-    position: {
-      lat: raceTracks[0].lat,
-      lng: raceTracks[0].lng,
-    },
-    icon: {
-      url: trophy,
-      // scaledSize: {height: 55, width: 55},
-    }
-  })
-    let contentString = `<div id="content">
-            <h2 id="firstHeading" class="firstHeading">${raceTracks[0].name}</h2>
-            <div id="bodyContent">'
-            <img src="${raceTracks[0].image}"/>
-            </div>
-            </div>`;
-        let infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
-        marker.addListener('mouseover', function() {
-            infowindow.open(map, marker)
-        })
-        marker.addListener('mouseout', function() {
-            infowindow.close(map, marker)
-        })
+  for(let i = 0; i < racetracks.length; i++) {
+    let marker = new google.maps.Marker({
+      map: map,
+      title: racetracks[i].name,
+      position: {
+        lat: racetracks[i].lat,
+        lng: racetracks[i].lng,
+      },
+      icon: {
+        url: trophy,
+      }
+    })
+    let raceTrackInfoWindow = `<div id="content">
+        <h2 id="firstHeading" class="firstHeading">${racetracks[i].name}</h2>
+        <div id="bodyContent">'
+        <img src="${racetracks[i].image}"/>
+        </div>
+        </div>`;
+    let infowindow = new google.maps.InfoWindow({
+      content: raceTrackInfoWindow
+    });
+    marker.addListener('mouseover', function() {
+        infowindow.open(map, marker)
+    })
+    marker.addListener('mouseout', function() {
+        infowindow.close(map, marker)
+    })
+  }
 }
-
-
-
-
-// let geocoder = new google.maps.Geocoder();
-// let address;
-// let track;
-
-// let marker;
-
-// const displayTracks = () => {
-//   for(let i = 0; i < raceData.length; i++) {
-//     track = raceData[i]['track']
-//     address = track
-//     geocoder = new google.maps.Geocoder();
-//     geocoder.geocode( { 'address': address }, function(results, status) {
-//       if (status == google.maps.GeocoderStatus.OK) {
-//         console.log(raceData[i]['track'])
-//         let marker = new google.maps.Marker({
-//           map: map,
-//           title: raceData[i]['track'],
-//           position:
-//               {
-//                 lat: results[0].geometry.location.lat(),
-//                 lng: results[0].geometry.location.lng(),
-//               },
-//           icon: {
-//             url: trophy,
-//           }
-//         });
-//         var contentString = '<div id="content">'+
-//             '<h2 id="firstHeading" class="firstHeading">Charlotte Speedway</h2>'+
-//             '<div id="bodyContent">'+
-//             '<img src="static/images/charlotte_track.JPG"/>'+
-//             '</div>'+
-//             '</div>';
-//         var infowindow = new google.maps.InfoWindow({
-//           content: contentString
-//         });
-//         marker.addListener('mouseover', function() {
-//             infowindow.open(map, marker)
-//         })
-//         marker.addListener('mouseout', function() {
-//             infowindow.close(map, marker)
-//         })
-//       }
-//     });
-//   }
-// }
-
 

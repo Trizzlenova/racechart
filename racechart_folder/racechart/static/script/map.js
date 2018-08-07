@@ -114,44 +114,45 @@ let styles = {
 
 // =========RACETRACK LOCATION===========
 
-let geocoder = new google.maps.Geocoder();
-let address;
-let track;
+let raceTracks = [
+{
+name: 'Auto Club Speedway',
+image: 'static/images/auto_club_speedway.png',
+lat: 34.0888,
+lng: -117.5005,
+},
+// {
+// name: 'Auto Club Speedway',
+// image: 'static/images/auto_club_speedway.png',
+// lat: 34.0888,
+// lng: -117.5005,
+// }
+]
 
 let car = "../static/images/car.png"
 let trophy = "../static/images/trophyflag.png"
-let redBox = document.getElementsByClassName('redBoxExperiment')
-let marker;
 
 const displayTracks = () => {
-  for(let i = 0; i < raceData.length; i++) {
-    track = raceData[i]['track']
-    address = track
-    geocoder = new google.maps.Geocoder();
-    geocoder.geocode( { 'address': address }, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        console.log(raceData[i]['track'])
-        let marker = new google.maps.Marker({
-          map: map,
-          title: raceData[i]['track'],
-          position:
-              {
-                lat: results[0].geometry.location.lat(),
-                lng: results[0].geometry.location.lng(),
-              },
-          icon: {
-            url: trophy,
-          }
-        });
-        var contentString = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h2 id="firstHeading" class="firstHeading">Charlotte Speedway</h2>'+
-            '<div id="bodyContent">'+
-            '<img src="static/images/charlotte_track.JPG"/>'+
-            '</div>'+
-            '</div>';
-        var infowindow = new google.maps.InfoWindow({
+  console.log(raceTracks[0].lng)
+  let marker = new google.maps.Marker({
+    map: map,
+    title: raceTracks[0].name,
+    position: {
+      lat: raceTracks[0].lat,
+      lng: raceTracks[0].lng,
+    },
+    icon: {
+      url: trophy,
+      // scaledSize: {height: 55, width: 55},
+    }
+  })
+    let contentString = `<div id="content">
+            <h2 id="firstHeading" class="firstHeading">${raceTracks[0].name}</h2>
+            <div id="bodyContent">'
+            <img src="${raceTracks[0].image}"/>
+            </div>
+            </div>`;
+        let infowindow = new google.maps.InfoWindow({
           content: contentString
         });
         marker.addListener('mouseover', function() {
@@ -160,9 +161,55 @@ const displayTracks = () => {
         marker.addListener('mouseout', function() {
             infowindow.close(map, marker)
         })
-      }
-    });
-  }
 }
+
+
+
+
+// let geocoder = new google.maps.Geocoder();
+// let address;
+// let track;
+
+// let marker;
+
+// const displayTracks = () => {
+//   for(let i = 0; i < raceData.length; i++) {
+//     track = raceData[i]['track']
+//     address = track
+//     geocoder = new google.maps.Geocoder();
+//     geocoder.geocode( { 'address': address }, function(results, status) {
+//       if (status == google.maps.GeocoderStatus.OK) {
+//         console.log(raceData[i]['track'])
+//         let marker = new google.maps.Marker({
+//           map: map,
+//           title: raceData[i]['track'],
+//           position:
+//               {
+//                 lat: results[0].geometry.location.lat(),
+//                 lng: results[0].geometry.location.lng(),
+//               },
+//           icon: {
+//             url: trophy,
+//           }
+//         });
+//         var contentString = '<div id="content">'+
+//             '<h2 id="firstHeading" class="firstHeading">Charlotte Speedway</h2>'+
+//             '<div id="bodyContent">'+
+//             '<img src="static/images/charlotte_track.JPG"/>'+
+//             '</div>'+
+//             '</div>';
+//         var infowindow = new google.maps.InfoWindow({
+//           content: contentString
+//         });
+//         marker.addListener('mouseover', function() {
+//             infowindow.open(map, marker)
+//         })
+//         marker.addListener('mouseout', function() {
+//             infowindow.close(map, marker)
+//         })
+//       }
+//     });
+//   }
+// }
 
 

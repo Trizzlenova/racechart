@@ -17,12 +17,14 @@
         <header>
             <img id="header_image" src="{% static 'images/racechart-logo.png' %}">
         </header>
-        <img id="logo" src="{% static 'images/nascar_logo.png' %}">
         <nav>
+            <div id='filler1'></div>
             <a href="/">Home</a>
             <a href="/drivers">Drivers</a>
             <a href="/race">Race</a>
             <a href="/results">Results</a>
+            <div id='filler2'></div>
+            <img id="logo" src="{% static 'images/nascar_logo.png' %}">
         </nav>
         {% block content %}
         {% endblock %}

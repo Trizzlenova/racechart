@@ -179,6 +179,9 @@ def seed_results():
       results = loaded_race['results']
 
       for result in results:
+          rating = result.get('driver_rating')
+          if rating == None:
+              result['driver_rating'] = None
   # Switch triggers if driver exists in database. This is to avoid No Matching Query error
           driver_binary = len(Driver.objects.filter(full_name=result['driver']['full_name']))
           if driver_binary == 1:

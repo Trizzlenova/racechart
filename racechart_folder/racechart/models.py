@@ -21,7 +21,7 @@ class Team(models.Model):
         manufacturer = team['manufacturer'],
         sponsors = team['sponsors'],
         owner = team['owner']
-      ),'bn'
+      )
       return new_team
 
 

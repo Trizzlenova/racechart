@@ -126,7 +126,7 @@ def standing_list(request):
 
 def standing_detail(request, pk):
     standings = Standing.objects.get(id=pk)
-    return render(request, 'racechart/standing_list.html', {'standing': standing})
+    return render(request, 'racechart/static_page.html', {'standing': standing})
 
 def result_list(request):
     results = Result.objects.all()

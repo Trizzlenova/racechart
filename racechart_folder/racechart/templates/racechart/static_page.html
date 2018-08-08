@@ -2,11 +2,11 @@
 {% load staticfiles %}
 
 {% block content %}
-<script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script
 src="https://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 crossorigin="anonymous"></script>
+<script src="{% static 'script/map.js' %}" defer></script>
 
 <div id="main">
   <section id='graphSection'>
@@ -47,7 +47,9 @@ crossorigin="anonymous"></script>
       <ol>
         {% for standing in standings %}
         <li id='standing_list'>
-            {{standing.driver}}
+          <a href="{% url 'driver_detail' pk=standing.driver.pk %}">
+            {{standing.full_name}}
+          </a>
         </li>
         {% endfor %}
       </ol>

@@ -97,9 +97,7 @@ a {
   /*padding: .7em;*/
 }
 
-#chart {
-  width: 100%;
-}
+/*======Main=======*/
 
 #main {
   width: 100%;
@@ -115,6 +113,19 @@ section {
   margin: 0 auto;
 }
 
+h2 {
+  font-size: 5em;
+  color: white;
+  text-shadow: 4px 4px 4px #2E250C ;
+  text-align: center;
+  margin: .5em auto;
+  width: 100%;
+  margin-top: 2em;
+
+}
+
+/*=====Standings/Driver List=======*/
+
 aside {
   width: 20%;
   border: .4em solid #88166D;
@@ -123,8 +134,23 @@ aside {
   margin-top: 3em;
 }
 
+ol {
+  margin-left: 1em;
+  font-size: 1em;
+}
+
+h4 {
+  text-align: center;
+}
+
 #standings {
   margin: 0 auto;
+}
+
+
+#standing_list a {
+  font-size: 1.5em;
+  color: #2E250C ;
 }
 
 #driver_section {
@@ -140,16 +166,6 @@ aside {
   font-size: .7em;
 }
 
-h2 {
-  font-size: 5em;
-  color: white;
-  text-shadow: 4px 4px 4px #2E250C ;
-  text-align: center;
-  margin: .5em auto;
-  width: 100%;
-  margin-top: 2em;
-
-}
 
 #driver_list {
   width: 100%;
@@ -160,9 +176,9 @@ h2 {
   text-align: center;
 }
 
-
 .purple {
-  color: #88166D
+  color: #88166D;
+  font-size: 3em;
 }
 
 #bio {
@@ -170,21 +186,9 @@ h2 {
   font-size: 2em;
 }
 
-h4 {
-  text-align: center;
-}
-
-ol {
-  margin-left: 1em;
-  font-size: 1em;
-}
 
 
-#standing_list {
-  font-size: 1.3em;
-}
-
-/*======Driver Detail=======*/
+/*======Driver Detail Page=======*/
 
 #driver_name {
   text-shadow: 5px 5px #02549E;
@@ -205,51 +209,7 @@ b {
   box-shadow: 5px 10px purple;
 }
 
-/*=====Driver of the Week=====*/
-#driver_of_the_week {
-  display: flex;
-  width: 100%;
-  margin: 0 auto;
-  border: #88166D .2em solid;
-}
-
-.slide-in {
-  opacity: 0;
-  transition: all .5s;
-}
-
-.slide-in {
-  transform: translateX(-30%) scale(0.95);
-}
-
-.slide-in.active {
-  opacity: 1;
-  transform: translateX(0%) scale(1);
-}
-
-#driverImg {
-  height: 200px;
-  margin: 0 auto;
-}
-
-#driver {
-  width: 30%;
-  margin: 0 auto;
-}
-
-p {
-  width: 75%;
-  font-size: 1.2em;
-}
-
-
-footer {
-  background-color: #EDC240;
-  padding: 1em;
-  display: block;
-}
-
-/*========GRAPH========*/
+/*========Graph========*/
 
 #graphed {
   width: 100%;
@@ -273,6 +233,7 @@ h1 {
   -webkit-animation: line 6s linear forwards;
           animation: line 6s linear forwards;
 }
+
 #graph {
   display: flex;
   width: 100%;
@@ -318,7 +279,35 @@ h5 {
 h3 {
   text-align: center;
   text-decoration: underline;
+  font-size: 2em;
+  color: #02549E;
 }
+
+/*=====Driver of the Week Section=====*/
+
+#driver_of_the_week {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  border: #88166D .2em solid;
+}
+
+#driverImg {
+  height: 200px;
+  margin: 0 auto;
+}
+
+#driver {
+  width: 30%;
+  margin: 0 auto;
+}
+
+p {
+  width: 75%;
+  font-size: 1.2em;
+}
+
+/*========Map=========*/
 
 #map_section {
   margin: 2em;
@@ -334,13 +323,6 @@ h3 {
   position: relative;
 }
 
-button {
-  padding: 2em 3em;
-  margin: 0 auto;
-  position: absolute;
-  z-index: 1;
-}
-
 #content {
   width: 100%;
   margin: 1em auto;
@@ -351,6 +333,12 @@ button {
   display: flex;
 }
 
+#bodyContent img {
+  width: 100%;
+  margin: 0 auto;
+  height: 200px;
+}
+
 #content h2 {
   font-size: 4em;
   text-shadow: 3px 4px #BC2021;
@@ -358,14 +346,33 @@ button {
   background-color: #EDC240;
 }
 
-#bodyContent img {
-  width: 100%;
-  margin: 0 auto;
-  height: 200px;
-}
 
 #content p {
   margin: 0 auto;
   width: 75%;
   font-size: 1.4em;
+}
+
+/*=======Slide Effect========*/
+
+.slide-in {
+  opacity: 0;
+  transition: all .5s;
+}
+
+.slide-in {
+  transform: translateX(-30%) scale(0.95);
+}
+
+.slide-in.active {
+  opacity: 1;
+  transform: translateX(0%) scale(1);
+}
+
+/*======Footer=======*/
+
+footer {
+  background-color: #EDC240;
+  padding: 1em;
+  display: block;
 }

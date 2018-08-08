@@ -128,28 +128,82 @@ let styles = {
 
 let racetracks = [
   {
+    name: 'Atlanta Motor Speedway',
+    image: 'static/images/racetracks/atlanta.jpg',
+    lat: 33.3868,
+    lng: -84.3164,
+  },
+  {
     name: 'Auto Club Speedway',
-    image: 'static/images/auto_club_speedway.png',
+    image: 'static/images/racetracks/auto_club_speedway.png',
     lat: 34.0888,
     lng: -117.5005,
   },
   {
-    name: 'Daytona International Speedway',
-    image: 'static/images/daytona.jpg',
-    lat: 29.2108,
-    lng: -81.0228,
+    name: 'Bristol Motor Speedway',
+    image: 'static/images/racetracks/bristol.png',
+    lat: 36.5157,
+    lng: -82.2570,
   },
   {
     name: 'Charlotte Motor Speedway',
-    image: 'static/images/charlotte_track.JPG',
+    image: 'static/images/racetracks/charlotte_track.JPG',
     lat: 35.3515,
     lng: -80.6866,
   },
   {
+    name: 'Daytona International Speedway',
+    image: 'static/images/racetracks/daytona.jpg',
+    lat: 29.2108,
+    lng: -81.0228,
+  },
+  {
+    name: 'Dover International Speedway',
+    image: 'static/images/racetracks/dover.jpg',
+    lat: 39.1899,
+    lng: -75.5307,
+  },
+  {
     name: 'Kansas Speedway',
-    image: 'static/images/kansas_speedway.jpg',
+    image: 'static/images/racetracks/kansas_speedway.jpg',
     lat: 39.0997,
     lng: -94.5786,
+  },
+  {
+    name: 'Las Vegas Motor Speedway',
+    image: 'static/images/racetracks/las_vegas.jpg',
+    lat: 36.2723,
+    lng: -115.0103,
+  },
+  {
+    name: 'Martinsville Speedway',
+    image: 'static/images/racetracks/martinsville.jpg',
+    lat: 36.6341,
+    lng: -79.8517,
+  },
+  {
+    name: 'Phoenix International Raceway',
+    image: 'static/images/racetracks/phoenix.jpeg',
+    lat: 33.3749,
+    lng: -112.3112,
+  },
+  {
+    name: 'Richmond International Raceway',
+    image: 'static/images/racetracks/richmond.jpg',
+    lat: 37.5924,
+    lng: -77.4195,
+  },
+  {
+    name: 'Talladega Superspeedway',
+    image: 'static/images/racetracks/talladega.jpg',
+    lat: 33.5670,
+    lng: -86.0661,
+  },
+  {
+    name: 'Texas Motor Speedway',
+    image: 'static/images/racetracks/texas_motor.jpg',
+    lat: 33.0373,
+    lng: -97.2821,
   },
 ]
 

@@ -207,8 +207,7 @@ let racetracks = [
   },
 ]
 
-let car = "../static/images/car.png"
-let trophy = "../static/images/trophyflag.png"
+let trophy = "../static/images/trophy.png"
 
 const displayTracks = () => {
   for(let i = 0; i < racetracks.length; i++) {
@@ -221,6 +220,7 @@ const displayTracks = () => {
       },
       icon: {
         url: trophy,
+        scaledSize: {height: 66, width: 55},
       }
     })
     let raceTrackInfoWindow = `<div id="content">

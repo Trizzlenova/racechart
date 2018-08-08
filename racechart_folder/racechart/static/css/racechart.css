@@ -184,11 +184,28 @@ ol {
   font-size: 1.3em;
 }
 
+/*======Driver Detail=======*/
+
+#driver_name {
+  text-shadow: 5px 5px #02549E;
+}
+
+b {
+  font-size: .75em;
+  color: #BC2021;
+}
+
+#driver_detail {
+  font-size: 2em;
+  color: #02549E;
+  list-style-type: none;
+}
+
 #driver_of_the_week, #graph {
   box-shadow: 5px 10px purple;
 }
 
-/*Driver of the Week*/
+/*=====Driver of the Week=====*/
 #driver_of_the_week {
   display: flex;
   width: 100%;

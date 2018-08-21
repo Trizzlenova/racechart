@@ -137,6 +137,14 @@ def result_detail(request, pk):
     result = Result.objects.get(id=pk)
     return render(request, {'result': result})
 
+def error_404(request):
+        data = {}
+        return render(request,'racechart/error_404.html', data)
+
+def error_500(request):
+        data = {}
+        return render(request,'racechart/error_500.html', data)
+
 
 class RaceList(generics.ListCreateAPIView):
     queryset = Race.objects.all()

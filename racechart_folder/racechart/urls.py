@@ -2,6 +2,8 @@ from django.urls import path, include
 from django.conf.urls import url
 from . import views
 from rest_framework.routers import DefaultRouter
+from django.conf.urls import handler404, handler500
+
 
 urlpatterns = [
   path('', views.standing_list, name="standing_list"),
@@ -28,3 +30,5 @@ urlpatterns = [
   path('graphs/', views.graphs, name='graphs'),
 ]
 
+handler404 = views.error_404
+handler500 = views.error_500

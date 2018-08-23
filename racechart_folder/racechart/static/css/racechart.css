@@ -43,16 +43,6 @@ header {
   top: 0;
 }
 
-header img {
-  top: 0;
-  opacity: .8;
-  width: 38%;
-  height: 60%;
-  position: relative;
-  float: center;
-  /*z-index: -1;*/
-  margin: 0 auto;
-}
 
 /*span {
   font-size: 2.6em;
@@ -76,6 +66,12 @@ nav {
   display: flex;
 }
 
+#header_image {
+  width: 140px;
+  height: 90px;
+  margin-left: 2em;
+}
+
 a:link, a:visited {
   text-decoration: none;
 }
@@ -89,10 +85,11 @@ a {
 
 nav a {
   text-align: center;
+  margin-top: .6em;
 }
 
 #filler1 {
-  width: 30%;
+  width: 10%;
 }
 
 #filler2 {
@@ -102,6 +99,7 @@ nav a {
 #logo {
   width: 20%;
   height: 2.5em;
+  margin-top: 1em;
 }
 
 /*======Main=======*/

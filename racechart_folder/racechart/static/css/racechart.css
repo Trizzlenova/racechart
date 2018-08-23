@@ -126,7 +126,6 @@ h2 {
   margin: .5em auto;
   width: 100%;
   margin-top: 2em;
-
 }
 
 /*=====Standings/Driver List=======*/
@@ -220,6 +219,7 @@ b {
 
 #graphed {
   width: 100%;
+  padding-left: 5em;
   /*background-color: #BC2021;*/
 }
 

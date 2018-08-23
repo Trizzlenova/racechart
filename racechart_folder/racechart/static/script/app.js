@@ -122,14 +122,3 @@ function checkSlide(e){
   })
 }
 window.addEventListener('scroll', debounce(checkSlide))
-
-
-
-
-
-
-
-
-
-
-

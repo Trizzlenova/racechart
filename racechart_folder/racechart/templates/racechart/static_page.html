@@ -13,6 +13,7 @@ crossorigin="anonymous"></script>
     <h2>Graph</h2>
     <form id="graph-list">
       <select id='driveFunction' onchange="getId(this)">
+        <option selected disabled hidden>Drivers</option>
         {% for standing in standings %}
         <option id='{{ standing.driver.pk }}'>
             {{ standing.driver }}

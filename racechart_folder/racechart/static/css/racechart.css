@@ -5,12 +5,12 @@
 /* BLUE: #02549E */
 /* BROWN: #2E250C */
 
-/* Use Cmmd + Shift + Del in Chrome to refresh page */
+/* Use Cmmd + Shift + R in Chrome to refresh page */
 
 * {
   box-sizing: border-box;
   /*border: 1px solid purple;*/
-  font-family: 'Helvetica';
+  font-family: 'Noto Sans';
 }
 
 .clearfix:after {
@@ -47,7 +47,7 @@ header img {
   top: 0;
   opacity: .8;
   width: 38%;
-  height: 40%;
+  height: 60%;
   position: relative;
   float: center;
   /*z-index: -1;*/
@@ -229,7 +229,7 @@ h1 {
   text-align: center;
   font-size: 5em;
   margin: 2em auto;
-  text-shadow: 5px 5px purple;
+  /*text-shadow: 5px 5px purple;*/
   color: #BC2021;
 }
 

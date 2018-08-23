@@ -126,7 +126,6 @@ h2 {
   margin: .5em auto;
   width: 100%;
   margin-top: 2em;
-
 }
 
 /*=====Standings/Driver List=======*/
@@ -136,7 +135,7 @@ aside {
   border: .4em solid #88166D;
   margin-right: 1em;
   padding-right: .5em;
-  margin-top: 3em;
+  margin-top: 9em;
 }
 
 ol {
@@ -220,6 +219,7 @@ b {
 
 #graphed {
   width: 100%;
+  padding-left: 5em;
   /*background-color: #BC2021;*/
 }
 
@@ -348,7 +348,7 @@ p {
 
 #content h2 {
   font-size: 3.5em;
-  text-shadow: 3px 4px #BC2021;
+  text-shadow: 3px 4px #02549E;
   margin: 0 auto;
   background-color: #EDC240;
 }

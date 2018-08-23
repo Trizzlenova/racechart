@@ -21,7 +21,7 @@ class Team(models.Model):
         manufacturer = team['manufacturer'],
         sponsors = team['sponsors'],
         owner = team['owner']
-      ),'bn'
+      )
       return new_team
 
 
@@ -43,8 +43,6 @@ class Driver(models.Model):
   rookie_year = models.IntegerField(blank=True, null=True)
   status = models.CharField(max_length=100)
   twitter = models.CharField(max_length=100, blank=True, null=True)
-
-# for loops will be dope
 
   def __str__(self):
     return self.full_name

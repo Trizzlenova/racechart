@@ -154,7 +154,6 @@ def seed_races():
         if len(keys_to_add) > 0:
             for key in keys_to_add:
                     loaded_race[key] = None
-        # print(loaded_race)
         cleaned_races.append(loaded_race)
 
         i = i + 1
@@ -163,8 +162,7 @@ def seed_races():
         print(cleaned_race)
         new_race = Race.create(cleaned_race)
         new_race.save()
-        # print(new_race)
-        # print('wow')
+
 
                 ######################
                 ####### RESULTS ######
@@ -179,6 +177,9 @@ def seed_results():
       results = loaded_race['results']
 
       for result in results:
+          rating = result.get('driver_rating')
+          if rating == None:
+              result['driver_rating'] = None
   # Switch triggers if driver exists in database. This is to avoid No Matching Query error
           driver_binary = len(Driver.objects.filter(full_name=result['driver']['full_name']))
           if driver_binary == 1:
@@ -228,4 +229,3 @@ def seed_database():
     seed_results()
     seed_standings()
     print('seeded database')
-

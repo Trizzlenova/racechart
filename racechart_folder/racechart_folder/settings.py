@@ -27,9 +27,9 @@ SECRET_KEY = SECRET_KEY
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost', 'staticfiles']
+ALLOWED_HOSTS = ['django-env.8cpmiuwg47.us-west-1.elasticbeanstalk.com']
 
 
 # Application definition
@@ -135,7 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/Users/TDSwayzee22/Desktop/wdi/project2/racechart_project/racechart_folder/racechart/static'
+STATIC_ROOT = '/Users/Corman/GA/Projects/racechart/racechart_folder/racechart/static'
 
 # Celery config
 CELERY_BROKER_URL = 'amqp://localhost'

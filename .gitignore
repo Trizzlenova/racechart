@@ -2,3 +2,8 @@ __pycache__
 .env
 config.py
 .bash_profile
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
